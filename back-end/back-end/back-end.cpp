@@ -104,37 +104,69 @@ void insertPos(Node** head, int pos, string title, int year)
 
 }
 
-void editNode(Node** head, int pos, string title, int year) {
+void editNode(Node** head, int pos) {
+	Node* temp = *head;
 
-}
+	string title;
+	int year;
 
-void deleteNode(Node** headRef, string key)
-{
-
-	Node* temp = *headRef;
-	Node* prev = NULL;
-
-	if (temp != NULL && temp->title == key)
-	{
-		*headRef = temp->next;
-		delete temp;
-		return;
+	while (pos--) {
+		if (pos == 0) {
+			cout << "\nTitle - 1\n";
+			cout << "Year - 2\n";
+			cout << "What do you want to edit: ";
+			int choice;
+			cin >> choice;
+			switch (choice) {
+			case 1:
+				cout << "Edit title: ";
+				cin.ignore();
+				getline(cin, title, '\n');
+				temp->title = title;
+				break;
+			case 2:
+				cout << "Edit year: ";
+				cin >> year;
+				temp->year = year;
+				break;
+			}
+		}
+		temp = temp->next;
 	}
 
-	else
-	{
-		while (temp != NULL && temp->title != key)
-		{
-			prev = temp;
-			temp = temp->next;
+	return;
+}
+
+void deleteNode(Node** head, int pos)
+{
+
+	Node* temp = *head;
+	Node* prev = NULL;
+	while (pos--) {
+		if (pos == 0) {
+			if (temp != NULL)
+			{
+				*head = temp->next;
+				delete temp;
+				return;
+			}
+
+			else
+			{
+				while (temp != NULL)
+				{
+					prev = temp;
+					temp = temp->next;
+				}
+
+				if (temp == NULL)
+					return;
+
+				prev->next = temp->next;
+
+				delete temp;
+			}
 		}
-
-		if (temp == NULL)
-			return;
-
-		prev->next = temp->next;
-
-		delete temp;
 	}
 }
 
@@ -181,23 +213,20 @@ int main()
 			print(myEvents);
 			cout << "\nPick position: ";
 			cin >> pos;
-			inputData(&title, &year);
-			editNode(&myEvents, pos, title, year);
+			editNode(&myEvents, pos);
 			break;
 		case 6:
 			print(myEvents);
-			cout << "\nSelect title: ";
-			string deleteThisTitle;
-			cin.ignore();
-			getline(cin, deleteThisTitle, '\n');
-			deleteNode(&myEvents, deleteThisTitle);
+			cout << "\nPick position: ";
+			cin >> pos;
+			deleteNode(&myEvents, pos);
 			break;
 		}
 
 		string ready;
 		cout << "Ready? - ";
 		cin.ignore();
-		getline(cin, ready, '\n');
+		getline(cin, ready);
 		clear();
 
 	}
