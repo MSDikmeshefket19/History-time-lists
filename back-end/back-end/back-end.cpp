@@ -21,7 +21,7 @@ void search(Node* node, int choice);
 void deleteNode(Node** head, int pos);
 void deleteAllNodes(Node** head);
 void saveNodes(Node** head);
-void autoSaveNodes(Node** head);
+void autoSaveNodes(Node** head, string autoSave);
 
 struct Node {
     string title;
@@ -394,18 +394,17 @@ void saveNodes(Node** head) {
     }
     data.close();
 }
-/**
-void saveAutofile(string autoSave) {
+
+void writeFromFile(string autoSave) {
     ofstream data("AutoSaveNodes.txt");
     data << autoSave;
-    data.close();
 }
-/**
-void autoSaveNodes(Node** head, bool *autoChoice) {
 
-    saveAutofile(autoChoice);
+void autoSaveNodes(Node** head, string autoSave) {
 
-    fstream data("AutoSaveNodes.txt");
+    writeFromFile(autoSave);
+
+    fstream data;
     data.open("AutoSaveNodes.txt", ios::in);
     if (data.is_open()) {
         string tp;
@@ -418,7 +417,6 @@ void autoSaveNodes(Node** head, bool *autoChoice) {
 
     data.close();
 }
-*/
 
 void savedNodes(Node** head, int* itemCount) {
 
@@ -448,17 +446,35 @@ void savedNodes(Node** head, int* itemCount) {
 
 }
 
+int codeOfGrey(int num) {
+    int n = 0;
+    for (; g; g >>= 1)
+        n ^= g;
+    return n;
+}
+
 int main()
 {
     Node* myEvents = NULL;
     int itemCount = 0;
     string autoSave;
-    bool autoChoice;
 
     savedNodes(&myEvents, &itemCount);
 
     while (true) {
-        //autoSaveNodes(&myEvents);
+
+        fstream data;
+        data.open("AutoSaveNodes.txt", ios::in);
+        if (data.is_open()) {
+            string tp;
+            while (getline(data, tp)) {
+                autoSave = tp;
+            }
+        }
+
+        data.close();
+
+        autoSaveNodes(&myEvents, autoSave);
         string title;
         int year;
 
@@ -542,23 +558,22 @@ int main()
             saveNodes(&myEvents);
             break;
         case 11:
-            cout << "Do you want auto save?";
+            cout << "Do you want auto save? (yes/no): ";
             cin.ignore();
             getline(cin, autoSave, '\n');
-            if (autoSave == "yes") {
-                autoChoice = true;
-            }
-            else {
-                autoChoice = false;
-            }
-            //autoSaveNodes(&myEvents, &autoChoice);
+
+            autoSaveNodes(&myEvents, autoSave);
             break;
+        case 12:
+            cout << "Code on gray: ";
+            cin >> pos;
+            cout << "Code: " << codeOfGrey(pos) << endl;
         }
 
         string ready;
         cout << "Ready? - ";
         cin.ignore();
-        getline(cin, ready);
+        getline(cin, ready, '\n');
         clear();
 
     }
