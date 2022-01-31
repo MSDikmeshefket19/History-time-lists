@@ -15,6 +15,25 @@ void currentLocation(int* ptr, int n, Event event, Text* textOne)
 	}
 }
 
+void backToMenu(int* ptr1, Event event, Text* textOne)
+{
+	if (Mouse::getPosition().x > 470 && Mouse::getPosition().x < 530 && Mouse::getPosition().y>950 && Mouse::getPosition().y < 975)
+	{
+		(*textOne).setFillColor(Color::White);
+		if (event.type == Event::MouseButtonPressed)
+		{
+			if (event.mouseButton.button == Mouse::Left)
+			{
+				*ptr1 = 0;
+			}
+		}
+	}
+	else
+	{
+		(*textOne).setFillColor(Color::Black);
+	}
+}
+
 int main()
 {
 	int location = 0;
@@ -137,19 +156,24 @@ int main()
 			switch (location)
 			{
 			case 1:
+				backToMenu(&location, event, &text6);
 				window.draw(text6);
 				break;
 			case 2:
 				window.draw(text6);
+				backToMenu(&location, event, &text6);
 				break;
 			case 3:
 				window.draw(text6);
+				backToMenu(&location, event, &text6);
 				break;
 			case 4:
 				window.draw(text6);
+				backToMenu(&location, event, &text6);
 				break;
 			case 5:
 				window.draw(text6);
+				backToMenu(&location, event, &text6);
 				break;
 			}
 		}
