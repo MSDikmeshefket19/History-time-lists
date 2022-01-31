@@ -3,10 +3,10 @@
 #include<windows.h>
 using namespace std;
 using namespace sf;
-
+RenderWindow window(VideoMode(1000, 800), "Helpopedia");
 void backToMenu(int* ptr1, Event event, Text* textOne)
 {
-	if (Mouse::getPosition().x > 470 && Mouse::getPosition().x < 530 && Mouse::getPosition().y>950 && Mouse::getPosition().y < 975)
+	if (Mouse::getPosition(window).x > 0 && Mouse::getPosition(window).x < (*textOne).getCharacterSize() * 2.25 && Mouse::getPosition(window).y>770 && Mouse::getPosition(window).y < 800)
 	{
 		(*textOne).setFillColor(Color::White);
 		if (event.type == Event::MouseButtonPressed)
@@ -37,7 +37,6 @@ void currentLocation(int* ptr, int n, Event event, Text* textOne)
 int main()
 {
 	int location = 0;
-	RenderWindow window(VideoMode(1000, 800), "Helpopedia");
 	Texture tex1, tex2;
 	Sprite s1(tex1), s2(tex2);
 	Font f1;
@@ -47,7 +46,7 @@ int main()
 	text1.setFont(f1);
 	text1.setCharacterSize(40);
 	text1.setString("Events");
-	text1.setPosition(window.getSize().x / 2 - 50, 500);
+	text1.setPosition(window.getSize().x / 2 - 50,500);
 	text1.setFillColor(Color::Black);
 
 	text2.setFont(f1);
@@ -116,7 +115,6 @@ int main()
 			if (event.type == Event::Closed)
 				window.close();
 		}
-
 		window.clear(Color(210, 210, 210, 255));
 		if (location == 0)
 		{
@@ -129,7 +127,8 @@ int main()
 			window.draw(text5);
 
 			//text1
-			if (Mouse::getPosition().x > 915 && Mouse::getPosition().x < 1025 && Mouse::getPosition().y>685 && Mouse::getPosition().y < 715)
+			if (Mouse::getPosition(window).x > window.getSize().x / 2 - text1.getCharacterSize()*1.25 && Mouse::getPosition(window).x < window.getSize().x / 2 + text1.getCharacterSize()*1.75 &&
+				Mouse::getPosition(window).y > 500 && Mouse::getPosition(window).y < 545)
 			{
 				currentLocation(&location, 1, event, &text1);
 			}
@@ -139,7 +138,8 @@ int main()
 			}
 
 			//text2
-			if (Mouse::getPosition().x > 915 && Mouse::getPosition().x < 1025 && Mouse::getPosition().y>730 && Mouse::getPosition().y < 765)
+			if (Mouse::getPosition(window).x > window.getSize().x / 2 - text2.getCharacterSize() * 1.25 && Mouse::getPosition(window).x < window.getSize().x / 2 + text2.getCharacterSize() * 1.75 &&
+				Mouse::getPosition(window).y > 550 && Mouse::getPosition(window).y < 590)
 			{
 				currentLocation(&location, 2, event, &text2);
 			}
@@ -149,7 +149,8 @@ int main()
 			}
 
 			//text3
-			if (Mouse::getPosition().x > 915 && Mouse::getPosition().x < 1025 && Mouse::getPosition().y>785 && Mouse::getPosition().y < 820)
+			if (Mouse::getPosition(window).x > window.getSize().x / 2 - text3.getCharacterSize() * 1.25 && Mouse::getPosition(window).x < window.getSize().x / 2 + text3.getCharacterSize() * 1.75 &&
+				Mouse::getPosition(window).y > 600 && Mouse::getPosition(window).y < 640)
 			{
 				currentLocation(&location, 3, event, &text3);
 			}
@@ -159,7 +160,8 @@ int main()
 			}
 
 			//text4
-			if (Mouse::getPosition().x > 895 && Mouse::getPosition().x < 1040 && Mouse::getPosition().y>830 && Mouse::getPosition().y < 870)
+			if (Mouse::getPosition(window).x > window.getSize().x / 2 - text4.getCharacterSize() * 1.25 && Mouse::getPosition(window).x < window.getSize().x / 2 + text4.getCharacterSize() * 1.75 &&
+				Mouse::getPosition(window).y > 650 && Mouse::getPosition(window).y < 690)
 			{
 				currentLocation(&location, 4, event, &text4);
 			}
@@ -169,7 +171,8 @@ int main()
 			}
 
 			//text5
-			if (Mouse::getPosition().x > 910 && Mouse::getPosition().x < 1015 && Mouse::getPosition().y>880 && Mouse::getPosition().y < 920)
+			if (Mouse::getPosition(window).x > window.getSize().x / 2 - text5.getCharacterSize() * 1.25 && Mouse::getPosition(window).x < window.getSize().x / 2 + text5.getCharacterSize() * 1.75 &&
+				Mouse::getPosition(window).y > 700 && Mouse::getPosition(window).y < 740)
 			{
 				currentLocation(&location, 5, event, &text5);
 			}
@@ -204,11 +207,11 @@ int main()
 				backToMenu(&location, event, &text6);
 				break;
 			case 5:
-				window.draw(text6);
-				backToMenu(&location, event, &text6);
+				window.close();
 				break;
 			}
 		}
+		cout <<Mouse::getPosition(window).y<<" "<<text1.getCharacterSize() << endl;
 		window.display();
 	}
 	return 0;
