@@ -1,45 +1,21 @@
 ﻿  front-end.cpp
-F:\Project-2022\History-time-lists\front-end\front-end\front-end.cpp(49,43): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+F:\Project-2022\History-time-lists\front-end\front-end\front-end.cpp(50,72): warning C4018: '<': signed/unsigned mismatch
+F:\Project-2022\History-time-lists\front-end\front-end\front-end.cpp(102,33): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+F:\Project-2022\History-time-lists\front-end\front-end\front-end.cpp(102,27): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+F:\Project-2022\History-time-lists\front-end\front-end\front-end.cpp(108,31): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+F:\Project-2022\History-time-lists\front-end\front-end\front-end.cpp(115,55): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+F:\Project-2022\History-time-lists\front-end\front-end\front-end.cpp(115,45): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
           ]
-F:\Project-2022\History-time-lists\front-end\front-end\front-end.cpp(55,43): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+F:\Project-2022\History-time-lists\front-end\front-end\front-end.cpp(122,51): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+F:\Project-2022\History-time-lists\front-end\front-end\front-end.cpp(122,45): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
           ]
-F:\Project-2022\History-time-lists\front-end\front-end\front-end.cpp(61,43): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
-          with
-          [
-              T=unsigned int
-          ]
-F:\Project-2022\History-time-lists\front-end\front-end\front-end.cpp(67,43): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
-          with
-          [
-              T=unsigned int
-          ]
-F:\Project-2022\History-time-lists\front-end\front-end\front-end.cpp(73,43): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
-          with
-          [
-              T=unsigned int
-          ]
-F:\Project-2022\History-time-lists\front-end\front-end\front-end.cpp(88,43): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
-          with
-          [
-              T=unsigned int
-          ]
-F:\Project-2022\History-time-lists\front-end\front-end\front-end.cpp(94,43): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
-          with
-          [
-              T=unsigned int
-          ]
-F:\Project-2022\History-time-lists\front-end\front-end\front-end.cpp(100,43): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
-          with
-          [
-              T=unsigned int
-          ]
-F:\Project-2022\History-time-lists\front-end\front-end\front-end.cpp(110,74): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+F:\Project-2022\History-time-lists\front-end\front-end\front-end.cpp(179,74): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
           with
           [
               T=unsigned int
@@ -48,7 +24,7 @@ F:\Project-2022\History-time-lists\front-end\front-end\front-end.cpp(110,74): wa
           [
               T=float
           ]
-F:\Project-2022\History-time-lists\front-end\front-end\front-end.cpp(110,126): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+F:\Project-2022\History-time-lists\front-end\front-end\front-end.cpp(180,42): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
           with
           [
               T=unsigned int
@@ -57,14 +33,38 @@ F:\Project-2022\History-time-lists\front-end\front-end\front-end.cpp(110,126): w
           [
               T=float
           ]
-F:\Project-2022\History-time-lists\front-end\front-end\front-end.cpp(134,40): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+F:\Project-2022\History-time-lists\front-end\front-end\front-end.cpp(180,94): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
           with
           [
               T=unsigned int
           ]
-F:\Project-2022\History-time-lists\front-end\front-end\front-end.cpp(230,75): warning C4018: '<': signed/unsigned mismatch
+          and
+          [
+              T=float
+          ]
+F:\Project-2022\History-time-lists\front-end\front-end\front-end.cpp(180,146): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-2022\History-time-lists\front-end\front-end\front-end.cpp(197,40): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+F:\Project-2022\History-time-lists\front-end\front-end\front-end.cpp(240,75): warning C4018: '<': signed/unsigned mismatch
+F:\Project-2022\History-time-lists\front-end\front-end\front-end.cpp(253,76): warning C4018: '<': signed/unsigned mismatch
+F:\Project-2022\History-time-lists\front-end\front-end\front-end.cpp(254,71): warning C4018: '<': signed/unsigned mismatch
+F:\Project-2022\History-time-lists\front-end\front-end\front-end.cpp(259,76): warning C4018: '<': signed/unsigned mismatch
+F:\Project-2022\History-time-lists\front-end\front-end\front-end.cpp(260,72): warning C4018: '<': signed/unsigned mismatch
+F:\Project-2022\History-time-lists\front-end\front-end\front-end.cpp(265,76): warning C4018: '<': signed/unsigned mismatch
+F:\Project-2022\History-time-lists\front-end\front-end\front-end.cpp(266,72): warning C4018: '<': signed/unsigned mismatch
   Generating code
-  1 of 86 functions ( 1.2%) were compiled, the rest were copied from previous compilation.
+  1 of 94 functions ( 1.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
