@@ -1,15 +1,17 @@
 
 #pragma once
 
+// Libraries
 #include <iostream>
 #include <string>
 #include <fstream>
 #include <windows.h>
 #include <sstream>
+#include <cmath>
 
 using namespace std;
 
-// A linked list node
+// Structure
 struct Node {
     string title;
     int year;
@@ -24,7 +26,10 @@ struct Node {
     Node* next;
 };
 
+
 void clear();
+
+// Functions
 void isRealPosition(int* pos, int* counter);
 void isNumber(int* num);
 bool checkEmptyString(const string& s);
