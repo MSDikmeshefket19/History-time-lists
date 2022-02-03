@@ -2,6 +2,7 @@
 #include "back-end.h"
 //#include "front-end.h"
 
+
 void clear() {
     COORD topLeft = { 0, 0 };
     HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -18,6 +19,13 @@ void clear() {
     );
     SetConsoleCursorPosition(console, topLeft);
 }
+
+/*
+ * @brief Functions for checking that the given values are reliable
+ * @param Whether the position is correct
+ * @param Тhe number is true
+ * @param String if there is anything in it
+*/
 
 void isRealPosition(int *pos, int *counter) {
     while (true) {
@@ -78,6 +86,10 @@ void isStringEmpty(string* str) {
     }
 }
 
+/*
+ * @brief Function for inputting data in linked list
+*/
+
 void inputData(string* title, int* year, int* grayYear, string* participants, string* era, string* location, string* reason, string* result, string* description) {
     cout << endl;
 
@@ -131,6 +143,10 @@ void print(Node* node)
     cout << endl;
 }
 
+/*
+ * @brief Function for inserting data as the last item in a linked list
+*/
+
 void newAfterNode(Node*& head, string title, int year, int grayYear, string participants, string era, string location, string reason, string result, string description)
 {
     Node* newNode = new Node{ title, year, grayYear, participants, era, location, reason, result, description, NULL };
@@ -155,12 +171,20 @@ void newAfterNode(Node*& head, string title, int year, int grayYear, string part
     }
 }
 
+/*
+ * @brief Function for inserting data as the first item in a linked list
+*/
+
 void newBeforeNode(Node*& head, string title, int year, int grayYear, string participants, string era, string location, string reason, string result, string description)
 {
     Node* newNode = new Node{ title, year, grayYear, participants, era, location, reason, result, description, head };
 
     head = newNode;
 }
+
+/*
+ * @brief Function for inserting data on given position in a linked list
+*/
 
 void insertPos(Node** head, int pos, string title, int year, int grayYear, string participants, string era, string location, string reason, string result, string description)
 {
@@ -179,6 +203,10 @@ void insertPos(Node** head, int pos, string title, int year, int grayYear, strin
     }
 
 }
+
+/*
+ * @brief Function for edit data on a position in a linked list
+*/
 
 void editNode(Node** head, int pos) {
 
@@ -269,6 +297,13 @@ void editNode(Node** head, int pos) {
 
     return;
 }
+
+/*
+ * @brief Functions for order data on given position in a linked list
+ * @param Getting a linked list
+ * @param Take the last two elements and compare which one is bigger
+ * @param Sort by size from bottom to top
+*/
 
 void mergeSort(Node** headRef, int choice)
 {
@@ -366,6 +401,10 @@ void frontBackSplit(Node* source, Node** frontRef, Node** backRef)
     slow->next = NULL;
 }
 
+/*
+ * @brief Functions for copy a linked list
+*/
+
 Node* clone(Node* list) {
     if (list == NULL) return NULL;
 
@@ -375,6 +414,10 @@ Node* clone(Node* list) {
     result->next = clone(list->next);
     return result;
 }
+
+/*
+ * @brief Function for sorted years from beginning to end in a linked list
+*/
 
 void sortedFromToYears(Node* head) {
 
@@ -408,6 +451,12 @@ void sortedFromToYears(Node* head) {
     }
     cout << endl;
 }
+
+/*
+ * @brief Function for searching in a linked list
+ * @param Searching by choice
+ * @param Search for whether the word contains a letters
+*/
 
 void search(Node* node) {
 
@@ -557,6 +606,10 @@ void search(Node* node) {
 
 }
 
+/*
+ * @brief Functions for remove data on given position in a linked list
+*/
+
 void deleteNode(Node** head, int pos)
 {
     Node* temp = *head;
@@ -596,6 +649,11 @@ void deleteAllNodes(Node** head, int* itemCount)
         deleteNode(head, 1);
     }
 }
+
+/*
+ * @brief Functions for save data in txt file
+ * @param Function for auto save data 
+*/
 
 void saveNodes(Node** head) {
     Node* temp = *head;
@@ -703,16 +761,60 @@ void savedNodes(Node** head, int* itemCount) {
 
 }
 
-int codeOfGrey(int num) {
-    int n = 0;
-    for (; num; num >>= 1)
-        n ^= num;
-    return n;
+/*
+ * @brief Functions for conversion year in gray code
+*/
+
+int codeOfGrey(int num)
+{
+    string binary;
+    int i = 0;
+    int tempNum;
+    while (num > 0) {
+        tempNum = num % 2;
+        binary += to_string(tempNum);
+        num = num / 2;
+        i++;
+    }
+
+    int binaryNum;
+    stringstream geek(binary);
+    geek >> binaryNum;
+
+    int a, b, gray = 0;
+    i = 0;
+
+    while (binaryNum != 0)
+    {
+        a = binaryNum % 10;
+        binaryNum = binaryNum / 10;
+        b = binaryNum % 10;
+
+        if ((a && !b) || (!a && b)) 
+            gray = gray + pow(10, i);
+        i++;
+    }
+
+    int dec_value = 0;
+    int base = 1;
+    int temp = gray;
+    while (temp) {
+        int last_digit = temp % 10;
+        temp = temp / 10;
+
+        dec_value += last_digit * base;
+
+        base = base * 2;
+    }
+
+    return dec_value;
 }
 
-void setUpLink() {
+/*
+ * @brief Set up linked list and going in other function by choice
+*/
 
-    // set up linked list
+void setUpLink() {
     Node* myEvents = NULL;
     int itemCount = 0;
     string autoSave;
