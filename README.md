@@ -1,8 +1,7 @@
-# History-time-lists
 
 <p align="center">
   <a href=" rel="noopener">
-   <img src="https://cdn.discordapp.com/attachments/934423504332406805/936327525074870392/unknown.png" alt="Logo" width=500" >
+   <img src="https://cdn.discordapp.com/attachments/934149830308135026/938825665002766406/githubLogo-2-modified.png" alt="Logo" width=800" >
   </a>
 </p>
 

@@ -25,6 +25,7 @@ struct Node {
     Node* next;
 };
 
+<<<<<<< HEAD
 // Functions
 /*
 bool isRealPosition(int* pos, int* counter);
@@ -32,6 +33,17 @@ bool isNumber(int* num);
 bool checkEmptyString(const string& s); 
 bool isStringEmpty(string* str);
 void inputData(string* title, int* year, int* grayYear, string* participants, string* era, string* location, string* reason, string* result, string* description);
+=======
+
+void clear();
+
+// Functions
+void isRealPosition(int* pos, int* counter);
+void isNumber(int* num);
+bool checkEmptyString(const string& s);
+void isStringEmpty(string* str);
+void inputData(string* title, int* year, int *grayYear, string *participants, string *era, string *location, string *reason, string *result,string *description);
+>>>>>>> 660670891a0c87d6563f3d452d2879da084888a5
 void print(Node* node);
 
 // in tab
