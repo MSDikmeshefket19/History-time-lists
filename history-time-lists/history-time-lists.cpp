@@ -1,10 +1,11 @@
 
 #include "back-end.h"
-//#include "front-end.h"
+#include "front-end.h"
 
 int main()
 {
-    setUpLink();
-    //setUpMenu();
+    setUpMenu();
     return 0;
 }
+
+ 

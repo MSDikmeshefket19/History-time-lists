@@ -1,4 +1,4 @@
-/*
+
 #include "back-end.h"
 #include "front-end.h"
 
@@ -125,6 +125,22 @@ void setDropDownMenuText(Text* text, int posY)
 }
 
 void setUpMenu() {
+	Node* myEvents = NULL;
+	setUpLink(myEvents);
+
+	sf::Font font;
+	if (!font.loadFromFile("arial.ttf"))
+		std::cout << "Font not found!\n";
+
+	Textbox text100(20, sf::Color::White, true);
+	text100.setPosition({ 100, 100 });
+	text100.setLimit(true, 30);
+	text100.setFont(font);
+
+	Button btn1("Enter", { 200, 100 }, 30, sf::Color::Green, sf::Color::Black);
+	btn1.setFont(font);
+	btn1.setPosition({ 100, 300 });
+
 	int location = 0, locCreate = 0;
 	Texture tex1, tex2;
 	Sprite s1(tex1), s2(tex2);
@@ -273,7 +289,6 @@ void setUpMenu() {
 						window.draw(rectangle1);
 						break;
 					case 2:
-						window.draw(rectangle2);
 						break;
 					case 3:
 						window.draw(rectangle3);
@@ -290,7 +305,40 @@ void setUpMenu() {
 						window.draw(rectangle1);
 						break;
 					case 2:
-						window.draw(rectangle2);
+							sf::Event Event;
+
+							if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
+								text100.setSelected(true);
+							}
+							else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+								text100.setSelected(false);
+							}
+
+							//Event Loop:
+							while (window.pollEvent(Event)) {
+								switch (Event.type) {
+
+								case sf::Event::Closed:
+									window.close();
+								case sf::Event::TextEntered:
+									text100.typedOn(Event);
+								case sf::Event::MouseMoved:
+									if (btn1.isMouseOver(window)) {
+										btn1.setBackColor(sf::Color::Magenta);
+									}
+									else {
+										btn1.setBackColor(sf::Color::Green);
+									}
+									break;
+								case sf::Event::MouseButtonPressed:
+									if (btn1.isMouseOver(window)) {
+										std::cout << "Hello " << text100.getText() << "\n";
+									}
+								}
+							}
+							text100.drawTo(window);
+							btn1.drawTo(window);
+
 						break;
 					case 3:
 						window.draw(rectangle3);
@@ -317,4 +365,3 @@ void setUpMenu() {
 		window.display();
 	}
 }
-*/

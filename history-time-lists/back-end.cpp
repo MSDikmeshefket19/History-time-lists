@@ -1,24 +1,6 @@
 
 #include "back-end.h"
-//#include "front-end.h"
-
-
-void clear() {
-    COORD topLeft = { 0, 0 };
-    HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
-    CONSOLE_SCREEN_BUFFER_INFO screen;
-    DWORD written;
-
-    GetConsoleScreenBufferInfo(console, &screen);
-    FillConsoleOutputCharacterA(
-        console, ' ', screen.dwSize.X * screen.dwSize.Y, topLeft, &written
-    );
-    FillConsoleOutputAttribute(
-        console, FOREGROUND_GREEN | FOREGROUND_RED | FOREGROUND_BLUE,
-        screen.dwSize.X * screen.dwSize.Y, topLeft, &written
-    );
-    SetConsoleCursorPosition(console, topLeft);
-}
+#include "front-end.h"
 
 /*
  * @brief Functions for checking that the given values are reliable
@@ -27,127 +9,33 @@ void clear() {
  * @param String if there is anything in it
 */
 
-void isRealPosition(int *pos, int *counter) {
-    while (true) {
-        if (*pos > *counter || *pos <= 0) {
-            cout << "Pick real position!\n";
-            cout << "\nPick position: ";
-            isNumber(pos);
-        }
-        else {
-            break;
-        }
+/*bool isRealPosition(int* pos, int* counter) {
+    if (*pos > *counter || *pos <= 0) {
+        return false;
+    }
+    else {
+        return true;
     }
 }
 
-void isNumber(int* num) {
-    bool aux = true;
-    cin.exceptions(std::istream::failbit);
-    do {
-        try {
-            cin >> *num;
-            aux = true;
-        }
-        catch (std::ios_base::failure& fail) {
-            aux = false;
-            cout << "\nPLEASE INSERT A VALID OPTION" << endl;
-            cout << "Try again: ";
-            cin.clear();
-            std::string tmp;
-            getline(cin, tmp);
-        }
-    } while (aux == false);
+bool isNumber(string num) {
+    for (size_t i = 0; i < num.size(); i++) {
+        if (num[i]<48||num[i]>57)
+            return false;
+    }
+    return true;
 }
 
-bool checkEmptyString(const string& s)
+bool checkEmptyString(string s)
 {
     return s.size() == 0;
-}
-
-void isStringEmpty(string* str) {
-    while (true) {
-
-        getline(cin >> ws, *str, '\n');
-
-        string copyStr = *str;
-
-        if (copyStr[0] == ' ') {
-            cout << "You can't place first letter with space";
-        }
-        else {
-            if (checkEmptyString(*str)) {
-                cout << "You can't stay string empty\n";
-                cout << "Try again: ";
-            }
-            else {
-                break;
-            }
-        }
-    }
-}
-
-/*
- * @brief Function for inputting data in linked list
-*/
-
-void inputData(string* title, int* year, int* grayYear, string* participants, string* era, string* location, string* reason, string* result, string* description) {
-    cout << endl;
-
-    cout << "Title: ";
-    isStringEmpty(&*title);
-
-    cout << "Year: ";
-    isNumber(&*year);
-
-    *grayYear = codeOfGrey(*year);
-
-    cout << "Participants: ";
-    isStringEmpty(&*participants);
-
-    cout << "Era: ";
-    isStringEmpty(&*era);
-
-    cout << "Location: ";
-    isStringEmpty(&*location);
-
-    cout << "Reason: ";
-    isStringEmpty(&*reason);
-
-    cout << "Result: ";
-    isStringEmpty(&*result);
-
-    cout << "Description: ";
-    isStringEmpty(&*description);
-}
-
-void print(Node* node)
-{
-    Node* temp = node;
-    int id = 0;
-    while (temp)
-    {
-        cout << endl;
-        cout << ++id << ".\n";
-        cout << "Title: " << temp->title << "\n";
-        cout << "Year: " << temp->year << "\n";
-        cout << "Gray year: " << temp->grayYear << "\n";
-        cout << "Participants: " << temp->participants << "\n";
-        cout << "Era: " << temp->era << "\n";
-        cout << "Location: " << temp->location << "\n";
-        cout << "Reason: " << temp->reason << "\n";
-        cout << "Result: " << temp->result << "\n";
-        cout << "Description: " << temp->description << "\n";
-
-        temp = temp->next;
-    }
-    cout << endl;
-}
+}*/
 
 /*
  * @brief Function for inserting data as the last item in a linked list
 */
 
-void newAfterNode(Node*& head, string title, int year, int grayYear, string participants, string era, string location, string reason, string result, string description)
+/*void newAfterNode(Node*& head, string title, int year, int grayYear, string participants, string era, string location, string reason, string result, string description)
 {
     Node* newNode = new Node{ title, year, grayYear, participants, era, location, reason, result, description, NULL };
 
@@ -169,24 +57,24 @@ void newAfterNode(Node*& head, string title, int year, int grayYear, string part
             temp = temp->next;
         }
     }
-}
+}*/
 
 /*
  * @brief Function for inserting data as the first item in a linked list
 */
 
-void newBeforeNode(Node*& head, string title, int year, int grayYear, string participants, string era, string location, string reason, string result, string description)
+/*void newBeforeNode(Node*& head, string title, int year, int grayYear, string participants, string era, string location, string reason, string result, string description)
 {
     Node* newNode = new Node{ title, year, grayYear, participants, era, location, reason, result, description, head };
 
     head = newNode;
-}
+}*/
 
 /*
  * @brief Function for inserting data on given position in a linked list
 */
 
-void insertPos(Node** head, int pos, string title, int year, int grayYear, string participants, string era, string location, string reason, string result, string description)
+/*void insertPos(Node** head, int pos, string title, int year, int grayYear, string participants, string era, string location, string reason, string result, string description)
 {
     while (pos--) {
         if (pos == 0) {
@@ -202,91 +90,42 @@ void insertPos(Node** head, int pos, string title, int year, int grayYear, strin
         }
     }
 
-}
+}*/
 
 /*
  * @brief Function for edit data on a position in a linked list
 */
 
-void editNode(Node** head, int pos) {
-
-    int tempPos = pos;
-    print(*head);
-    cout << "\nPick position: ";
-    isNumber(&pos);
-    isRealPosition(&pos, &tempPos);
-
+/*void editNode(Node** head, int pos) {
     Node* temp = *head;
 
-    string title;
-    int year = 0;
-    int grayYear = 0;
-    string description;
-    string participants;
-    string era;
-    string location;
-    string reason;
-    string result;
 
     while (pos--) {
         if (pos == 0) {
-            cout << "\nTitle - 1\n";
-            cout << "Year - 2\n";
-            cout << "Participants - 3\n";
-            cout << "Era - 4\n";
-            cout << "Location - 5\n";
-            cout << "Reason - 6\n";
-            cout << "Result - 7\n";
-            cout << "Description - 8\n";
-
-            cout << "What do you want to edit: ";
-            int choice;
-            cin >> choice;
-
-            tempPos = 8;
-
-            isRealPosition(&choice, &tempPos);
-
             switch (choice) {
             case 1:
-                cout << "Edit title: ";
-                isStringEmpty(&title);
                 temp->title = title;
                 break;
             case 2:
-                cout << "Edit year: ";
-                isNumber(&year);
                 temp->grayYear = codeOfGrey(year);
                 temp->year = year;
                 break;
             case 3:
-                cout << "Edit participants: ";
-                isStringEmpty(&participants);
                 temp->participants = participants;
                 break;
             case 4:
-                cout << "Edit era: ";
-                isStringEmpty(&era);
                 temp->era = era;
                 break;
             case 5:
-                cout << "Edit location: ";
-                isStringEmpty(&location);
                 temp->location = location;
                 break;
             case 6:
-                cout << "Edit reason: ";
-                isStringEmpty(&reason);
                 temp->reason = reason;
                 break;
             case 7:
-                cout << "Edit result: ";
-                isStringEmpty(&result);
                 temp->result = result;
                 break;
             case 8:
-                cout << "Edit description: ";
-                isStringEmpty(&description);
                 temp->description = description;
                 break;
             }
@@ -296,7 +135,7 @@ void editNode(Node** head, int pos) {
     }
 
     return;
-}
+}*/
 
 /*
  * @brief Functions for order data on given position in a linked list
@@ -304,7 +143,7 @@ void editNode(Node** head, int pos) {
  * @param Take the last two elements and compare which one is bigger
  * @param Sort by size from bottom to top
 */
-
+/*
 void mergeSort(Node** headRef, int choice)
 {
     Node* head = *headRef;
@@ -382,8 +221,9 @@ Node* sortedMerge(Node* a, Node* b, int choice)
     }
 
 }
+*/
 
-void frontBackSplit(Node* source, Node** frontRef, Node** backRef)
+/*void frontBackSplit(Node* source, Node** frontRef, Node** backRef)
 {
     Node* fast;
     Node* slow;
@@ -399,13 +239,13 @@ void frontBackSplit(Node* source, Node** frontRef, Node** backRef)
     *frontRef = source;
     *backRef = slow->next;
     slow->next = NULL;
-}
+}*/
 
 /*
  * @brief Functions for copy a linked list
 */
 
-Node* clone(Node* list) {
+/*Node* clone(Node* list) {
     if (list == NULL) return NULL;
 
     Node* result = new Node;
@@ -413,19 +253,13 @@ Node* clone(Node* list) {
     result->year = list->year;
     result->next = clone(list->next);
     return result;
-}
+}*/
 
 /*
  * @brief Function for sorted years from beginning to end in a linked list
 */
 
-void sortedFromToYears(Node* head) {
-
-    int from, to;
-    cout << "Choice from : ";
-    cin >> from;
-    cout << "Choice to : ";
-    cin >> to;
+/*void sortedFromToYears(Node* head) {
 
     Node* temp = clone(head);
 
@@ -434,23 +268,9 @@ void sortedFromToYears(Node* head) {
     int id = 0;
     while (temp)
     {
-        if (from <= temp->year && to >= temp->year) {
-            cout << endl;
-            cout << ++id << ".\n";
-            cout << "Title: " << temp->title << "\n";
-            cout << "Year: " << temp->year << "\n";
-            cout << "Gray year: " << temp->grayYear << "\n";
-            cout << "Participants: " << temp->participants << "\n";
-            cout << "Era: " << temp->era << "\n";
-            cout << "Location: " << temp->location << "\n";
-            cout << "Reason: " << temp->reason << "\n";
-            cout << "Result: " << temp->result << "\n";
-            cout << "Description: " << temp->description << "\n";
-        }
         temp = temp->next;
     }
-    cout << endl;
-}
+}*/
 
 /*
  * @brief Function for searching in a linked list
@@ -458,20 +278,7 @@ void sortedFromToYears(Node* head) {
  * @param Search for whether the word contains a letters
 */
 
-void search(Node* node) {
-
-    int choice;
-    cout << "\nTitle - 1\n";
-    cout << "Year - 2\n";
-    cout << "Participants - 3\n";
-    cout << "Era - 4\n";
-    cout << "Location - 5\n";
-    cout << "What do you want to filter: ";
-    cin >> choice;
-
-    int tempPos = 5;
-
-    isRealPosition(&choice, &tempPos);
+/*void search(Node* node) {
 
     string str;
     int num;
@@ -493,8 +300,8 @@ void search(Node* node) {
     case 3:
     case 4:
     case 5:
-        cout << "\nSearch: ";
-        isStringEmpty(&str);
+        //cout << "\nSearch: ";
+        //isStringEmpty(&str);
 
         while (temp)
         {
@@ -525,19 +332,7 @@ void search(Node* node) {
                 mayBeCan = 0;
             }
 
-            if (searchIsOk) {
-                cout << endl;
-                cout << id << ".\n";
-                cout << "Title: " << temp->title << "\n";
-                cout << "Year: " << temp->year << "\n";
-                cout << "Gray year: " << temp->grayYear << "\n";
-                cout << "Participants: " << temp->participants << "\n";
-                cout << "Era: " << temp->era << "\n";
-                cout << "Location: " << temp->location << "\n";
-                cout << "Reason: " << temp->reason << "\n";
-                cout << "Result: " << temp->result << "\n";
-                cout << "Description: " << temp->description << "\n";
-            }
+
             temp = temp->next;
             searchIsOk = false;
         }
@@ -545,7 +340,7 @@ void search(Node* node) {
 
         break;
     case 2:
-        cout << "\nSearch year: ";
+        //cout << "\nSearch year: ";
         cin >> num;
 
         tempNum = num;
@@ -558,7 +353,6 @@ void search(Node* node) {
 
         while (temp)
         {
-            ++id;
             oldNum = temp->year;
             oldCounter = 0;
 
@@ -584,7 +378,7 @@ void search(Node* node) {
             }
 
             if (searchIsOk) {
-                cout << endl;
+                /*cout << endl;
                 cout << id << ".\n";
                 cout << "Title: " << temp->title << "\n";
                 cout << "Year: " << temp->year << "\n";
@@ -594,232 +388,224 @@ void search(Node* node) {
                 cout << "Location: " << temp->location << "\n";
                 cout << "Reason: " << temp->reason << "\n";
                 cout << "Result: " << temp->result << "\n";
-                cout << "Description: " << temp->description << "\n";
-            }
-            temp = temp->next;
-            searchIsOk = false;
-        }
+                cout << "Description: " << temp->description << "\n";*/
+                /* }
+                 temp = temp->next;
+                 searchIsOk = false;
+             }
+             break;
+         }
 
-        cout << endl;
-        break;
-    }
+     }*/
 
-}
+     /*
+      * @brief Functions for remove data on given position in a linked list
+     */
 
-/*
- * @brief Functions for remove data on given position in a linked list
-*/
+     /*void deleteNode(Node** head, int pos)
+     {
+         Node* temp = *head;
+         Node* prev = NULL;
+         while (pos--) {
+             if (pos == 0) {
+                 if (temp != NULL)
+                 {
+                     *head = temp->next;
+                     delete temp;
+                     return;
+                 }
 
-void deleteNode(Node** head, int pos)
-{
-    Node* temp = *head;
-    Node* prev = NULL;
-    while (pos--) {
-        if (pos == 0) {
-            if (temp != NULL)
-            {
-                *head = temp->next;
-                delete temp;
-                return;
-            }
+                 else
+                 {
+                     while (temp != NULL)
+                     {
+                         prev = temp;
+                         temp = temp->next;
+                     }
 
-            else
-            {
-                while (temp != NULL)
-                {
-                    prev = temp;
-                    temp = temp->next;
-                }
+                     if (temp == NULL)
+                         return;
 
-                if (temp == NULL)
-                    return;
+                     prev->next = temp->next;
 
-                prev->next = temp->next;
+                     delete temp;
+                 }
+             }
+         }
+     }*/
 
-                delete temp;
-            }
-        }
-    }
-}
+     /*void deleteAllNodes(Node** head)
+     {
+         while (*head != NULL) {
+             deleteNode(head, 1);
+         }
+     }*/
 
-void deleteAllNodes(Node** head, int* itemCount)
-{
-    while (*head != NULL) {
-        --* itemCount;
-        deleteNode(head, 1);
-    }
-}
+     /*
+      * @brief Functions for save data in txt file
+      * @param Function for auto save data
+     */
 
-/*
- * @brief Functions for save data in txt file
- * @param Function for auto save data 
-*/
+     /*void saveNodes(Node** head) {
+         Node* temp = *head;
+         ofstream data("SaveNodes.txt");
+         while (temp) {
+             data << temp->title << "\n";
+             data << temp->year << "\n";
+             data << temp->grayYear << "\n";
+             data << temp->participants << "\n";
+             data << temp->era << "\n";
+             data << temp->location << "\n";
+             data << temp->reason << "\n";
+             data << temp->result << "\n";
+             data << temp->description << "\n";
+             temp = temp->next;
+         }
+         data.close();
+     }*/
 
-void saveNodes(Node** head) {
-    Node* temp = *head;
-    ofstream data("SaveNodes.txt");
-    while (temp) {
-        data << temp->title << "\n";
-        data << temp->year << "\n";
-        data << temp->grayYear << "\n";
-        data << temp->participants << "\n";
-        data << temp->era << "\n";
-        data << temp->location << "\n";
-        data << temp->reason << "\n";
-        data << temp->result << "\n";
-        data << temp->description << "\n";
-        temp = temp->next;
-    }
-    data.close();
-}
+     /*void writeFromFile(string autoSave) {
+         ofstream data("AutoSaveNodes.txt");
+         data << autoSave;
+     }*/
 
-void writeFromFile(string autoSave) {
-    ofstream data("AutoSaveNodes.txt");
-    data << autoSave;
-}
+     /*void autoSaveNodes(Node** head, string autoSave) {
+         writeFromFile(autoSave);
 
-void autoSaveNodes(Node** head, string autoSave) {
-    writeFromFile(autoSave);
+         fstream data;
+         data.open("AutoSaveNodes.txt", ios::in);
+         if (data.is_open()) {
 
-    fstream data;
-    data.open("AutoSaveNodes.txt", ios::in);
-    if (data.is_open()) {
-        string tp;
-        while (getline(data, tp)) {
-            if (tp == "yes") {
-                saveNodes(head);
-            }
-        }
-    }
+             if (tp == "yes") {
+                 saveNodes(head);
+             }
+         }
 
-    data.close();
-}
+         data.close();
+     }*/
 
-void savedNodes(Node** head, int* itemCount) {
+     /*void savedNodes(Node** head) {
 
-    fstream newfile;
-    int counter = 0;
+         fstream newfile;
+         int counter = 0;
 
-    string title;
-    int year = 0;
-    int grayYear = 0;
-    string participants;
-    string era;
-    string location;
-    string reason;
-    string result;
-    string description;
+         string title;
+         int year = 0;
+         int grayYear = 0;
+         string participants;
+         string era;
+         string location;
+         string reason;
+         string result;
+         string description;
 
-    newfile.open("SaveNodes.txt", ios::in);
-    if (newfile.is_open()) {
-        string tp;
-        while (getline(newfile, tp)) {
-            counter++;
-            if (counter == 1) {
-                title = tp;
-            }
+         newfile.open("SaveNodes.txt", ios::in);
+         if (newfile.is_open()) {
+             string tp;
+             while (getline(newfile, tp)) {
+                 counter++;
+                 if (counter == 1) {
+                     title = tp;
+                 }
 
-            if (counter == 2) {
-                stringstream geek(tp);
-                geek >> year;
-            }
+                 if (counter == 2) {
+                     stringstream geek(tp);
+                     geek >> year;
+                 }
 
-            if (counter == 3) {
-                stringstream geek(tp);
-                geek >> grayYear;
-            }
+                 if (counter == 3) {
+                     stringstream geek(tp);
+                     geek >> grayYear;
+                 }
 
-            if (counter == 4) {
-                participants = tp;
-            }
+                 if (counter == 4) {
+                     participants = tp;
+                 }
 
-            if (counter == 5) {
-                era = tp;
-            }
+                 if (counter == 5) {
+                     era = tp;
+                 }
 
-            if (counter == 6) {
-                location = tp;
-            }
+                 if (counter == 6) {
+                     location = tp;
+                 }
 
-            if (counter == 7) {
-                reason = tp;
-            }
+                 if (counter == 7) {
+                     reason = tp;
+                 }
 
-            if (counter == 8) {
-                result = tp;
-            }
+                 if (counter == 8) {
+                     result = tp;
+                 }
 
-            if (counter == 9) {
-                description = tp;
-                ++* itemCount;
-                newAfterNode(*head, title, year, grayYear, participants, era, location, reason, result, description);
-                counter = 0;
-            }
-        }
-        newfile.close();
-    }
+                 if (counter == 9) {
+                     description = tp;
+                     newAfterNode(*head, title, year, grayYear, participants, era, location, reason, result, description);
+                     counter = 0;
+                 }
+             }
+             newfile.close();
+         }
 
-}
+     }*/
 
-/*
- * @brief Functions for conversion year in gray code
-*/
+     /*
+      * @brief Functions for conversion year in gray code
+     */
 
-int codeOfGrey(int num)
-{
-    string binary;
-    int i = 0;
-    int tempNum;
-    while (num > 0) {
-        tempNum = num % 2;
-        binary += to_string(tempNum);
-        num = num / 2;
-        i++;
-    }
+     /*int codeOfGrey(int num)
+     {
+         string binary;
+         int i = 0;
+         int tempNum;
+         while (num > 0) {
+             tempNum = num % 2;
+             binary += to_string(tempNum);
+             num = num / 2;
+             i++;
+         }
 
-    int binaryNum;
-    stringstream geek(binary);
-    geek >> binaryNum;
+         int binaryNum;
+         stringstream geek(binary);
+         geek >> binaryNum;
 
-    int a, b, gray = 0;
-    i = 0;
+         int a, b, gray = 0;
+         i = 0;
 
-    while (binaryNum != 0)
-    {
-        a = binaryNum % 10;
-        binaryNum = binaryNum / 10;
-        b = binaryNum % 10;
+         while (binaryNum != 0)
+         {
+             a = binaryNum % 10;
+             binaryNum = binaryNum / 10;
+             b = binaryNum % 10;
 
-        if ((a && !b) || (!a && b)) 
-            gray = gray + pow(10, i);
-        i++;
-    }
+             if ((a && !b) || (!a && b))
+                 gray = gray + pow(10, i);
+             i++;
+         }
 
-    int dec_value = 0;
-    int base = 1;
-    int temp = gray;
-    while (temp) {
-        int last_digit = temp % 10;
-        temp = temp / 10;
+         int dec_value = 0;
+         int base = 1;
+         int temp = gray;
+         while (temp) {
+             int last_digit = temp % 10;
+             temp = temp / 10;
 
-        dec_value += last_digit * base;
+             dec_value += last_digit * base;
 
-        base = base * 2;
-    }
+             base = base * 2;
+         }
 
-    return dec_value;
-}
+         return dec_value;
+     }*/
 
-/*
- * @brief Set up linked list and going in other function by choice
-*/
+     /*
+      * @brief Set up linked list and going in other function by choice
+     */
 
-void setUpLink() {
-    Node* myEvents = NULL;
-    int itemCount = 0;
+void setUpLink(Node*& myEvents) {
     string autoSave;
 
-    savedNodes(&myEvents, &itemCount);
+    /*savedNodes(&myEvents);
 
     while (true) {
 
@@ -835,120 +621,112 @@ void setUpLink() {
         data.close();
 
         autoSaveNodes(&myEvents, autoSave);
-        string title;
-        int year = 0;
-        int grayYear = 0;
-        string description;
-        string participants;
-        string era;
-        string location;
-        string reason;
-        string result;
+        //string title;
+        //int year = 0;
+        //int grayYear = 0;
+        //string description;
+        //string participants;
+        //string era;
+        //string location;
+        //string reason;
+        //string result;
 
-        int choice = 0;
-        int pos = itemCount;
-        int tempPos = 5;
+        //int choice = 0;
+        //int pos = itemCount;
+        //int tempPos = 5;
 
-        if (myEvents == NULL) {
+        /*if (myEvents == NULL) {
             printf("List is empty.\n");
         }
         else {
             printf("The list has %d items.\n", itemCount);
-        }
+        }*/
+        //cout << "Do you want create after event - 1\n";
+        //cout << "Do you want create before event - 2\n";
+        //cout << "Do you want create position event - 3\n";
+        //cout << "Do you want see events - 4\n";
+        //cout << "Do you want edit event - 5\n";
+        //cout << "Do you want search events - 6\n";
+        //cout << "Do you want order events - 7\n";
+        //cout << "Do you want order year from-to - 8\n";
+        //cout << "Do you want delete event - 9\n";
+        //cout << "Do you want delete all events - 10\n";
+        //cout << "Do you want save all events - 11\n";
+        //cout << "Do you want auto save all events - 12\n";
+        //cout << "Gray code - 13\n";
+        //cout << "Select number: ";
 
-        cout << "Do you want create after event - 1\n";
-        cout << "Do you want create before event - 2\n";
-        cout << "Do you want create position event - 3\n";
-        cout << "Do you want see events - 4\n";
-        cout << "Do you want edit event - 5\n";
-        cout << "Do you want search events - 6\n";
-        cout << "Do you want order events - 7\n";
-        cout << "Do you want order year from-to - 8\n";
-        cout << "Do you want delete event - 9\n";
-        cout << "Do you want delete all events - 10\n";
-        cout << "Do you want save all events - 11\n";
-        cout << "Do you want auto save all events - 12\n";
-        cout << "Gray code - 13\n";
-        cout << "Select number: ";
-
-        isNumber(&choice);
+         //isNumber(&choice);
 
 
-        switch (choice) {
-        case 1:
-            itemCount++;
-            inputData(&title, &year, &grayYear, &participants, &era, &location, &reason, &result, &description);
-            newAfterNode(myEvents, title, year, grayYear, participants, era, location, reason, result, description);
-            break;
-        case 2:
-            itemCount++;
-            inputData(&title, &year, &grayYear, &participants, &era, &location, &reason, &result, &description);
-            newBeforeNode(myEvents, title, year, grayYear, participants, era, location, reason, result, description);
-            break;
-        case 3:
-            print(myEvents);
-            cout << "\nPick position: ";
-            isNumber(&pos);
-            isRealPosition(&pos, &itemCount);
-            itemCount++;
-            inputData(&title, &year, &grayYear, &participants, &era, &location, &reason, &result, &description);
-            insertPos(&myEvents, pos, title, year, grayYear, participants, era, location, reason, result, description);
-            break;
-        case 4:
-            print(myEvents);
-            break;
-        case 5:
-            editNode(&myEvents, pos);
-            break;
-        case 6:
-            search(myEvents);
-            break;
-        case 7:
-            cout << "\nTitle - 1\n";
-            cout << "Year - 2\n";
-            cout << "Participants - 3\n";
-            cout << "Era - 4\n";
-            cout << "Location - 5\n";
-            cout << "What do you want to filter: ";
-            cin >> choice;
-            isRealPosition(&choice, &tempPos);
+        /*witch (choice) {
+         case 1:
+             itemCount++;
+             inputData(&title, &year, &grayYear, &participants, &era, &location, &reason, &result, &description);
+             newAfterNode(myEvents, title, year, grayYear, participants, era, location, reason, result, description);
+             break;
+         case 2:
+             itemCount++;
+             inputData(&title, &year, &grayYear, &participants, &era, &location, &reason, &result, &description);
+             newBeforeNode(myEvents, title, year, grayYear, participants, era, location, reason, result, description);
+             break;
+         case 3:
+             //print(myEvents);
+             //cout << "\nPick position: ";
+             //isNumber(&pos);
+             //isRealPosition(&pos, &itemCount);
+             itemCount++;
+             inputData(&title, &year, &grayYear, &participants, &era, &location, &reason, &result, &description);
+             insertPos(&myEvents, pos, title, year, grayYear, participants, era, location, reason, result, description);
+             break;
+         /*case 4:
+             print(myEvents);
+             break;*/
+             /*case 5:
+                 editNode(&myEvents, pos);
+                 break;
+             case 6:
+                 search(myEvents);
+                 break;
+             case 7:
+                 //cout << "\nTitle - 1\n";
+                 //cout << "Year - 2\n";
+                 //cout << "Participants - 3\n";
+                 //cout << "Era - 4\n";
+                 //cout << "Location - 5\n";
+                 //cout << "What do you want to filter: ";
+                 //cin >> choice;
+                 //isRealPosition(&choice, &tempPos);
 
-            mergeSort(&myEvents, choice);
-            break;
-        case 8:
-            sortedFromToYears(myEvents);
-            break;
-        case 9:
-            print(myEvents);
-            cout << "\nPick position: ";
-            isNumber(&pos);
-            isRealPosition(&pos, &itemCount);
-            itemCount--;
-            deleteNode(&myEvents, pos);
-            break;
-        case 10:
-            deleteAllNodes(&myEvents, &itemCount);
-            break;
-        case 11:
-            saveNodes(&myEvents);
-            break;
-        case 12:
-            cout << "Do you want auto save? (yes/no): ";
-            cin.ignore();
-            getline(cin, autoSave, '\n');
-            autoSaveNodes(&myEvents, autoSave);
-            break;
-        case 13:
-            cout << "Code on gray: ";
-            cin >> pos;
-            cout << "Code: " << codeOfGrey(pos) << endl;
-        }
-
-        string ready;
-        cout << "Ready? - ";
-        cin.ignore();
-        getline(cin, ready, '\n');
-        clear();
-
-    }
+                 mergeSort(&myEvents, choice);
+                 break;
+             case 8:
+                 sortedFromToYears(myEvents);
+                 break;
+             case 9:
+                 //print(myEvents);
+                 //cout << "\nPick position: ";
+                 //isNumber(&pos);
+                 //isRealPosition(&pos, &itemCount);
+                 itemCount--;
+                 deleteNode(&myEvents, pos);
+                 break;
+             case 10:
+                 deleteAllNodes(&myEvents);
+                 break;
+             case 11:
+                 saveNodes(&myEvents);
+                 break;
+             case 12:
+                 //cout << "Do you want auto save? (yes/no): ";
+                 //cin.ignore();
+                 //getline(cin, autoSave, '\n');
+                 autoSaveNodes(&myEvents, autoSave);
+                 break;
+             /*case 13:
+                 cout << "Code on gray: ";
+                 cin >> pos;
+                 cout << "Code: " << codeOfGrey(pos) << endl;*/
+                 /*}
+             }*/
 }
