@@ -1,9 +1,12 @@
-
-<p align="center">
-  <a href=" rel="noopener">
-   <img src="https://cdn.discordapp.com/attachments/934149830308135026/938825665002766406/githubLogo-2-modified.png" alt="Logo" width=800" >
-  </a>
-</p>
+<div align = "center">
+  <img src="https://cdn.discordapp.com/attachments/934149830308135026/938825665002766406/githubLogo-2-modified.png" alt="Logo" width=800">
+</div>
+<div align = "center">
+  <img src = "https://img.shields.io/github/languages/count/MSDikmeshefket19/History-time-lists?style=for-the-badge">
+  <img src = "https://img.shields.io/github/contributors/MSDikmeshefket19/History-time-lists?style=for-the-badge">
+  <img src = "https://img.shields.io/github/repo-size/MSDikmeshefket19/History-time-lists?style=for-the-badge">
+  <img src = "https://img.shields.io/github/last-commit/MSDikmeshefket19/History-time-lists?style=for-the-badge">
+</div>
 
 ## 📝 Table of Contents
 - [Description](#description)
