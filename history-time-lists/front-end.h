@@ -10,7 +10,7 @@ using namespace std;
 using namespace sf;
 
 // Define keys:
-#define DELETE_KEY 8
+/*#define DELETE_KEY 8
 #define ENTER_KEY 13
 #define ESCAPE_KEY 27
 
@@ -195,7 +195,7 @@ private:
 
 	int btnWidth;
 	int btnHeight;
-};
+};*/
 
 void backToMenu(int* ptr1, Event event, Text* textOne);
 

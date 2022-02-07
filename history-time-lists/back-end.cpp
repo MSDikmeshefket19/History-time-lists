@@ -1,28 +1,7 @@
 
-#include "back-end.h"
-<<<<<<< HEAD
-#include "front-end.h"
-=======
+//#include "back-end.h"
 //#include "front-end.h"
 
-
-void clear() {
-    COORD topLeft = { 0, 0 };
-    HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
-    CONSOLE_SCREEN_BUFFER_INFO screen;
-    DWORD written;
-
-    GetConsoleScreenBufferInfo(console, &screen);
-    FillConsoleOutputCharacterA(
-        console, ' ', screen.dwSize.X * screen.dwSize.Y, topLeft, &written
-    );
-    FillConsoleOutputAttribute(
-        console, FOREGROUND_GREEN | FOREGROUND_RED | FOREGROUND_BLUE,
-        screen.dwSize.X * screen.dwSize.Y, topLeft, &written
-    );
-    SetConsoleCursorPosition(console, topLeft);
-}
->>>>>>> 660670891a0c87d6563f3d452d2879da084888a5
 
 /*
  * @brief Functions for checking that the given values are reliable
@@ -31,11 +10,10 @@ void clear() {
  * @param String if there is anything in it
 */
 
-<<<<<<< HEAD
+
 /*bool isRealPosition(int* pos, int* counter) {
     if (*pos > *counter || *pos <= 0) {
         return false;
-=======
 void isRealPosition(int *pos, int *counter) {
     while (true) {
         if (*pos > *counter || *pos <= 0) {
@@ -46,26 +24,23 @@ void isRealPosition(int *pos, int *counter) {
         else {
             break;
         }
->>>>>>> 660670891a0c87d6563f3d452d2879da084888a5
     }
     else {
         return true;
     }
 }
 
-<<<<<<< HEAD
 bool isNumber(string num) {
     for (size_t i = 0; i < num.size(); i++) {
         if (num[i]<48||num[i]>57)
             return false;
     }
     return true;
-=======
 /*
  * @brief Function for inputting data in linked list
 */
 
-void inputData(string* title, int* year, int* grayYear, string* participants, string* era, string* location, string* reason, string* result, string* description) {
+/*void inputData(string* title, int* year, int* grayYear, string* participants, string* era, string* location, string* reason, string* result, string* description) {
     cout << endl;
 
     cout << "Title: ";
@@ -93,10 +68,9 @@ void inputData(string* title, int* year, int* grayYear, string* participants, st
 
     cout << "Description: ";
     isStringEmpty(&*description);
->>>>>>> 660670891a0c87d6563f3d452d2879da084888a5
-}
+}*/
 
-bool checkEmptyString(string s)
+/*bool checkEmptyString(string s)
 {
     return s.size() == 0;
 }*/
@@ -105,15 +79,13 @@ bool checkEmptyString(string s)
  * @brief Function for inserting data as the last item in a linked list
 */
 
-<<<<<<< HEAD
 /*void newAfterNode(Node*& head, string title, int year, int grayYear, string participants, string era, string location, string reason, string result, string description)
 =======
 /*
  * @brief Function for inserting data as the last item in a linked list
 */
 
-void newAfterNode(Node*& head, string title, int year, int grayYear, string participants, string era, string location, string reason, string result, string description)
->>>>>>> 660670891a0c87d6563f3d452d2879da084888a5
+/*void newAfterNode(Node*& head, string title, int year, int grayYear, string participants, string era, string location, string reason, string result, string description)
 {
     Node* newNode = new Node{ title, year, grayYear, participants, era, location, reason, result, description, NULL };
 
@@ -141,7 +113,6 @@ void newAfterNode(Node*& head, string title, int year, int grayYear, string part
  * @brief Function for inserting data as the first item in a linked list
 */
 
-<<<<<<< HEAD
 /*void newBeforeNode(Node*& head, string title, int year, int grayYear, string participants, string era, string location, string reason, string result, string description)
 =======
 void newBeforeNode(Node*& head, string title, int year, int grayYear, string participants, string era, string location, string reason, string result, string description)
@@ -156,11 +127,8 @@ void newBeforeNode(Node*& head, string title, int year, int grayYear, string par
  * @brief Function for inserting data on given position in a linked list
 */
 
-<<<<<<< HEAD
 /*void insertPos(Node** head, int pos, string title, int year, int grayYear, string participants, string era, string location, string reason, string result, string description)
-=======
 void insertPos(Node** head, int pos, string title, int year, int grayYear, string participants, string era, string location, string reason, string result, string description)
->>>>>>> 660670891a0c87d6563f3d452d2879da084888a5
 {
     while (pos--) {
         if (pos == 0) {
@@ -175,24 +143,19 @@ void insertPos(Node** head, int pos, string title, int year, int grayYear, strin
             head = &(*head)->next;
         }
     }
-
-<<<<<<< HEAD
 }*/
-=======
-}
 
 /*
  * @brief Function for edit data on a position in a linked list
 */
 
-void editNode(Node** head, int pos) {
->>>>>>> 660670891a0c87d6563f3d452d2879da084888a5
+/*void editNode(Node** head, int pos) { */
 
 /*
  * @brief Function for edit data on a position in a linked list
 */
 
-/*void editNode(Node** head, int pos) {
+/*void editNode(Node * *head, int pos) {
     Node* temp = *head;
 
 
@@ -233,9 +196,7 @@ void editNode(Node** head, int pos) {
     return;
 <<<<<<< HEAD
 }*/
-=======
-}
->>>>>>> 660670891a0c87d6563f3d452d2879da084888a5
+
 
 /*
  * @brief Functions for order data on given position in a linked list
@@ -243,7 +204,7 @@ void editNode(Node** head, int pos) {
  * @param Take the last two elements and compare which one is bigger
  * @param Sort by size from bottom to top
 */
-<<<<<<< HEAD
+
 /*
 =======
 
@@ -349,15 +310,13 @@ Node* sortedMerge(Node* a, Node* b, int choice)
  * @brief Functions for copy a linked list
 */
 
-<<<<<<< HEAD
 /*Node* clone(Node* list) {
 =======
 /*
  * @brief Functions for copy a linked list
 */
 
-Node* clone(Node* list) {
->>>>>>> 660670891a0c87d6563f3d452d2879da084888a5
+/*Node* clone(Node* list) {
     if (list == NULL) return NULL;
 
     Node* result = new Node;
@@ -370,11 +329,8 @@ Node* clone(Node* list) {
 /*
  * @brief Function for sorted years from beginning to end in a linked list
 */
-<<<<<<< HEAD
-=======
 
-void sortedFromToYears(Node* head) {
->>>>>>> 660670891a0c87d6563f3d452d2879da084888a5
+/*void sortedFromToYears(Node* head) {
 
 /*void sortedFromToYears(Node* head) {
 
@@ -394,11 +350,8 @@ void sortedFromToYears(Node* head) {
  * @param Searching by choice
  * @param Search for whether the word contains a letters
 */
-<<<<<<< HEAD
-=======
 
-void search(Node* node) {
->>>>>>> 660670891a0c87d6563f3d452d2879da084888a5
+//void search(Node* node) {
 
 /*void search(Node* node) {
 
@@ -725,8 +678,7 @@ void search(Node* node) {
       * @brief Set up linked list and going in other function by choice
      */
 
-void setUpLink(Node*& myEvents) {
-=======
+/*void setUpLink(Node*& myEvents) {
                 cout << "Description: " << temp->description << "\n";
             }
             temp = temp->next;
@@ -737,13 +689,13 @@ void setUpLink(Node*& myEvents) {
         break;
     }
 
-}
+}*/
 
 /*
  * @brief Functions for remove data on given position in a linked list
 */
 
-void deleteNode(Node** head, int pos)
+/*void deleteNode(Node** head, int pos)
 {
     Node* temp = *head;
     Node* prev = NULL;
@@ -773,22 +725,22 @@ void deleteNode(Node** head, int pos)
             }
         }
     }
-}
+}*/
 
-void deleteAllNodes(Node** head, int* itemCount)
+/*void deleteAllNodes(Node** head, int* itemCount)
 {
     while (*head != NULL) {
         --* itemCount;
         deleteNode(head, 1);
     }
-}
+}*/
 
 /*
  * @brief Functions for save data in txt file
  * @param Function for auto save data 
 */
 
-void saveNodes(Node** head) {
+/*void saveNodes(Node** head) {
     Node* temp = *head;
     ofstream data("SaveNodes.txt");
     while (temp) {
@@ -804,14 +756,14 @@ void saveNodes(Node** head) {
         temp = temp->next;
     }
     data.close();
-}
+}*/
 
-void writeFromFile(string autoSave) {
+/*void writeFromFile(string autoSave) {
     ofstream data("AutoSaveNodes.txt");
     data << autoSave;
-}
+}*/
 
-void autoSaveNodes(Node** head, string autoSave) {
+/*void autoSaveNodes(Node** head, string autoSave) {
     writeFromFile(autoSave);
 
     fstream data;
@@ -892,13 +844,13 @@ void savedNodes(Node** head, int* itemCount) {
         newfile.close();
     }
 
-}
+}*/
 
 /*
  * @brief Functions for conversion year in gray code
 */
 
-int codeOfGrey(int num)
+/*int codeOfGrey(int num)
 {
     string binary;
     int i = 0;
@@ -941,17 +893,16 @@ int codeOfGrey(int num)
     }
 
     return dec_value;
-}
+}*/
 
 /*
  * @brief Set up linked list and going in other function by choice
 */
 
-void setUpLink() {
-    Node* myEvents = NULL;
-    int itemCount = 0;
->>>>>>> 660670891a0c87d6563f3d452d2879da084888a5
-    string autoSave;
+//void setUpLink() {
+    //Node* myEvents = NULL;
+    //int itemCount = 0;
+    //string autoSave;
 
     /*savedNodes(&myEvents);
 
@@ -1074,7 +1025,7 @@ void setUpLink() {
              /*case 13:
                  cout << "Code on gray: ";
                  cin >> pos;
-                 cout << "Code: " << codeOfGrey(pos) << endl;*/
-                 /*}
+                 cout << "Code: " << codeOfGrey(pos) << endl;
+                 }
              }*/
-}
+//}

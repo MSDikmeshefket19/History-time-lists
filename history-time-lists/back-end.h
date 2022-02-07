@@ -25,7 +25,6 @@ struct Node {
     Node* next;
 };
 
-<<<<<<< HEAD
 // Functions
 /*
 bool isRealPosition(int* pos, int* counter);
@@ -70,4 +69,4 @@ void savedNodes(Node** head, int* itemCount);
 
 int codeOfGrey(int num);
 */
-void setUpLink(Node*& myEvents);
+//void setUpLink(Node*& myEvents);
