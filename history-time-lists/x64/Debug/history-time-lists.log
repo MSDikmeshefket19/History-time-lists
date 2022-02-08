@@ -1,0 +1,946 @@
+﻿  front-end.cpp
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(28,109): warning C4018: '>': signed/unsigned mismatch
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(28,166): warning C4018: '<': signed/unsigned mismatch
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(48,72): warning C4018: '<': signed/unsigned mismatch
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(102,33): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(102,27): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(108,53): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(108,46): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(115,55): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(115,45): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(122,48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(122,41): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(129,40): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(135,31): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(141,31): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(168,26): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(290,44): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(309,100): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(309,74): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(310,42): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(310,94): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(310,146): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(311,43): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(311,96): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(311,149): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(312,43): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(312,96): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(312,149): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(314,69): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(314,43): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(314,143): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(314,117): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(315,69): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(315,43): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(315,142): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(315,116): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(316,69): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(316,43): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(316,142): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(316,116): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(317,69): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(317,43): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(317,142): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(317,116): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(319,69): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(319,43): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(319,142): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(319,116): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(320,69): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(320,43): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(320,142): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(320,116): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(323,43): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(323,94): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(324,43): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(324,94): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(325,43): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(325,94): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(326,73): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(326,47): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(329,47): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(329,103): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(330,47): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(330,103): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(331,47): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(331,103): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(332,73): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(332,47): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(333,57): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(333,112): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(336,77): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(336,47): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(337,79): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(337,51): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(338,79): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(338,51): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(339,77): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(339,47): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(340,73): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(340,47): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(343,77): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(343,47): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(344,79): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(344,51): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(345,77): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(345,47): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(346,82): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(346,54): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(347,73): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(347,47): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(350,79): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(350,53): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(351,84): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(351,60): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(352,77): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(352,47): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(353,77): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(353,47): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(378,44): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(401,86): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(401,57): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(404,80): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(404,49): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(410,78): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(410,49): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(414,74): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(414,45): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(419,86): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(419,57): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(422,80): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(422,49): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(432,55): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(435,55): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(449,49): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(452,49): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(461,40): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(462,36): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(463,61): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(463,36): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(464,61): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(464,36): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(466,65): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(466,40): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(467,65): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(467,40): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(537,47): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(551,47): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(565,47): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(579,47): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(593,47): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(598,47): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(604,47): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(609,47): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(641,39): warning C4018: '>': signed/unsigned mismatch
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(641,98): warning C4018: '<': signed/unsigned mismatch
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(671,40): warning C4018: '>': signed/unsigned mismatch
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(671,99): warning C4018: '<': signed/unsigned mismatch
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(677,77): warning C4018: '<': signed/unsigned mismatch
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(683,77): warning C4018: '<': signed/unsigned mismatch
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(689,77): warning C4018: '<': signed/unsigned mismatch
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(695,77): warning C4018: '<': signed/unsigned mismatch
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(701,77): warning C4018: '<': signed/unsigned mismatch
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(707,77): warning C4018: '<': signed/unsigned mismatch
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(713,77): warning C4018: '<': signed/unsigned mismatch
+F:\Project-a\History-time-lists\history-time-lists\front-end.cpp(306,6): warning C4101: 'n': unreferenced local variable
+  history-time-lists.vcxproj -> F:\Project-a\History-time-lists\x64\Debug\history-time-lists.exe
