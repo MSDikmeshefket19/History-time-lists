@@ -1,5 +1,8 @@
 #include"SFML/Graphics.hpp"
 #include<iostream>
+#include<cmath>
+#include <thread>
+#include <chrono>
 using namespace std;
 using namespace sf;
 RenderWindow window(VideoMode(1000, 800), "Helpopedia");
@@ -80,6 +83,18 @@ void currentLocationDropDown(int* ptr, int n, Event event, Text* textOne, Text* 
 		}
 	}
 
+}
+
+void deleteOption(Event event, Text* textOne, RectangleShape rectangleDDASSA, int* p)
+{
+	(*textOne).setFillColor(Color::White);
+	if (event.type == Event::MouseButtonPressed)
+	{
+		if (event.mouseButton.button == Mouse::Left)
+		{
+			*p = 1;
+		}
+	}
 }
 
 void textPosition(int* location, Event event, Text* text, int n, int minY, int maxY)
@@ -169,6 +184,17 @@ void textFrontBackOrEditTab(Text* text, int posY)
 	(*text).setFillColor(Color::Black);
 }
 
+void deleteAllButton(Event event, int* ptr)
+{
+	if (event.type == Event::MouseButtonPressed)
+	{
+		if (event.mouseButton.button == Mouse::Left)
+		{
+			*ptr = 0;
+		}
+	}
+}
+
 void inputData() {
 
 }
@@ -189,8 +215,8 @@ void setUpMenu() {
 	btn1.setPosition({ 100, 300 });*/
 
 	int location = 0, locCreate = 0;
-	Texture tex1, tex2, tex3, tex4, tex5, tex6, tex7;
-	Sprite s1(tex1), s2(tex2), s3(tex3), s4(tex4), s5(tex5), s6(tex6), s7(tex7);
+	Texture tex1, tex2, tex3, tex4, tex5, tex6, tex7, tex8, tex9;
+	Sprite s1(tex1), s2(tex2), s3(tex3), s4(tex4), s5(tex5), s6(tex6), s7(tex7), s8(tex8), s9(tex9);
 	Font f1;
 	f1.loadFromFile("Pacifico-Regular.ttf");
 
@@ -293,17 +319,21 @@ void setUpMenu() {
 	tex2.loadFromFile("../images/Menu.png");
 	tex3.loadFromFile("../images/Lupa.png");
 
+	tex8.loadFromFile("../images/upArrow.png");
+	tex9.loadFromFile("../images/downArrow.png");
 
 	tex4.loadFromFile("../images/arrowRight.png");
 	tex5.loadFromFile("../images/arrowRight.png");
 
 	tex6.loadFromFile("../images/arrowLeft.png");
 	tex7.loadFromFile("../images/arrowLeft.png");
-	Text h[12] = { text1,text2,text3,text4,text5,
-				  text13,text14,text8,text9,text10,text11,text12 };
-	int fu1 = 65;
+	Text textsArray[] = { text1, text2, text3, text4, text5, text6, text7, text8, text9, text10, text11, text12, text13, text14 , text15, text16, text17, text18,
+						  text19, text20,  text21,  text22, text23, text24, text23, text22, text21, text20 , text19, text18, text17, text16, text15, text14, text13,
+						  text12, text11, text10, text9, text8, text7, text6, text5, text4, text3, text2, text1, text2, text3, text4, text5, text6, text7, text8, text9, text10 };
+	int widthDropDownMenu = 65;
 
 	int n;
+	int D = 0;
 	RectangleShape rectangle(Vector2f(900, 450)), /*rectangle1(Vector2f((window.getSize().x / 2 - 80) / 2, (window.getSize().y / 2 - 40) / 3 - 5))*/
 		rectangle2(Vector2f(200, 250)), rectangle3(Vector2f(200, 250)),
 		rectangle4(Vector2f(140, 250)), rectangle5(Vector2f(window.getSize().x - 350, window.getSize().y - 50)),
@@ -350,9 +380,18 @@ void setUpMenu() {
 		recrtangleSearch1(Vector2f(window.getSize().x / 2 - 270, window.getSize().y / 13.5)),
 		recrtangleSearch2(Vector2f((window.getSize().x / 2 - 60) / 2, window.getSize().y / 16.5)),
 		rectangle54(Vector2f(window.getSize().x / 2 - 465, window.getSize().y / 2 - 170)),
-		rectangle55(Vector2f(window.getSize().x / 2 - 470, window.getSize().y / 2 - 170));
+		rectangle55(Vector2f(window.getSize().x / 2 - 470, window.getSize().y / 2 - 170)),
+		rectangleDDASSA(Vector2f(window.getSize().x / 3 + 100, window.getSize().y / 4)),
+		rectangleDDASSAMini1(Vector2f(window.getSize().x / 10, window.getSize().y / 20)),
+		rectangleDDASSAMini2(Vector2f(window.getSize().x / 10, window.getSize().y / 20)),
+		rectangleDDASSA1(Vector2f(window.getSize().x / 3 + 90, window.getSize().y / 4 - 10)),
+		rectangleScroll, rectangleMoreInfo(Vector2f((window.getSize().x - 100)/3, window.getSize().y/2-15)), 
+		rectangleMoreInf(Vector2f((window.getSize().x - 130) / 3, window.getSize().y/2 - 25));
 
 
+	rectangleDDASSA1.setFillColor(Color::Color(28, 167, 199, 255));
+	rectangleDDASSA1.setPosition(window.getSize().x / 2 - window.getSize().x / 6 + 5, window.getSize().y / 2 - window.getSize().y / 8 + 5);
+	rectangleScroll.setPosition(window.getSize().x - 350, 35);
 	setRectangleEventsTab(&rectangle, 50, 50);
 	setRectangleEventsTab(&rectangle2, 370, 520);
 	setRectangleEventsTab(&rectangle3, 590, 520);
@@ -361,12 +400,30 @@ void setUpMenu() {
 	rectangle5.setFillColor(Color::Color(150, 150, 150, 255));
 	rectangle5.setPosition(25, 25);
 
+	rectangleMoreInfo.setFillColor(Color::Red);
+	rectangleMoreInfo.setPosition(window.getSize().x - 310, window.getSize().y - 410);
+
+	rectangleMoreInf.setFillColor(Color::Blue);
+	rectangleMoreInf.setPosition(window.getSize().x - 305, window.getSize().y - 405);
+
+	rectangleDDASSA.setFillColor(Color::Color(175, 255, 255, 255));
+	rectangleDDASSA.setPosition(window.getSize().x / 2 - window.getSize().x / 6, window.getSize().y / 2 - window.getSize().y / 8);
+
+	rectangleDDASSA1.setFillColor(Color::Color(28, 167, 199, 255));
+	rectangleDDASSA1.setPosition(window.getSize().x / 2 - window.getSize().x / 6 + 5, window.getSize().y / 2 - window.getSize().y / 8 + 5);
+
+	rectangleDDASSAMini1.setFillColor(Color::Color(125, 106, 180, 255));
+	rectangleDDASSAMini1.setPosition(window.getSize().x / 2 - 70, window.getSize().y / 2 + 10);
+
+	rectangleDDASSAMini2.setFillColor(Color::Color(125, 106, 180, 255));
+	rectangleDDASSAMini2.setPosition(window.getSize().x / 2 + 70, window.getSize().y / 2 + 10);
+
 	rectangle10.setFillColor(Color::White);
 	rectangle10.setPosition(30, 30);
 
 	rectangle11.setFillColor(Color::Color(150, 150, 150, 255));
 	rectangle11.setPosition(35, 35);
-
+	rectangleScroll.setFillColor(Color::Color(130, 130, 130, 255));
 	setRectangleCreateMainOne(&rectangle12, 40, 1);
 	setRectangleCreateMainOne(&rectangle13, 45, 2);
 	setRectangleCreateMainOne(&rectangle14, 50, 3);
@@ -427,13 +484,11 @@ void setUpMenu() {
 	rectangle52.setFillColor(Color::White);
 	rectangle52.setPosition(55, 55);
 
-
 	recrtangleSearch2.setFillColor(Color::White);
 	recrtangleSearch2.setPosition(window.getSize().x / 2 + 225, 55);
 
 	recrtangleSearch1.setFillColor(Color::Color(170, 170, 170, 255));
 	recrtangleSearch1.setPosition(window.getSize().x / 2 + 220, 50);
-
 	//White rectangles Create 
 	addFromOrBackTwo(&rectangle34, 65);
 	addFromOrBackTwo(&rectangle35, 165);
@@ -452,42 +507,48 @@ void setUpMenu() {
 	rectangle41.setPosition(window.getSize().x / 2 + 85, 60);
 
 	s1.setTextureRect(IntRect(10, 10, 486, 500));
+	s2.setTextureRect(IntRect(10, 10, 1300, 1300));
 	s3.setTextureRect(IntRect(0, 0, 50, 50));
 	s4.setTextureRect(IntRect(0, 0, 50, 50));
-	s6.setTextureRect(IntRect(0, 0, 50, 50));
 	s5.setTextureRect(IntRect(0, 0, 50, 50));
+	s6.setTextureRect(IntRect(0, 0, 50, 50));
 	s7.setTextureRect(IntRect(0, 0, 50, 50));
-	s2.setTextureRect(IntRect(10, 10, 1300, 1300));
+	s8.setTextureRect(IntRect(0, 0, 30, 50));
+	s9.setTextureRect(IntRect(0, 0, 30, 50));
+
 	s1.setPosition(window.getSize().x / 2 - tex1.getSize().x / 2, 0);
 	s3.setPosition(window.getSize().x - 100, 55);
 	s4.setPosition(window.getSize().x - 95, window.getSize().y - 270);
-	s6.setPosition(window.getSize().x - 95, window.getSize().y - 90);
-
 	s5.setPosition(window.getSize().x / 2 - 60, window.getSize().y - 270);
+	s6.setPosition(window.getSize().x - 95, window.getSize().y - 90);
 	s7.setPosition(window.getSize().x / 2 - 60, window.getSize().y - 90);
-	int sort = 0;
+	s8.setPosition(window.getSize().x - 358, 35);
+	s9.setPosition(window.getSize().x - 358, window.getSize().y - 60);
 
-	RectangleShape Hello[7] = { rectangle11,
+	RectangleShape rectanglesArray[7] = { rectangle11,
 		rectangle12, rectangle13, rectangle14,
 		rectangle15, rectangle16, rectangle17 };
 
 	int p;
 	cin >> p;
-	int p1 = p;
-	int m = 0;
+	int m = 2;
+	int p1 = 0;
+	int p2 = p;
 	while (window.isOpen())
 	{
+
 		Event event;
-		while (window.pollEvent(event))
+		if (window.pollEvent(event))
 		{
 			if (event.type == Event::Closed)
 				window.close();
 		}
 		window.clear(Color(210, 210, 210, 255));
+		cout << Mouse::getPosition(window).x<<" "<<  Mouse::getPosition(window).y << endl;
 		if (location == 0)
 		{
-			window.draw(s2);
 			window.draw(s1);
+			window.draw(s2);
 			window.draw(text1);
 			window.draw(text2);
 			window.draw(text3);
@@ -530,7 +591,6 @@ void setUpMenu() {
 				window.draw(s7);
 				break;
 			case 2:
-
 				switch (locCreate)
 				{
 				case 1:
@@ -595,10 +655,7 @@ void setUpMenu() {
 					backToMenuFromCreate(&locCreate, event, &text6, &text10);
 					break;
 				case 6:
-					text6.setPosition(70, window.getSize().y - 30);
-					window.draw(text61);
-					window.draw(text6);
-					backToMenuFromCreate(&locCreate, event, &text6, &text10);
+					window.draw(rectangle28);
 					break;
 				case 7:
 					text6.setPosition(70, window.getSize().y - 30);
@@ -611,37 +668,162 @@ void setUpMenu() {
 					backToMenuFromCreate(&locCreate, event, &text6, &text10);
 					break;
 				default:
+					/*if (p > 7)
+					{
+						rectangleScroll.setSize(Vector2f(window.getSize().x / 66, 7 * (window.getSize().y - 70) / p));
+						rectangleScroll.setFillColor(Color::Color(130, 130, 130, 255));
+						if (rectangleScroll.getPosition().y>=35&& rectangleScroll.getPosition().y<=window.getSize().y- 7 * (window.getSize().y - 70) / p)
+						{
+							if (event.mouseWheel.x > pow(10, 9))
+							{
+
+								if (p1 >= 0 && p1 <= 3)
+								{
+									rectangleScroll.setPosition(window.getSize().x - 350, 35 + p1 * 7 * (window.getSize().y - 70) / p);
+									p1--;
+								}
+							}
+							if (event.mouseWheel.x < -pow(10, 9))
+							{
+
+								if (p1 >= 0 && p1 <= 3)
+								{
+									rectangleScroll.setPosition(window.getSize().x - 350, 35 + p1 * 7 * (window.getSize().y - 70) / p);
+									p1++;
+								}
+							}
+						}
+						if (p1 < 0)
+						{
+							while (p1 < 0)
+							{
+								p1++;
+							}
+						}
+
+						if (p1 > 3)
+						{
+							while (p1 > 3)
+							{
+								p1--;
+							}
+						}
+					}
+					else
+					{
+						rectangleScroll.setFillColor(Color::Color(225, 225, 225, 225));
+						rectangleScroll.setSize(Vector2f(window.getSize().x / 66, window.getSize().y - 70));
+					}*/
+
+
+
 					window.draw(rectangle5);
 					window.draw(rectangle7);
 					window.draw(rectangle10);
-					text6.setPosition(0, 770);
-					if (p > 0 && p <= 7)
+					window.draw(rectangleMoreInfo);
+					window.draw(rectangleMoreInf);
+
+
+					if (p > 7)
+					{
+
+
+						if (p1 > 0 && p1 <= p-7)
+						{
+							if (Mouse::getPosition(window).x > window.getSize().x - 358 && Mouse::getPosition(window).x < window.getSize().x - 338 &&
+								Mouse::getPosition(window).y>45 && Mouse::getPosition(window).y < 55)
+							{
+								switch (event.type)
+								{
+								case Event::MouseButtonPressed:
+									if (event.mouseButton.button == Mouse::Left)
+									{
+										p1--;
+
+										Mouse::setPosition(Vector2i(Mouse::getPosition(window).x + 6, Mouse::getPosition(window).y + 6), window);
+									}
+								}
+							}
+						}
+						if (p1 >= 0 && p1 < p - 7)
+						{
+							if (Mouse::getPosition(window).x > window.getSize().x - 358 && Mouse::getPosition(window).x < window.getSize().x - 338 &&
+								Mouse::getPosition(window).y>window.getSize().y - 50 && Mouse::getPosition(window).y < window.getSize().y - 35)
+							{
+								if (event.type == Event::MouseButtonPressed)
+								{
+									if (event.mouseButton.button == Mouse::Left)
+									{
+										p1++;
+										Mouse::setPosition(Vector2i(Mouse::getPosition(window).x - 4, Mouse::getPosition(window).y - 4), window);
+									}
+								}
+							}
+						}
+						rectangleScroll.setSize(Vector2f(window.getSize().x / 66, 7 * (window.getSize().y - 130) / p));
+						rectangleScroll.setPosition(window.getSize().x - 350, 65 + p1 * (window.getSize().y - 130) / p);
+						window.draw(s8);
+						window.draw(s9);
+						window.draw(rectangleScroll);
+					}
+					else
+					{
+						rectangleScroll.setSize(Vector2f(window.getSize().x / 66, window.getSize().y - 130));
+						rectangleScroll.setPosition(window.getSize().x - 350, 65);
+						window.draw(rectangleScroll);
+					}
+					if (p >= 0 && p <= 7)
 					{
 						for (int i = 0; i < p; i++)
 						{
-							window.draw(Hello[i]);
+							window.draw(rectanglesArray[i]);
 						}
 						for (int i = 0; i < p; i++)
 						{
-							window.draw(h[i]);
+							window.draw(textsArray[i]);
 						}
 					}
 					else
 					{
 						for (int i = 0; i < 7; i++)
 						{
-							window.draw(Hello[i]);
+							window.draw(rectanglesArray[i]);
 						}
-						for (int i = p - 8; i < p; i++)
+						for (int i = 0; i < 7; i++)
 						{
-							window.draw(h[i]);
+							window.draw(textsArray[i]);
 						}
 					}
+					text6.setPosition(0, 770);
 					window.draw(text10);
-					if (Mouse::getPosition(window).x > window.getSize().x - 310 && Mouse::getPosition(window).x < window.getSize().x - 10 &&
-						Mouse::getPosition(window).y>25 && Mouse::getPosition(window).y < fu1)
+					if (D == 1)
 					{
-						fu1 = 385;
+						window.draw(rectangleDDASSA);
+						window.draw(rectangleDDASSA1);
+						window.draw(rectangleDDASSAMini1);
+						window.draw(rectangleDDASSAMini2);
+
+
+						if (Mouse::getPosition(window).x > window.getSize().x / 2 - 70 && Mouse::getPosition(window).x < window.getSize().x / 10 + window.getSize().x / 2 - 70 &&
+							Mouse::getPosition(window).y>window.getSize().y / 2 + 10 && Mouse::getPosition(window).y < window.getSize().y / 2 + 10 + window.getSize().y / 10)
+						{
+							deleteAllButton(event, &p);
+							if (p == 0)
+							{
+								D = 0;
+							}
+						}
+
+						if (Mouse::getPosition(window).x > window.getSize().x / 2 + 70 && Mouse::getPosition(window).x < window.getSize().x / 10 + window.getSize().x / 2 + 70 &&
+							Mouse::getPosition(window).y>window.getSize().y / 2 + 10 && Mouse::getPosition(window).y < window.getSize().y / 2 + 10 + window.getSize().y / 10)
+						{
+							deleteAllButton(event, &D);
+						}
+					}
+					if (Mouse::getPosition(window).x > window.getSize().x - 310 && Mouse::getPosition(window).x < window.getSize().x - 10 &&
+						Mouse::getPosition(window).y>25 && Mouse::getPosition(window).y < widthDropDownMenu)
+					{
+						widthDropDownMenu = 385;
 						dropDown(&rectangle8, 65, 105);
 						dropDown(&rectangle9, 105, 145);
 						dropDown(&rectangle22, 145, 185);
@@ -668,6 +850,7 @@ void setUpMenu() {
 						window.draw(text14);
 						window.draw(text15);
 						window.draw(text16);
+
 						if (Mouse::getPosition(window).x > window.getSize().x - 310 && Mouse::getPosition(window).x < window.getSize().x - 10 &&
 							Mouse::getPosition(window).y>65 && Mouse::getPosition(window).y < 105)
 						{
@@ -701,32 +884,30 @@ void setUpMenu() {
 						if (Mouse::getPosition(window).x > 50 && Mouse::getPosition(window).x < window.getSize().x - 50 &&
 							Mouse::getPosition(window).y>265 && Mouse::getPosition(window).y < 305)
 						{
-							currentLocationDropDown(&locCreate, 6, event, &text14, &text10);
+							deleteOption(event, &text14, rectangleDDASSA, &D);
 						}
-
 						if (Mouse::getPosition(window).x > 50 && Mouse::getPosition(window).x < window.getSize().x - 50 &&
 							Mouse::getPosition(window).y>305 && Mouse::getPosition(window).y < 345)
 						{
-							currentLocationDropDown(&locCreate, 7, event, &text15, &text10);
+							deleteOption(event, &text14, rectangleDDASSA, &D);
 						}
 
 						if (Mouse::getPosition(window).x > 50 && Mouse::getPosition(window).x < window.getSize().x - 50 &&
 							Mouse::getPosition(window).y>345 && Mouse::getPosition(window).y < 385)
 						{
-							currentLocationDropDown(&locCreate, 8, event, &text16, &text10);
+							deleteOption(event, &text14, rectangleDDASSA, &D);
 						}
 						window.draw(text6);
 						backToMenu(&location, event, &text6);
 					}
 					else
 					{
-						fu1 = 65;
+						widthDropDownMenu = 65;
 						window.draw(text6);
 						backToMenu(&location, event, &text6);
 					}
 					break;
 				}
-
 				break;
 			case 3:
 				window.draw(text6);
@@ -740,9 +921,10 @@ void setUpMenu() {
 				window.close();
 				break;
 			}
-			//cout << Mouse::getPosition(window).x << " " << Mouse::getPosition(window).y << endl;
+
 		}
+		//cout << Mouse::getPosition(window).x << " " << Mouse::getPosition(window).y << endl;
 		window.display();
 	}
-}
 
+}
