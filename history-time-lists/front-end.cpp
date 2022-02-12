@@ -585,11 +585,10 @@ void setUpMenu() {
 	textM.setPosition(730, window.getSize().y / 2 - 100);
 	textM.setFillColor(Color::Black);
 
-	texH.loadFromFile("../images/Hristiyan.png");
-	texS.loadFromFile("../images/Stas.png");
-	texG.loadFromFile("../images/George.png");
-	texM.loadFromFile("../images/Mertin.png");
-
+	texH.loadFromFile("../images/Hristiyan.jpg");
+	texS.loadFromFile("../images/Stas.jpg");
+	texG.loadFromFile("../images/George.jpg");
+	texM.loadFromFile("../images/Mertin.jpg");
 
 	sH.setTextureRect(IntRect(0, 0, 200, 200));
 	sS.setTextureRect(IntRect(0, 0, 200, 200));
