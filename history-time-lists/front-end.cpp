@@ -532,8 +532,75 @@ void setUpMenu() {
 	btn1.setPosition({ 880, 740 });
 
 	int location = 0, locCreate = 0;
-	Texture tex1, tex2, tex3, tex4, tex5, tex6, tex7, tex8, tex9;
-	Sprite s1(tex1), s2(tex2), s3(tex3), s4(tex4), s5(tex5), s6(tex6), s7(tex7), s8(tex8), s9(tex9);
+
+	Texture tex1, tex2, tex3, tex4, tex5, tex6, tex7, tex8, tex9, texH, texS, texG, texM;
+	Text textFE, textBE, textST, textQA, textH, textS, textG, textM;
+	Sprite s1(tex1), s2(tex2), s3(tex3), s4(tex4), s5(tex5), s6(tex6), s7(tex7), s8(tex8), s9(tex9), sH(texH), sS(texS), sG(texG), sM(texM);
+
+	textFE.setString("Front-end");
+	textFE.setFont(f1);
+	textFE.setCharacterSize(20);
+	textFE.setPosition(130, window.getSize().y / 2 - 50);
+	textFE.setFillColor(Color::Black);
+
+	textBE.setString("Back-end");
+	textBE.setFont(f1);
+	textBE.setCharacterSize(20);
+	textBE.setPosition(350, window.getSize().y / 2 - 50);
+	textBE.setFillColor(Color::Black);
+
+	textQA.setString("QA");
+	textQA.setFont(f1);
+	textQA.setCharacterSize(20);
+	textQA.setPosition(595, window.getSize().y / 2 - 50);
+	textQA.setFillColor(Color::Black);
+
+	textST.setString("Scrum-trainer");
+	textST.setFont(f1);
+	textST.setCharacterSize(20);
+	textST.setPosition(765, window.getSize().y / 2 - 50);
+	textST.setFillColor(Color::Black);
+
+	textH.setString("Hristiyan Kimryanov");
+	textH.setFont(f1);
+	textH.setCharacterSize(20);
+	textH.setPosition(80, window.getSize().y / 2 - 100);
+	textH.setFillColor(Color::Black);
+
+	textS.setString("Stas Uzunov");
+	textS.setFont(f1);
+	textS.setCharacterSize(20);
+	textS.setPosition(340, window.getSize().y / 2 - 100);
+	textS.setFillColor(Color::Black);
+
+	textG.setString("George Mateev");
+	textG.setFont(f1);
+	textG.setCharacterSize(20);
+	textG.setPosition(538, window.getSize().y / 2 - 100);
+	textG.setFillColor(Color::Black);
+
+	textM.setString("Mertin Dikmeshefket");
+	textM.setFont(f1);
+	textM.setCharacterSize(20);
+	textM.setPosition(730, window.getSize().y / 2 - 100);
+	textM.setFillColor(Color::Black);
+
+	texH.loadFromFile("../images/Hristiyan.png");
+	texS.loadFromFile("../images/Stas.png");
+	texG.loadFromFile("../images/George.png");
+	texM.loadFromFile("../images/Mertin.png");
+
+
+	sH.setTextureRect(IntRect(0, 0, 200, 200));
+	sS.setTextureRect(IntRect(0, 0, 200, 200));
+	sG.setTextureRect(IntRect(0, 0, 200, 200));
+	sM.setTextureRect(IntRect(0, 0, 200, 200));
+
+
+	sH.setPosition(75, 75);
+	sS.setPosition(293, 75);
+	sG.setPosition(511, 75);
+	sM.setPosition(729, 75);
 
 	Text text1, text2, text3, text4, text5, text, text6, text7, text8, text9, text10, text11, text12, text13, text14, text15, text16,
 		text17, text18, text19, text20, text21, text22, text23, text24, text100;
@@ -718,7 +785,82 @@ void setUpMenu() {
 		rectangleDDASSA(Vector2f(window.getSize().x / 3 + 100, window.getSize().y / 4)),
 		rectangleDDASSAMini1(Vector2f(window.getSize().x / 10, window.getSize().y / 20)),
 		rectangleDDASSAMini2(Vector2f(window.getSize().x / 10, window.getSize().y / 20)),
-		rectangleDDASSA1(Vector2f(window.getSize().x / 3 + 90, window.getSize().y / 4 - 10));
+		rectangleDDASSA1(Vector2f(window.getSize().x / 3 + 90, window.getSize().y / 4 - 10)),
+
+		recrtangleAboutUsH1(Vector2f(window.getSize().x / 10, window.getSize().y / 40)),
+		recrtangleAboutUsH2(Vector2f(200, window.getSize().y / 40)),
+		recrtangleAboutUsS1(Vector2f(window.getSize().x / 10, window.getSize().y / 40)),
+		recrtangleAboutUsS2(Vector2f(window.getSize().x / 10 + 60, window.getSize().y / 40)),
+		recrtangleAboutUsG1(Vector2f(window.getSize().x / 10, window.getSize().y / 40)),
+		recrtangleAboutUsG2(Vector2f(window.getSize().x / 10 + 60, window.getSize().y / 40)),
+		recrtangleAboutUsM1(Vector2f(window.getSize().x / 10 + 40, window.getSize().y / 40)),
+		recrtangleAboutUsM2(Vector2f(200, window.getSize().y / 40)), rectangleMiddle1(Vector2f(250, 50)), rectangleMiddle2(Vector2f(240, 40)),
+		recrtangleAboutUs1(Vector2f(window.getSize().x - 100, window.getSize().y / 2 - 30)),
+		recrtangleAboutUs2(Vector2f(window.getSize().x - 110, window.getSize().y / 2 - 40)),
+		recrtangleAboutUs3(Vector2f(window.getSize().x - 260, window.getSize().y / 4 - 40)),
+		recrtangleAboutUs4(Vector2f(window.getSize().x - 270, window.getSize().y / 4 - 50)),
+		recrtangleAboutUs5(Vector2f(210, 210)),
+		recrtangleAboutUs6(Vector2f(210, 210)),
+		recrtangleAboutUs7(Vector2f(210, 210)),
+		recrtangleAboutUs8(Vector2f(210, 210));
+
+
+	recrtangleAboutUs1.setFillColor(Color(225, 172, 119));
+	recrtangleAboutUs1.setPosition(50, 50);
+
+	recrtangleAboutUs2.setFillColor(Color(249, 239, 239));
+	recrtangleAboutUs2.setPosition(55, 55);
+
+	recrtangleAboutUs3.setFillColor(Color(225, 172, 119));
+	recrtangleAboutUs3.setPosition(130, window.getSize().y - window.getSize().y / 4 - 20);
+
+	recrtangleAboutUs4.setFillColor(Color(249, 239, 239));
+	recrtangleAboutUs4.setPosition(135, window.getSize().y - window.getSize().y / 4 - 15);
+
+	recrtangleAboutUs5.setFillColor(Color(225, 172, 119));
+	recrtangleAboutUs5.setPosition(70,70);
+
+	recrtangleAboutUs6.setFillColor(Color(225, 172, 119));
+	recrtangleAboutUs6.setPosition(288, 70);
+
+	recrtangleAboutUs7.setFillColor(Color(225, 172, 119));
+	recrtangleAboutUs7.setPosition(506, 70);
+
+	recrtangleAboutUs8.setFillColor(Color(225, 172, 119));
+	recrtangleAboutUs8.setPosition(724, 70);
+
+	recrtangleAboutUsH1.setFillColor(Color::Color(249, 239, 239));
+	recrtangleAboutUsH1.setPosition(175 - recrtangleAboutUsH1.getSize().x / 2, window.getSize().y / 2 - 50);
+
+	recrtangleAboutUsS1.setFillColor(Color::Color(249, 239, 239));
+	recrtangleAboutUsS1.setPosition(393 - recrtangleAboutUsS1.getSize().x / 2, window.getSize().y / 2 - 50);
+
+	recrtangleAboutUsG1.setFillColor(Color::Color(249, 239, 239));
+	recrtangleAboutUsG1.setPosition(611 - recrtangleAboutUsG1.getSize().x / 2, window.getSize().y / 2 - 50);
+
+	recrtangleAboutUsM1.setFillColor(Color::Color(249, 239, 239));
+	recrtangleAboutUsM1.setPosition(829 - recrtangleAboutUsM1.getSize().x / 2, window.getSize().y / 2 - 50);
+
+	recrtangleAboutUsH2.setFillColor(Color::Color(249, 239, 239));
+	recrtangleAboutUsH2.setPosition(175 - recrtangleAboutUsH2.getSize().x / 2, window.getSize().y / 2 - 100);
+
+	recrtangleAboutUsS2.setFillColor(Color::Color(249, 239, 239));
+	recrtangleAboutUsS2.setPosition(393 - recrtangleAboutUsS2.getSize().x / 2, window.getSize().y / 2 - 100);
+
+	recrtangleAboutUsG2.setFillColor(Color::Color(249, 239, 239));
+	recrtangleAboutUsG2.setPosition(611 - recrtangleAboutUsG2.getSize().x / 2, window.getSize().y / 2 - 100);
+
+	recrtangleAboutUsM2.setFillColor(Color::Color(249, 239, 239));
+	recrtangleAboutUsM2.setPosition(829 - recrtangleAboutUsM2.getSize().x / 2, window.getSize().y / 2 - 100);
+
+
+	rectangleMiddle1.setFillColor(Color(225, 172, 119));
+	rectangleMiddle1.setPosition(window.getSize().x / 2 - 125, window.getSize().y / 2 + 120);
+
+	rectangleMiddle2.setFillColor(Color(249, 239, 239));
+	rectangleMiddle2.setPosition(window.getSize().x / 2 - 120, window.getSize().y / 2 + 125);
+
+
 		rectangleDDASSA1.setFillColor(Color::Color(234, 222, 215));
 		rectangleDDASSA1.setPosition(window.getSize().x / 2 - window.getSize().x / 6 + 5, window.getSize().y / 2 - window.getSize().y / 8 + 5);
 		rectangleDDASSA.setFillColor(Color::Color(216, 183, 171));
@@ -1012,7 +1154,7 @@ void setUpMenu() {
 			++rectangles;
 			temp = temp->next;
 		}
-		cout << "rectangle: " << rectangles << endl;
+		//cout << "rectangle: " << rectangles << endl;
 
 		if (autoSave == "") {
 			fstream data;
@@ -2738,6 +2880,43 @@ void setUpMenu() {
 				break;
 			case 4:
 				window.draw(text6);
+				window.draw(recrtangleAboutUs1);
+				window.draw(recrtangleAboutUs2);
+				window.draw(recrtangleAboutUs3);
+				window.draw(recrtangleAboutUs4);
+
+				window.draw(recrtangleAboutUs5);
+				window.draw(recrtangleAboutUs6);
+				window.draw(recrtangleAboutUs7);
+				window.draw(recrtangleAboutUs8);
+
+
+				window.draw(recrtangleAboutUsH1);
+				window.draw(recrtangleAboutUsH2);
+				window.draw(recrtangleAboutUsS1);
+				window.draw(recrtangleAboutUsS2);
+
+				window.draw(recrtangleAboutUsG1);
+				window.draw(recrtangleAboutUsG2);
+				window.draw(recrtangleAboutUsM1);
+				window.draw(recrtangleAboutUsM2);
+				window.draw(sH);
+				window.draw(sS);
+				window.draw(sG);
+				window.draw(sM);
+				window.draw(textFE);
+				window.draw(textBE);
+				window.draw(textST);
+				window.draw(textQA);
+
+				window.draw(textH);
+				window.draw(textS);
+				window.draw(textG);
+				window.draw(textM);
+
+
+				window.draw(rectangleMiddle1);
+				window.draw(rectangleMiddle2);
 				backToMenu(&location, event, &text6);
 				break;
 			case 5:
