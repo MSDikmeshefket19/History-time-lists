@@ -210,18 +210,18 @@ void setUpMenu() {
 	text100.setLimit(true, 30);
 	text100.setFont(font);
 
-	Button btn1("Enter", { 200, 100 }, 30, sf::Color::Green, sf::Color::Black);
+	Button btn1("Enter", { 200, 100 }, 30, sf::Color::Black, sf::Color::Black);
 	btn1.setFont(font);
 	btn1.setPosition({ 100, 300 });*/
 
 	int location = 0, locCreate = 0;
-	Texture tex1, tex2, tex3, tex4, tex5, tex6, tex7, tex8, tex9;
-	Sprite s1(tex1), s2(tex2), s3(tex3), s4(tex4), s5(tex5), s6(tex6), s7(tex7), s8(tex8), s9(tex9);
+	Texture tex1, tex2, tex3, tex4, tex5, tex6, tex7, tex8, tex9, texH, texS, texG, texM;
+	Sprite s1(tex1), s2(tex2), s3(tex3), s4(tex4), s5(tex5), s6(tex6), s7(tex7), s8(tex8), s9(tex9), sH(texH), sS(texS), sG(texG), sM(texM);
 	Font f1;
 	f1.loadFromFile("Pacifico-Regular.ttf");
 
 	Text text1, text2, text3, text4, text5, text, text6, text7, text8, text9, text10, text11, text12, text13, text14, text15, text16,
-		text17, text18, text19, text20, text21, text22, text61, text23, text24;
+		text17, text18, text19, text20, text21, text22, text61, text23, text24, textFE, textBE, textST, textQA, textH, textS, textG, textM;
 
 	text1.setFont(f1);
 	setMenuText("Events", &text1, 50, 500);
@@ -243,6 +243,55 @@ void setUpMenu() {
 	text6.setCharacterSize(30);
 	text6.setPosition(0, 770);
 	text6.setFillColor(Color::Color(210, 210, 210, 255));
+
+	textFE.setString("Front-end");
+	textFE.setFont(f1);
+	textFE.setCharacterSize(20);
+	textFE.setPosition(130, window.getSize().y / 2 - 50);
+	textFE.setFillColor(Color::Black);
+
+	textBE.setString("Back-end");
+	textBE.setFont(f1);
+	textBE.setCharacterSize(20);
+	textBE.setPosition(350, window.getSize().y / 2 - 50);
+	textBE.setFillColor(Color::Black);
+
+	textQA.setString("QA");
+	textQA.setFont(f1);
+	textQA.setCharacterSize(20);
+	textQA.setPosition(595, window.getSize().y / 2 - 50);
+	textQA.setFillColor(Color::Black);
+
+	textST.setString("Scrum-trainer");
+	textST.setFont(f1);
+	textST.setCharacterSize(20);
+	textST.setPosition(765, window.getSize().y / 2 - 50);
+	textST.setFillColor(Color::Black);
+
+	textH.setString("Hristiyan Kimryanov");
+	textH.setFont(f1);
+	textH.setCharacterSize(20);
+	textH.setPosition(80, window.getSize().y / 2 - 100);
+	textH.setFillColor(Color::Black);
+
+	textS.setString("Stas Uzunov");
+	textS.setFont(f1);
+	textS.setCharacterSize(20);
+	textS.setPosition(340, window.getSize().y / 2 - 100);
+	textS.setFillColor(Color::Black);
+
+	textG.setString("George Mateeve");
+	textG.setFont(f1);
+	textG.setCharacterSize(20);
+	textG.setPosition(538, window.getSize().y / 2 - 100);
+	textG.setFillColor(Color::Black);
+
+	textM.setString("Mertin Dikmeshefket");
+	textM.setFont(f1);
+	textM.setCharacterSize(20);
+	textM.setPosition(730, window.getSize().y / 2 - 100);
+	textM.setFillColor(Color::Black);
+
 
 	text8.setString("Add front");
 	text8.setFont(f1);
@@ -327,6 +376,12 @@ void setUpMenu() {
 
 	tex6.loadFromFile("../images/arrowLeft.png");
 	tex7.loadFromFile("../images/arrowLeft.png");
+
+	texH.loadFromFile("../images/Hristiyan.png");
+	texS.loadFromFile("../images/Stas.png");
+	texG.loadFromFile("../images/George.png");
+	texM.loadFromFile("../images/Mertin.png");
+
 	Text textsArray[] = { text1, text2, text3, text4, text5, text6, text7, text8, text9, text10, text11, text12, text13, text14 , text15, text16, text17, text18,
 						  text19, text20,  text21,  text22, text23, text24, text23, text22, text21, text20 , text19, text18, text17, text16, text15, text14, text13,
 						  text12, text11, text10, text9, text8, text7, text6, text5, text4, text3, text2, text1, text2, text3, text4, text5, text6, text7, text8, text9, text10 };
@@ -376,7 +431,6 @@ void setUpMenu() {
 		rectangle51(Vector2f((window.getSize().x / 2 - 60) / 2, window.getSize().y / 2 - 40)),
 		rectangle52(Vector2f(window.getSize().x / 2 + 140, window.getSize().y / 12)),
 
-
 		recrtangleSearch1(Vector2f(window.getSize().x / 2 - 270, window.getSize().y / 13.5)),
 		recrtangleSearch2(Vector2f((window.getSize().x / 2 - 60) / 2, window.getSize().y / 16.5)),
 		rectangle54(Vector2f(window.getSize().x / 2 - 465, window.getSize().y / 2 - 170)),
@@ -385,9 +439,33 @@ void setUpMenu() {
 		rectangleDDASSAMini1(Vector2f(window.getSize().x / 10, window.getSize().y / 20)),
 		rectangleDDASSAMini2(Vector2f(window.getSize().x / 10, window.getSize().y / 20)),
 		rectangleDDASSA1(Vector2f(window.getSize().x / 3 + 90, window.getSize().y / 4 - 10)),
-		rectangleScroll, rectangleMoreInfo(Vector2f((window.getSize().x - 100)/3, window.getSize().y/2-15)), 
-		rectangleMoreInf(Vector2f((window.getSize().x - 130) / 3, window.getSize().y/2 - 25));
+		rectangleScroll, rectangleMoreInfo(Vector2f((window.getSize().x - 100) / 3, window.getSize().y / 2 - 15)),
+		rectangleMoreInf(Vector2f((window.getSize().x - 130) / 3, window.getSize().y / 2 - 25));
 
+	RectangleShape recrtangleAboutUs1(Vector2f(window.getSize().x - 100, window.getSize().y / 2 - 30)),
+		recrtangleAboutUs2(Vector2f(window.getSize().x - 110, window.getSize().y / 2 - 40)),
+		recrtangleAboutUs3(Vector2f(window.getSize().x - 260, window.getSize().y / 4 - 40)),
+		recrtangleAboutUs4(Vector2f(window.getSize().x - 270, window.getSize().y / 4 - 50)),
+		recrtangleAboutUs5(Vector2f(window.getSize().x / 2 + 150, window.getSize().y / 2 + 50)),
+		recrtangleAboutUs6(Vector2f(window.getSize().x / 2 + 150, window.getSize().y / 2 + 50)),
+		recrtangleAboutUs7(Vector2f(window.getSize().x / 2 + 150, window.getSize().y / 2 + 50)),
+		recrtangleAboutUs8(Vector2f(window.getSize().x / 2 + 150, window.getSize().y / 2 + 50)),
+		recrtangleAboutUs9(Vector2f(window.getSize().x / 2 + 150, window.getSize().y / 2 + 50)),
+		recrtangleAboutUs10(Vector2f(window.getSize().x / 2 + 150, window.getSize().y / 2 + 50)),
+		recrtangleAboutUs11(Vector2f(window.getSize().x / 2 + 150, window.getSize().y / 2 + 50)),
+		recrtangleAboutUs12(Vector2f(window.getSize().x / 2 + 150, window.getSize().y / 2 + 50)),
+		recrtangleAboutUs13(Vector2f(window.getSize().x / 2 + 150, window.getSize().y / 2 + 50)),
+		recrtangleAboutUs14(Vector2f(window.getSize().x / 2 + 150, window.getSize().y / 2 + 50)),
+
+
+		recrtangleAboutUsH1(Vector2f(window.getSize().x / 10, window.getSize().y / 40)),
+		recrtangleAboutUsH2(Vector2f(200, window.getSize().y / 40)),
+		recrtangleAboutUsS1(Vector2f(window.getSize().x / 10, window.getSize().y / 40)),
+		recrtangleAboutUsS2(Vector2f(window.getSize().x / 10 + 60, window.getSize().y / 40)),
+		recrtangleAboutUsG1(Vector2f(window.getSize().x / 10, window.getSize().y / 40)),
+		recrtangleAboutUsG2(Vector2f(window.getSize().x / 10 + 60, window.getSize().y / 40)),
+		recrtangleAboutUsM1(Vector2f(window.getSize().x / 10 + 40, window.getSize().y / 40)),
+		recrtangleAboutUsM2(Vector2f(200, window.getSize().y / 40)), rectangleMiddle1(Vector2f(250,50)), rectangleMiddle2(Vector2f(240, 40));
 
 	rectangleDDASSA1.setFillColor(Color::Color(28, 167, 199, 255));
 	rectangleDDASSA1.setPosition(window.getSize().x / 2 - window.getSize().x / 6 + 5, window.getSize().y / 2 - window.getSize().y / 8 + 5);
@@ -396,6 +474,64 @@ void setUpMenu() {
 	setRectangleEventsTab(&rectangle2, 370, 520);
 	setRectangleEventsTab(&rectangle3, 590, 520);
 	setRectangleEventsTab(&rectangle4, 810, 520);
+
+
+	//aboutUsRectangles->
+	recrtangleAboutUs1.setFillColor(Color::Red);
+	recrtangleAboutUs1.setPosition(50, 50);
+
+	recrtangleAboutUs2.setFillColor(Color::Blue);
+	recrtangleAboutUs2.setPosition(55, 55);
+
+	recrtangleAboutUs3.setFillColor(Color::Red);
+	recrtangleAboutUs3.setPosition(130, window.getSize().y - window.getSize().y / 4 - 20);
+
+	recrtangleAboutUs4.setFillColor(Color::Blue);
+	recrtangleAboutUs4.setPosition(135, window.getSize().y - window.getSize().y / 4 - 15);
+
+	recrtangleAboutUs5.setFillColor(Color::Color(150, 150, 150, 255));
+	recrtangleAboutUs5.setPosition(35, 25);
+
+	recrtangleAboutUs6.setFillColor(Color::Color(150, 150, 150, 255));
+	recrtangleAboutUs6.setPosition(35, 25);
+
+	recrtangleAboutUs7.setFillColor(Color::Color(150, 150, 150, 255));
+	recrtangleAboutUs7.setPosition(35, 25);
+
+	recrtangleAboutUs8.setFillColor(Color::Color(150, 150, 150, 255));
+	recrtangleAboutUs8.setPosition(35, 25);
+
+	recrtangleAboutUsH1.setFillColor(Color::Color(150, 150, 150, 255));
+	recrtangleAboutUsH1.setPosition(175 - recrtangleAboutUsH1.getSize().x / 2, window.getSize().y / 2 - 50);
+
+	recrtangleAboutUsS1.setFillColor(Color::Color(150, 150, 150, 255));
+	recrtangleAboutUsS1.setPosition(393 - recrtangleAboutUsS1.getSize().x / 2, window.getSize().y / 2 - 50);
+
+	recrtangleAboutUsG1.setFillColor(Color::Color(150, 150, 150, 255));
+	recrtangleAboutUsG1.setPosition(611 - recrtangleAboutUsG1.getSize().x / 2, window.getSize().y / 2 - 50);
+
+	recrtangleAboutUsM1.setFillColor(Color::Color(150, 150, 150, 255));
+	recrtangleAboutUsM1.setPosition(829 - recrtangleAboutUsM1.getSize().x / 2, window.getSize().y / 2 - 50);
+
+	recrtangleAboutUsH2.setFillColor(Color::Red);
+	recrtangleAboutUsH2.setPosition(175 - recrtangleAboutUsH2.getSize().x / 2, window.getSize().y / 2 - 100);
+
+	recrtangleAboutUsS2.setFillColor(Color::Red);
+	recrtangleAboutUsS2.setPosition(393 - recrtangleAboutUsS2.getSize().x / 2, window.getSize().y / 2 - 100);
+
+	recrtangleAboutUsG2.setFillColor(Color::Red);
+	recrtangleAboutUsG2.setPosition(611 - recrtangleAboutUsG2.getSize().x / 2, window.getSize().y / 2 - 100);
+
+	recrtangleAboutUsM2.setFillColor(Color::Red);
+	recrtangleAboutUsM2.setPosition(829 - recrtangleAboutUsM2.getSize().x / 2, window.getSize().y / 2 - 100);
+
+	rectangleMiddle1.setFillColor(Color::Red);
+	rectangleMiddle1.setPosition(window.getSize().x/2 - 125, window.getSize().y / 2 + 120);
+
+	rectangleMiddle2.setFillColor(Color::Blue);
+	rectangleMiddle2.setPosition(window.getSize().x / 2 - 120, window.getSize().y / 2 + 125);
+	//<-aboutUsRectangles
+
 
 	rectangle5.setFillColor(Color::Color(150, 150, 150, 255));
 	rectangle5.setPosition(25, 25);
@@ -516,6 +652,16 @@ void setUpMenu() {
 	s8.setTextureRect(IntRect(0, 0, 30, 50));
 	s9.setTextureRect(IntRect(0, 0, 30, 50));
 
+	s6.setTextureRect(IntRect(0, 0, 50, 50));
+	s7.setTextureRect(IntRect(0, 0, 50, 50));
+	s8.setTextureRect(IntRect(0, 0, 30, 50));
+	s9.setTextureRect(IntRect(0, 0, 30, 50));
+
+	sH.setTextureRect(IntRect(0, 0, 200, 200));
+	sS.setTextureRect(IntRect(0, 0, 200, 200));
+	sG.setTextureRect(IntRect(0, 0, 200, 200));
+	sM.setTextureRect(IntRect(0, 0, 200, 200));
+
 	s1.setPosition(window.getSize().x / 2 - tex1.getSize().x / 2, 0);
 	s3.setPosition(window.getSize().x - 100, 55);
 	s4.setPosition(window.getSize().x - 95, window.getSize().y - 270);
@@ -524,6 +670,16 @@ void setUpMenu() {
 	s7.setPosition(window.getSize().x / 2 - 60, window.getSize().y - 90);
 	s8.setPosition(window.getSize().x - 358, 35);
 	s9.setPosition(window.getSize().x - 358, window.getSize().y - 60);
+
+	s6.setPosition(window.getSize().x - 95, window.getSize().y - 90);
+	s7.setPosition(window.getSize().x / 2 - 60, window.getSize().y - 90);
+	s8.setPosition(window.getSize().x - 358, 35);
+	s9.setPosition(window.getSize().x - 358, window.getSize().y - 60);
+
+	sH.setPosition(75, 75);
+	sS.setPosition(293, 75);
+	sG.setPosition(511, 75);
+	sM.setPosition(729, 75);
 
 	RectangleShape rectanglesArray[7] = { rectangle11,
 		rectangle12, rectangle13, rectangle14,
@@ -544,7 +700,7 @@ void setUpMenu() {
 				window.close();
 		}
 		window.clear(Color(210, 210, 210, 255));
-		cout << Mouse::getPosition(window).x<<" "<<  Mouse::getPosition(window).y << endl;
+		cout << Mouse::getPosition(window).x << " " << Mouse::getPosition(window).y << endl;
 		if (location == 0)
 		{
 			window.draw(s1);
@@ -728,7 +884,7 @@ void setUpMenu() {
 					{
 
 
-						if (p1 > 0 && p1 <= p-7)
+						if (p1 > 0 && p1 <= p - 7)
 						{
 							if (Mouse::getPosition(window).x > window.getSize().x - 358 && Mouse::getPosition(window).x < window.getSize().x - 338 &&
 								Mouse::getPosition(window).y>45 && Mouse::getPosition(window).y < 55)
@@ -915,6 +1071,37 @@ void setUpMenu() {
 				break;
 			case 4:
 				window.draw(text6);
+				window.draw(recrtangleAboutUs1);
+				window.draw(recrtangleAboutUs2);
+				window.draw(recrtangleAboutUs3);
+				window.draw(recrtangleAboutUs4);
+
+				window.draw(recrtangleAboutUsH1);
+				window.draw(recrtangleAboutUsH2);
+				window.draw(recrtangleAboutUsS1);
+				window.draw(recrtangleAboutUsS2);
+
+				window.draw(recrtangleAboutUsG1);
+				window.draw(recrtangleAboutUsG2);
+				window.draw(recrtangleAboutUsM1);
+				window.draw(recrtangleAboutUsM2);
+				window.draw(sH);
+				window.draw(sS);
+				window.draw(sG);
+				window.draw(sM);
+				window.draw(textFE);
+				window.draw(textBE);
+				window.draw(textST);
+				window.draw(textQA);
+
+				window.draw(textH);
+				window.draw(textS);
+				window.draw(textG);
+				window.draw(textM);
+
+
+				window.draw(rectangleMiddle1);
+				window.draw(rectangleMiddle2);
 				backToMenu(&location, event, &text6);
 				break;
 			case 5:
