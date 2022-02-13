@@ -3,34 +3,6 @@
 #include "back-end.h"
 #include "front-end.h"
 
-/*
- * @brief Functions for checking that the given values are reliable
- * @param Whether the position is correct
- * @param Тhe number is true
- * @param String if there is anything in it
-*/
-
-/*bool isRealPosition(int* pos, int* counter) {
-    if (*pos > *counter || *pos <= 0) {
-        return false;
-    }
-    else {
-        return true;
-    }
-}
-
-bool isNumber(string num) {
-    for (size_t i = 0; i < num.size(); i++) {
-        if (num[i]<48||num[i]>57)
-            return false;
-    }
-    return true;
-}
-
-bool checkEmptyString(string s)
-{
-    return s.size() == 0;
-}*/
 
 /*
  * @brief Function for inserting data as the last item in a linked list
@@ -258,125 +230,37 @@ Node* sortedMerge(Node* a, Node* b, int choice)
  * @param Search for whether the word contains a letters
 */
 
-/*void search(Node* node) {
+Node searchFuct(Node* node, string str) {
 
-    string str;
-    int num;
+    int events = 0;
+    bool haveIt = false;
+    string newStr = "";
 
     Node* temp = node;
+    //Node *temp1 = node1;
+    while (temp) {
 
-    string newStr;
-    size_t nStr;
-    bool searchIsOk = false;
-    int id = 0;
-    size_t n = 0;
-    int mayBeCan = 0;
-
-    int oldNum, oldCounter, oldArr[10];
-    int tempNum, tempCounter = 0, tempArr[10];
-
-    switch (choice) {
-    case 1:
-    case 3:
-    case 4:
-    case 5:
-        //cout << "\nSearch: ";
-        //isStringEmpty(&str);
-
-        while (temp)
-        {
-            ++id;
-            n = str.length();
-            if (choice == 1)
-                newStr = temp->title;
-            if (choice == 3)
-                newStr = temp->participants;
-            if (choice == 4)
-                newStr = temp->era;
-            if (choice == 5)
-                newStr = temp->location;
-
-            nStr = newStr.length();
-            for (int i = 0; i < n; i++) {
-                for (int j = 0; j < nStr; j++) {
-                    if (str[i] + 32 == newStr[j] || str[i] - 32 == newStr[j] || str[i] == newStr[j]) {
-                        searchIsOk = true;
-                    }
-                    else {
-                        ++mayBeCan;
-                        if (mayBeCan == nStr) {
-                            searchIsOk = false;
-                        }
-                    }
+        newStr = temp->title + to_string(temp->year);
+        for (size_t j = 0; j < newStr.size(); j++) {
+            for (size_t i = 0; i < str.size(); i++) {
+                if (str[i] == newStr[j]) {
+                    haveIt = true;
                 }
-                mayBeCan = 0;
             }
-
-
-            temp = temp->next;
-            searchIsOk = false;
-        }
-        cout << endl;
-
-        break;
-    case 2:
-        //cout << "\nSearch year: ";
-        cin >> num;
-
-        tempNum = num;
-
-        while (tempNum > 0 || tempNum != 0) {
-            tempArr[tempCounter] = tempNum % 10;
-            tempNum /= 10;
-            tempCounter++;
         }
 
-        while (temp)
-        {
-            oldNum = temp->year;
-            oldCounter = 0;
+        if (!haveIt) {
+            deleteNode(&temp, events);
+        }
 
-            while (oldNum > 0 || oldNum != 0) {
-                oldArr[oldCounter] = oldNum % 10;
-                oldNum /= 10;
-                oldCounter++;
-            }
+        haveIt = false;
+        ++events;
 
-            for (int i = 0; i < tempCounter; i++) {
-                for (int j = 0; j < oldCounter; j++) {
-                    if (tempArr[i] == oldArr[j]) {
-                        searchIsOk = true;
-                    }
-                    else {
-                        ++mayBeCan;
-                        if (mayBeCan == oldCounter) {
-                            searchIsOk = false;
-                        }
-                    }
-                }
-                mayBeCan = 0;
-            }
+        temp = temp->next;
+    }
 
-            if (searchIsOk) {
-                /*cout << endl;
-                cout << id << ".\n";
-                cout << "Title: " << temp->title << "\n";
-                cout << "Year: " << temp->year << "\n";
-                cout << "Gray year: " << temp->grayYear << "\n";
-                cout << "Participants: " << temp->participants << "\n";
-                cout << "Era: " << temp->era << "\n";
-                cout << "Location: " << temp->location << "\n";
-                cout << "Reason: " << temp->reason << "\n";
-                cout << "Result: " << temp->result << "\n";
-                cout << "Description: " << temp->description << "\n";*/
-                /* }
-                 temp = temp->next;
-                 searchIsOk = false;
-             }
-             break;
-         }
-
-     }*/
+    return *temp;
+}
 
      /*
       * @brief Functions for remove data on given position in a linked list

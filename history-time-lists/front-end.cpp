@@ -500,6 +500,11 @@ void setUpMenu() {
 	textBox89.setLimit(true, 30);
 	textBox89.setFont(f2);
 	
+	Textbox textBoxSearch(20, sf::Color::Black, true);
+	textBoxSearch.setPosition({ 735, 68 });
+	textBoxSearch.setLimit(true, 14);
+	textBoxSearch.setFont(f2);
+
 	int moreText = 0;
 	int infoChoice = 1;
 	string allText;
@@ -530,10 +535,15 @@ void setUpMenu() {
 	string autoSave;
 	int pos = 0;
 	int counterP = 0;
+	bool canSearch = false;
 
 	Button btn1("Finish", { 80, 40 }, 30, sf::Color::Transparent, sf::Color::Black);
 	btn1.setFont(f1);
 	btn1.setPosition({ 880, 740 });
+
+	Button search("", { 40, 50 }, 30, sf::Color::Transparent, sf::Color::Black);
+	search.setFont(f1);
+	search.setPosition({ 905, 55 });
 
 	int location = 0, locCreate = 0;
 
@@ -1142,8 +1152,75 @@ void setUpMenu() {
 			{
 			case 1:
 
+				backToMenu(&location, event, &text6);
+
+				window.draw(rectangle44);
+				window.draw(rectangle45);
+				window.draw(rectangle46);
+				window.draw(rectangle47);
+				window.draw(recrtangleSearch1);
+				window.draw(recrtangleSearch2);
+
+				window.draw(rectangle48);
+				window.draw(rectangle49);
+				window.draw(rectangle50);
+				window.draw(rectangle51);
+				window.draw(rectangle52);
+				window.draw(rectangle53);
+
+				window.draw(text6);
+				window.draw(s3);
+
 				temp = myEvents;
 				rectangles = 0;
+
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+					textBoxSearch.setSelected(true);
+
+				if (Mouse::getPosition(window).x > 725 && Mouse::getPosition(window).x < 900 &&
+					Mouse::getPosition(window).y > 55 && Mouse::getPosition(window).y < 100) {
+					if (event.type == Event::MouseButtonPressed)
+					{
+						if (event.mouseButton.button == Mouse::Left)
+						{
+							canSearch = true;
+						}
+					}
+				}
+
+				if (Mouse::getPosition(window).x > 905 && Mouse::getPosition(window).x < 945 &&
+					Mouse::getPosition(window).y > 55 && Mouse::getPosition(window).y < 100) {
+
+					if (event.type == Event::MouseButtonPressed)
+					{
+						if (event.mouseButton.button == Mouse::Left)
+						{
+							canSearch = false;
+							if (search.isMouseOver(window)) {
+								*temp = searchFuct(temp, textBoxSearch.getText());
+								textBoxSearch.deleteAll();
+							}
+						}
+					}
+				}
+
+				if (canSearch) {
+					while (window.pollEvent(event)) {
+						if (event.type == sf::Event::TextEntered) {
+							if ((event.text.unicode >= 65 &&
+								event.text.unicode <= 127) ||
+								(event.text.unicode >= 48 && event.text.unicode <= 57) ||
+								event.text.unicode == DELETE_KEY ||
+								event.text.unicode == 32) {
+								textBoxSearch.typedOn(event);
+							}
+						}
+					}
+				}
+
+				textBoxSearch.drawTo(window);
+				search.drawTo(window);
+
 				while (temp)
 				{
 					titleAndYear[rectangles] = to_string(rectangles + 1) + "." + temp->title + " - " + to_string(temp->year);
@@ -1249,12 +1326,12 @@ void setUpMenu() {
 							info4[oldRectangles].setFont(f2);
 							info4[oldRectangles].setCharacterSize(20);
 							info4[oldRectangles].setFillColor(Color(188, 145, 118));
-							info4[oldRectangles].setPosition(100, 160);
+							info4[oldRectangles].setPosition(100, 155);
 							h[oldRectangles].setString(titleAndYear[oldRectangles + p1]);
 							h[oldRectangles].setFont(f2);
 							h[oldRectangles].setCharacterSize(15);
 							h[oldRectangles].setFillColor(Color(254, 254, 254));
-							h[oldRectangles].setPosition(490, 548 + rectangles * 55);
+							h[oldRectangles].setPosition(490, 548 + oldRectangles * 55);
 							++oldRectangles;
 						}
 					}
@@ -1275,34 +1352,6 @@ void setUpMenu() {
 					data.close();
 				}
 				autoSaveNodes(&myEvents, autoSave);
-
-				backToMenu(&location, event, &text6);
-				
-				window.draw(rectangle44);
-				window.draw(rectangle45);
-				window.draw(rectangle46);
-				window.draw(rectangle47);
-				window.draw(recrtangleSearch1);
-				window.draw(recrtangleSearch2);
-
-				
-				window.draw(rectangle48);
-				window.draw(rectangle49);
-				window.draw(rectangle50);
-				window.draw(rectangle51);
-				window.draw(rectangle52);
-				window.draw(rectangle53);
-				
-				//window.draw(rectangle54);
-				//window.draw(rectangle55);
-
-				window.draw(text6);
-				window.draw(s3);
-				//window.draw(s4);
-				//window.draw(s6);
-				
-				//window.draw(s5);
-				//window.draw(s7);
 
 				if (rectangles <= 4) {
 					for (int i = 0; i < rectangles; i++)
@@ -1587,53 +1636,6 @@ void setUpMenu() {
 
 					}
 
-					else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
-						switch (whoIsChoiced) {
-						case 1: textBox1.setSelected(false); break;
-						case 2: textBox2.setSelected(false); break;
-						case 3: textBox3.setSelected(false); break;
-						case 4: textBox4.setSelected(false); break;
-						case 5: textBox5.setSelected(false); break;
-						case 6: textBox6.setSelected(false); break;
-						case 7: textBox7.setSelected(false); break;
-						case 8: 
-							if (moreText <= 30) {
-								textBox8.setSelected(false);
-							}
-							else if (moreText <= 60) {
-								textBox81.setSelected(false);
-							}
-							else if (moreText <= 90) {
-								textBox82.setSelected(false);
-							}
-							else if (moreText <= 120) {
-								textBox83.setSelected(false);
-							}
-							else if (moreText <= 150) {
-								textBox84.setSelected(false);
-							}
-							else if (moreText <= 180) {
-								textBox85.setSelected(false);
-							}
-							else if (moreText <= 210) {
-								textBox86.setSelected(false);
-							}
-							else if (moreText <= 240) {
-								textBox87.setSelected(false);
-							}
-							else if (moreText <= 270) {
-								textBox88.setSelected(false);
-							}
-							else if (moreText <= 300) {
-								textBox89.setSelected(false);
-							}
-
-							break;
-						}
-					}
-
-					
-
 						if (event.type == Event::MouseButtonPressed)
 						{
 							if (event.mouseButton.button == Mouse::Left)
@@ -1845,51 +1847,6 @@ void setUpMenu() {
 							}
 							else if (moreText <= 300) {
 								textBox89.setSelected(true);
-							}
-
-							break;
-						}
-					}
-
-					else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
-						switch (whoIsChoiced) {
-						case 1: textBox1.setSelected(false); break;
-						case 2: textBox2.setSelected(false); break;
-						case 3: textBox3.setSelected(false); break;
-						case 4: textBox4.setSelected(false); break;
-						case 5: textBox5.setSelected(false); break;
-						case 6: textBox6.setSelected(false); break;
-						case 7: textBox7.setSelected(false); break;
-						case 8:
-							if (moreText <= 30) {
-								textBox8.setSelected(false);
-							}
-							else if (moreText <= 60) {
-								textBox81.setSelected(false);
-							}
-							else if (moreText <= 90) {
-								textBox82.setSelected(false);
-							}
-							else if (moreText <= 120) {
-								textBox83.setSelected(false);
-							}
-							else if (moreText <= 150) {
-								textBox84.setSelected(false);
-							}
-							else if (moreText <= 180) {
-								textBox85.setSelected(false);
-							}
-							else if (moreText <= 210) {
-								textBox86.setSelected(false);
-							}
-							else if (moreText <= 240) {
-								textBox87.setSelected(false);
-							}
-							else if (moreText <= 270) {
-								textBox88.setSelected(false);
-							}
-							else if (moreText <= 300) {
-								textBox89.setSelected(false);
 							}
 
 							break;
@@ -2115,54 +2072,6 @@ void setUpMenu() {
 						case 9:	textBox10.setSelected(true); break;
 						}
 					}
-
-					else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
-						switch (whoIsChoiced) {
-						case 1: textBox1.setSelected(false); break;
-						case 2: textBox2.setSelected(false); break;
-						case 3: textBox3.setSelected(false); break;
-						case 4: textBox4.setSelected(false); break;
-						case 5: textBox5.setSelected(false); break;
-						case 6: textBox6.setSelected(false); break;
-						case 7: textBox7.setSelected(false); break;
-						case 8:
-							if (moreText <= 30) {
-								textBox8.setSelected(false);
-							}
-							else if (moreText <= 60) {
-								textBox81.setSelected(false);
-							}
-							else if (moreText <= 90) {
-								textBox82.setSelected(false);
-							}
-							else if (moreText <= 120) {
-								textBox83.setSelected(false);
-							}
-							else if (moreText <= 150) {
-								textBox84.setSelected(false);
-							}
-							else if (moreText <= 180) {
-								textBox85.setSelected(false);
-							}
-							else if (moreText <= 210) {
-								textBox86.setSelected(false);
-							}
-							else if (moreText <= 240) {
-								textBox87.setSelected(false);
-							}
-							else if (moreText <= 270) {
-								textBox88.setSelected(false);
-							}
-							else if (moreText <= 300) {
-								textBox89.setSelected(false);
-							}
-
-							break;
-						case 9:	textBox10.setSelected(false); break;
-						}
-					}
-
-
 
 					if (event.type == Event::MouseButtonPressed)
 					{
@@ -2411,54 +2320,6 @@ void setUpMenu() {
 						case 9:	textBox10.setSelected(true); break;
 						}
 					}
-
-					else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
-						switch (whoIsChoiced) {
-						case 1: textBox1.setSelected(false); break;
-						case 2: textBox2.setSelected(false); break;
-						case 3: textBox3.setSelected(false); break;
-						case 4: textBox4.setSelected(false); break;
-						case 5: textBox5.setSelected(false); break;
-						case 6: textBox6.setSelected(false); break;
-						case 7: textBox7.setSelected(false); break;
-						case 8:
-							if (moreText <= 30) {
-								textBox8.setSelected(false);
-							}
-							else if (moreText <= 60) {
-								textBox81.setSelected(false);
-							}
-							else if (moreText <= 90) {
-								textBox82.setSelected(false);
-							}
-							else if (moreText <= 120) {
-								textBox83.setSelected(false);
-							}
-							else if (moreText <= 150) {
-								textBox84.setSelected(false);
-							}
-							else if (moreText <= 180) {
-								textBox85.setSelected(false);
-							}
-							else if (moreText <= 210) {
-								textBox86.setSelected(false);
-							}
-							else if (moreText <= 240) {
-								textBox87.setSelected(false);
-							}
-							else if (moreText <= 270) {
-								textBox88.setSelected(false);
-							}
-							else if (moreText <= 300) {
-								textBox89.setSelected(false);
-							}
-
-							break;
-						case 9:	textBox10.setSelected(false); break;
-						}
-					}
-
-
 
 					if (event.type == Event::MouseButtonPressed)
 					{

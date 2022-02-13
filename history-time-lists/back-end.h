@@ -28,18 +28,11 @@ struct Node {
 
 // Functions
 
-//bool isRealPosition(int* pos, int* counter);
-//bool isNumber(int* num);
-//bool checkEmptyString(const string& s); 
-//bool isStringEmpty(string* str);
-//void inputData(string* title, int* year, int* grayYear, string* participants, string* era, string* location, string* reason, string* result, string* description);
-//void print(Node* node);
-
 // in tab
 void newAfterNode(Node*& head, string title, int year, int grayYear, string participants, string era, string location, string reason, string result, string description);
 void newBeforeNode(Node*& head, string title, int year, int grayYear, string participants, string era, string location, string reason, string result, string description);
 void insertPos(Node** head, int pos, string title, int year, int grayYear, string participants, string era, string location, string reason, string result, string description);
-//void editNode(Node** head, int pos);
+void editNode(Node** head, int pos, string title, int year, int grayYear, string participants, string era, string location, string reason, string result, string description);
 
 // in events
 //void mergeSort(Node** headRef, int choice);
@@ -47,7 +40,7 @@ void insertPos(Node** head, int pos, string title, int year, int grayYear, strin
 //void frontBackSplit(Node* source, Node** frontRef, Node** backRef);
 //Node* clone(Node* list);
 //void sortedFromToYears(Node* head);
-//void search(Node* node);
+Node searchFuct(Node* node, string str);
 
 // in tab
 void deleteNode(Node** head, int pos);
