@@ -520,6 +520,10 @@ void setUpMenu() {
 	int rectangles = 0;
 	string titleAndYear[100];
 	string allInfo[100];
+	string allInfo2[100];
+	string allInfo3[100];
+	string allInfo4[100];
+	int dHelp = 1;
 	int D = -1;
 	int choiceYesNo = -1;
 	int choicePos = -1;
@@ -590,6 +594,7 @@ void setUpMenu() {
 	texG.loadFromFile("../images/George.jpg");
 	texM.loadFromFile("../images/Mertin.jpg");
 
+
 	sH.setTextureRect(IntRect(0, 0, 200, 200));
 	sS.setTextureRect(IntRect(0, 0, 200, 200));
 	sG.setTextureRect(IntRect(0, 0, 200, 200));
@@ -635,7 +640,7 @@ void setUpMenu() {
 	setDropDownMenuText(&text9, 115);
 	text9.setPosition(window.getSize().x - 240, 115);
 
-	text11.setString("Add to position");
+	text11.setString("Add at position");
 	text11.setFont(f1);
 	setDropDownMenuText(&text11, 155);
 	text11.setPosition(window.getSize().x - 223, 155);
@@ -716,12 +721,11 @@ void setUpMenu() {
 
 	tex3.loadFromFile("../images/Lupa.png");
 
+	//tex4.loadFromFile("../images/arrowRight.png");
+	//tex5.loadFromFile("../images/arrowRight.png");
 
-	tex4.loadFromFile("../images/arrowRight.png");
-	tex5.loadFromFile("../images/arrowRight.png");
-
-	tex6.loadFromFile("../images/arrowLeft.png");
-	tex7.loadFromFile("../images/arrowLeft.png");
+	//tex6.loadFromFile("../images/arrowLeft.png");
+	//tex7.loadFromFile("../images/arrowLeft.png");
 
 	tex8.loadFromFile("../images/upArrow.png");
 	tex9.loadFromFile("../images/downArrow.png");
@@ -761,15 +765,15 @@ void setUpMenu() {
 
 		//Gray rectangles Events
 		rectangle44(Vector2f(window.getSize().x / 2 + 150, window.getSize().y / 2 + 50)),
-		rectangle45(Vector2f((window.getSize().x - 130) / 2, window.getSize().y / 2 - 160)),
-		rectangle46(Vector2f((window.getSize().x - 130) / 2, window.getSize().y / 2 - 160)),
+		rectangle45(Vector2f((window.getSize().x - 210) / 2, window.getSize().y / 2 - 160)),
+		rectangle46(Vector2f((window.getSize().x - 40) / 2, window.getSize().y / 2 - 160)),
 		rectangle47(Vector2f(window.getSize().x / 2 - 270, window.getSize().y / 2 - 30)),
 		rectangle53(Vector2f(window.getSize().x / 2 + 130, window.getSize().y / 14)),
 
 		//White rectangles Events 
 		rectangle48(Vector2f(window.getSize().x / 2 + 140, window.getSize().y / 2 - 30)),
 		rectangle49(Vector2f((window.getSize().x - 230) / 2, window.getSize().y / 2 - 170)),
-		rectangle50(Vector2f(window.getSize().x / 2 - 110, window.getSize().y / 2 - 170)),
+		rectangle50(Vector2f(window.getSize().x / 2 - 30, window.getSize().y / 2 - 170)),
 		rectangle51(Vector2f((window.getSize().x / 2 - 60) / 2, window.getSize().y / 2 - 40)),
 		rectangle52(Vector2f(window.getSize().x / 2 + 140, window.getSize().y / 12)),
 
@@ -801,7 +805,11 @@ void setUpMenu() {
 		recrtangleAboutUs5(Vector2f(210, 210)),
 		recrtangleAboutUs6(Vector2f(210, 210)),
 		recrtangleAboutUs7(Vector2f(210, 210)),
-		recrtangleAboutUs8(Vector2f(210, 210));
+		recrtangleAboutUs8(Vector2f(210, 210)),
+		rectangleEvent1(Vector2f(450, 45)),
+		rectangleEvent2(Vector2f(450, 45)),
+		rectangleEvent3(Vector2f(450, 45)),
+		rectangleEvent4(Vector2f(450, 45));////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 	recrtangleAboutUs1.setFillColor(Color(225, 172, 119));
@@ -939,7 +947,7 @@ void setUpMenu() {
 	addFromOrBack(&rectangle44, 50);
 	addFromOrBack(&rectangle45, window.getSize().y / 2 + 120);
 	//rectangle46.setFillColor(Color::Color(249, 239, 239));
-	rectangle46.setPosition((window.getSize().x - 120) / 2 + 70, window.getSize().y / 2 + 120);
+	rectangle46.setPosition((window.getSize().x - 120) / 2 + 30, window.getSize().y / 2 + 120);
 
 	//rectangle47.setFillColor(Color::Color(249, 239, 239));
 	rectangle47.setPosition(window.getSize().x / 2 + 220, window.getSize().y / 12 + 65);
@@ -957,7 +965,7 @@ void setUpMenu() {
 	addFromOrBackTwo(&rectangle48, 125);
 	addFromOrBackTwo(&rectangle49, window.getSize().y / 2 + 125);
 	rectangle50.setFillColor(Color::Color(249, 239, 239));
-	rectangle50.setPosition((window.getSize().x - 120) / 2 + 75, window.getSize().y / 2 + 125);
+	rectangle50.setPosition((window.getSize().x - 120) / 2 + 35, window.getSize().y / 2 + 125);
 
 	rectangle51.setFillColor(Color::Color(249, 239, 239));
 	rectangle51.setPosition(window.getSize().x / 2 + 225, window.getSize().y / 12 + 70);
@@ -1014,11 +1022,26 @@ void setUpMenu() {
 		rectangle12, rectangle13, rectangle14,
 		rectangle15, rectangle16, rectangle17 };
 
+	rectangleEvent1.setPosition((window.getSize().x - 120) / 2 + 45, 535);
+	rectangleEvent2.setPosition((window.getSize().x - 120) / 2 + 45, 590);
+	rectangleEvent3.setPosition((window.getSize().x - 120) / 2 + 45, 645);
+	rectangleEvent4.setPosition((window.getSize().x - 120) / 2 + 45, 700);
+
+	rectangleEvent1.setFillColor(Color(225, 172, 119));
+	rectangleEvent2.setFillColor(Color(225, 172, 119));
+	rectangleEvent3.setFillColor(Color(225, 172, 119));
+	rectangleEvent4.setFillColor(Color(225, 172, 119));
+
+	RectangleShape Events[4] = { rectangleEvent1,
+		rectangleEvent2, rectangleEvent3, rectangleEvent4};
 
 	Text hText1, hText2, hText3, hText4, hText5, hText6, hText7;
 	Text infoText1, infoText2, infoText3, infoText4, infoText5, infoText6, infoText7;
 	Text h[7] = { hText1, hText2, hText3, hText4, hText5, hText6, hText7 };
 	Text info[7] = { infoText1, infoText2, infoText3, infoText4, infoText5, infoText6, infoText7 };
+	Text info2[7] = { infoText1, infoText2, infoText3, infoText4, infoText5, infoText6, infoText7 };
+	Text info3[7] = { infoText1, infoText2, infoText3, infoText4, infoText5, infoText6, infoText7 };
+	Text info4[7] = { infoText1, infoText2, infoText3, infoText4, infoText5, infoText6, infoText7 };
 	Text error, areYouSure, choicePositionOfEvent, yes, no, position, errorPos, edit, deleteOne;
 	bool errorHere = false, errPos = false;
 	error.setString("You cannot complete the event while the fields are empty");
@@ -1076,99 +1099,12 @@ void setUpMenu() {
 	errorPos.setCharacterSize(18);
 
 	Node* myEvents = NULL;
+	Node* temp;
 	savedNodes(&myEvents);
+	int stopper = 7;
 
 	while (window.isOpen())
 	{	
-		Node* temp = myEvents;
-		rectangles = 0;
-		while (temp)
-		{
-			titleAndYear[rectangles] = to_string(rectangles+1) + "." + temp->title + " - " + to_string(temp->year);
-			//cout << "more: " <<titleAndYear[rectangles] << endl;
-
-			string p = temp->participants;
-			string e = temp->era;
-			string l = temp->location;
-			string rea = temp->reason;
-			string res = temp->result;
-
-			if (p.size() > 24) {
-				p.insert(24, "\n");
-			}
-
-			if (e.size() > 24) {
-				e.insert(24, "\n");
-			}
-
-			if (l.size() > 24) {
-				l.insert(24, "\n");
-			}
-
-			if (rea.size() > 24) {
-				rea.insert(24, "\n");
-			}
-
-			if (res.size() > 24) {
-				res.insert(24, "\n");
-			}
-
-			allInfo[rectangles] =
-				"      More Information\n\n"
-				"Participants: \n" + p + "\n\n"
-				+ "Era: \n" + e + "\n\n"
-				+ "Location: \n" + l + "\n\n"
-				+ "Reason: \n" + rea + "\n\n"
-				+ "Result: \n" + res + "\n";
-			if (p1 <= 0) {
-				if (rectangles < 7) {
-					info[rectangles].setString(allInfo[rectangles]);
-					info[rectangles].setFont(f2);
-					info[rectangles].setCharacterSize(15);
-					info[rectangles].setFillColor(Color(188, 145, 118));
-					info[rectangles].setPosition(720, 405);
-					h[rectangles].setString(titleAndYear[rectangles]);
-					h[rectangles].setFont(f2);
-					h[rectangles].setCharacterSize(20);
-					h[rectangles].setFillColor(Color(254, 254, 254));
-					h[rectangles].setPosition(50, 70 + rectangles * 105);
-				}
-			}
-			else {
-				int oldRectangles = 0;
-				while (oldRectangles != 7) {
-					info[oldRectangles].setString(allInfo[oldRectangles + p1]);
-					info[oldRectangles].setFont(f2);
-					info[oldRectangles].setCharacterSize(15);
-					info[oldRectangles].setFillColor(Color(188, 145, 118));
-					info[oldRectangles].setPosition(720, 405);
-					h[oldRectangles].setString(titleAndYear[oldRectangles + p1]);
-					h[oldRectangles].setFont(f2);
-					h[oldRectangles].setCharacterSize(20);
-					h[oldRectangles].setFillColor(Color(254, 254, 254));
-					h[oldRectangles].setPosition(50, 70 + oldRectangles * 105);
-					++oldRectangles;
-				}
-			}
-			++rectangles;
-			temp = temp->next;
-		}
-		//cout << "rectangle: " << rectangles << endl;
-
-		if (autoSave == "") {
-			fstream data;
-			data.open("AutoSaveNodes.txt", ios::in);
-			if (data.is_open()) {
-				string tp;
-				while (getline(data, tp)) {
-					autoSave = tp;
-				}
-			}
-
-			data.close();
-		}
-		autoSaveNodes(&myEvents, autoSave);
-
 		Event event;
 
 		int mouseX = sf::Mouse::getPosition(window).x;
@@ -1183,8 +1119,6 @@ void setUpMenu() {
 		window.clear(Color(235, 222, 214));
 		if (location == 0)
 		{
-			errorHere = false;
-			errPos = false;
 			window.draw(s2);
 			window.draw(s1);
 			window.draw(text1);
@@ -1198,6 +1132,8 @@ void setUpMenu() {
 			textPosition(&location, event, &text3, 3, 600, 640);
 			textPosition(&location, event, &text4, 4, 650, 690);
 			textPosition(&location, event, &text5, 5, 700, 740);
+
+
 		}
 		else
 		{	
@@ -1205,9 +1141,143 @@ void setUpMenu() {
 			switch (location)
 			{
 			case 1:
-				errorHere = false;
-				errPos = false;
+
+				temp = myEvents;
+				rectangles = 0;
+				while (temp)
+				{
+					titleAndYear[rectangles] = to_string(rectangles + 1) + "." + temp->title + " - " + to_string(temp->year);
+
+					string t = temp->title;
+					string p = temp->participants;
+					string e = temp->era;
+					string l = temp->location;
+					string rea = temp->reason;
+					string res = temp->result;
+					string d = temp->description;
+
+					if (p.size() > 20) {
+						p.insert(20, "\n");
+					}
+
+					if (e.size() > 20) {
+						e.insert(20, "\n");
+					}
+
+					if (l.size() > 20) {
+						l.insert(20, "\n             ");
+					}
+
+					if (rea.size() > 20) {
+						rea.insert(20, "\n");
+					}
+
+					if (res.size() > 20) {
+						res.insert(20, "\n");
+					}
+
+
+					while (d.size() > 46 * dHelp) {
+						d.insert(46 * dHelp, "\n\n");
+						dHelp++;
+					}
+
+					dHelp = 1;
+
+					allInfo[rectangles] =
+						"               More Information\n\n"
+						"Participants: \n" + p + "\n\n"
+						+ "Era: \n" + e + "\n\n"
+						+ "             Location: \n             " + l + "\n\n";
+
+					allInfo2[rectangles] =
+						"\n\nReason: \n" + rea + "\n\n"
+						+ "Result: \n" + res + "\n";
+
+					allInfo3[rectangles] = t;
+					
+					allInfo4[rectangles] = d;
+
+					if (p1 <= 0) {
+						if (rectangles < 4) {
+							info[rectangles].setString(allInfo[rectangles]);
+							info[rectangles].setFont(f2);
+							info[rectangles].setCharacterSize(13);
+							info[rectangles].setFillColor(Color(188, 145, 118));
+							info[rectangles].setPosition(65, 530);
+							info2[rectangles].setString(allInfo2[rectangles]);
+							info2[rectangles].setFont(f2);
+							info2[rectangles].setCharacterSize(13);
+							info2[rectangles].setFillColor(Color(188, 145, 118));
+							info2[rectangles].setPosition(260, 530);
+							info3[rectangles].setString(allInfo3[rectangles]);
+							info3[rectangles].setFont(f2);
+							info3[rectangles].setCharacterSize(25);
+							info3[rectangles].setFillColor(Color(188, 145, 118));
+							info3[rectangles].setPosition(75, 75);
+							info4[rectangles].setString(allInfo4[rectangles]);
+							info4[rectangles].setFont(f2);
+							info4[rectangles].setCharacterSize(20);
+							info4[rectangles].setFillColor(Color(188, 145, 118));
+							info4[rectangles].setPosition(100, 155);
+							h[rectangles].setString(titleAndYear[rectangles]);
+							h[rectangles].setFont(f2);
+							h[rectangles].setCharacterSize(15);
+							h[rectangles].setFillColor(Color(254, 254, 254));
+							h[rectangles].setPosition(490, 548 + rectangles * 55);
+						}
+					}
+					else {
+						int oldRectangles = 0;
+						while (oldRectangles != 4) {
+							info[oldRectangles].setString(allInfo[oldRectangles + p1]);
+							info[oldRectangles].setFont(f2);
+							info[oldRectangles].setCharacterSize(12);
+							info[oldRectangles].setFillColor(Color(188, 145, 118));
+							info[oldRectangles].setPosition(65, 530);
+							info2[oldRectangles].setString(allInfo2[oldRectangles + p1]);
+							info2[oldRectangles].setFont(f2);
+							info2[oldRectangles].setCharacterSize(13);
+							info2[oldRectangles].setFillColor(Color(188, 145, 118));
+							info2[oldRectangles].setPosition(260, 530);
+							info3[oldRectangles].setString(allInfo3[oldRectangles + p1]);
+							info3[oldRectangles].setFont(f2);
+							info3[oldRectangles].setCharacterSize(25);
+							info3[oldRectangles].setFillColor(Color(188, 145, 118));
+							info3[oldRectangles].setPosition(75, 75);
+							info4[oldRectangles].setString(allInfo4[oldRectangles + p1]);
+							info4[oldRectangles].setFont(f2);
+							info4[oldRectangles].setCharacterSize(20);
+							info4[oldRectangles].setFillColor(Color(188, 145, 118));
+							info4[oldRectangles].setPosition(100, 160);
+							h[oldRectangles].setString(titleAndYear[oldRectangles + p1]);
+							h[oldRectangles].setFont(f2);
+							h[oldRectangles].setCharacterSize(15);
+							h[oldRectangles].setFillColor(Color(254, 254, 254));
+							h[oldRectangles].setPosition(490, 548 + rectangles * 55);
+							++oldRectangles;
+						}
+					}
+					++rectangles;
+					temp = temp->next;
+				}
+
+				if (autoSave == "") {
+					fstream data;
+					data.open("AutoSaveNodes.txt", ios::in);
+					if (data.is_open()) {
+						string tp;
+						while (getline(data, tp)) {
+							autoSave = tp;
+						}
+					}
+
+					data.close();
+				}
+				autoSaveNodes(&myEvents, autoSave);
+
 				backToMenu(&location, event, &text6);
+				
 				window.draw(rectangle44);
 				window.draw(rectangle45);
 				window.draw(rectangle46);
@@ -1215,23 +1285,255 @@ void setUpMenu() {
 				window.draw(recrtangleSearch1);
 				window.draw(recrtangleSearch2);
 
+				
 				window.draw(rectangle48);
 				window.draw(rectangle49);
 				window.draw(rectangle50);
 				window.draw(rectangle51);
 				window.draw(rectangle52);
 				window.draw(rectangle53);
-				window.draw(rectangle54);
-				window.draw(rectangle55);
+				
+				//window.draw(rectangle54);
+				//window.draw(rectangle55);
+
 				window.draw(text6);
 				window.draw(s3);
-				window.draw(s4);
-				window.draw(s6);
+				//window.draw(s4);
+				//window.draw(s6);
+				
+				//window.draw(s5);
+				//window.draw(s7);
 
-				window.draw(s5);
-				window.draw(s7);
+				if (rectangles <= 4) {
+					for (int i = 0; i < rectangles; i++)
+					{
+						window.draw(Events[i]);
+					}
+					for (int i = 0; i < rectangles; i++)
+					{
+						window.draw(h[i]);
+					}
+				}
+				else {
+					for (int i = 0; i < 4; i++)
+					{
+						window.draw(Events[i]);
+					}
+					for (int i = 0; i < 4; i++)
+					{
+						window.draw(h[i]);
+					}
+				}
+
+				if (Mouse::getPosition(window).x > 485 && Mouse::getPosition(window).x < 935 &&
+					Mouse::getPosition(window).y>535 && Mouse::getPosition(window).y < 580) {
+					if (event.type == Event::MouseButtonPressed)
+					{
+						if (event.mouseButton.button == Mouse::Left)
+						{
+							infoChoice = 1;
+						}
+					}
+				}
+				if (Mouse::getPosition(window).x > 485 && Mouse::getPosition(window).x < 935 &&
+					Mouse::getPosition(window).y>590 && Mouse::getPosition(window).y < 635) {
+					if (event.type == Event::MouseButtonPressed)
+					{
+						if (event.mouseButton.button == Mouse::Left)
+						{
+							infoChoice = 2;
+						}
+					}
+				}
+				if (Mouse::getPosition(window).x > 485 && Mouse::getPosition(window).x < 935 &&
+					Mouse::getPosition(window).y>645 && Mouse::getPosition(window).y < 690) {
+					if (event.type == Event::MouseButtonPressed)
+					{
+						if (event.mouseButton.button == Mouse::Left)
+						{
+							infoChoice = 3;
+						}
+					}
+				}
+				if (Mouse::getPosition(window).x > 485 && Mouse::getPosition(window).x < 935 &&
+					Mouse::getPosition(window).y>700 && Mouse::getPosition(window).y < 745) {
+					if (event.type == Event::MouseButtonPressed)
+					{
+						if (event.mouseButton.button == Mouse::Left)
+						{
+							infoChoice = 4;
+						}
+					}
+				}
+
+				if (rectangles != 0) {
+					switch (infoChoice) {
+					case 1:
+						window.draw(info[0]);
+						window.draw(info2[0]);
+						window.draw(info3[0]);
+						window.draw(info4[0]);
+						break;
+					case 2:
+						window.draw(info[1]);
+						window.draw(info2[1]);
+						window.draw(info3[1]);
+						window.draw(info4[1]);
+						break;
+					case 3:
+						window.draw(info[2]);
+						window.draw(info2[2]);
+						window.draw(info3[2]);
+						window.draw(info4[2]);
+						break;
+					case 4:
+						window.draw(info[3]);
+						window.draw(info2[3]);
+						window.draw(info3[3]);
+						window.draw(info4[3]);
+						break;
+					}
+				}
 				break;
+
+				/*
+				if (rectangles > 4)
+				{
+					if (p1 > 0 && p1 <= rectangles - 4)
+					{
+						if (Mouse::getPosition(window).x > window.getSize().x - 358 && Mouse::getPosition(window).x < window.getSize().x - 338 &&
+							Mouse::getPosition(window).y>45 && Mouse::getPosition(window).y < 55)
+						{
+							switch (event.type)
+							{
+							case Event::MouseButtonPressed:
+								if (event.mouseButton.button == Mouse::Left)
+								{
+									p1--;
+
+									Mouse::setPosition(Vector2i(Mouse::getPosition(window).x + 6, Mouse::getPosition(window).y + 6), window);
+								}
+							}
+						}
+					}
+					if (p1 >= 0 && p1 < rectangles - 4)
+					{
+						if (Mouse::getPosition(window).x > window.getSize().x - 358 && Mouse::getPosition(window).x < window.getSize().x - 338 &&
+							Mouse::getPosition(window).y>window.getSize().y - 50 && Mouse::getPosition(window).y < window.getSize().y - 35)
+						{
+							if (event.type == Event::MouseButtonPressed)
+							{
+								if (event.mouseButton.button == Mouse::Left)
+								{
+									p1++;
+									Mouse::setPosition(Vector2i(Mouse::getPosition(window).x - 4, Mouse::getPosition(window).y - 4), window);
+								}
+							}
+						}
+					}
+					rectangleScroll.setSize(Vector2f(window.getSize().x / 66, 7 * (window.getSize().y - 130) / rectangles));
+					rectangleScroll.setPosition(window.getSize().x - 350, 65 + p1 * (window.getSize().y - 130) / rectangles);
+					window.draw(s8);
+					window.draw(s9);
+					window.draw(rectangleScroll);
+				}
+				else
+				{
+					rectangleScroll.setSize(Vector2f(window.getSize().x / 66, window.getSize().y - 130));
+					rectangleScroll.setPosition(window.getSize().x - 350, 65);
+					window.draw(rectangleScroll);
+				}
+				*/
 			case 2:
+
+				temp = myEvents;
+				rectangles = 0;
+				while (temp)
+				{
+					titleAndYear[rectangles] = to_string(rectangles + 1) + "." + temp->title + " - " + to_string(temp->year);
+					//cout << "more: " <<titleAndYear[rectangles] << endl;
+
+					string p = temp->participants;
+					string e = temp->era;
+					string l = temp->location;
+					string rea = temp->reason;
+					string res = temp->result;
+
+					if (p.size() > 24) {
+						p.insert(24, "\n");
+					}
+
+					if (e.size() > 24) {
+						e.insert(24, "\n");
+					}
+
+					if (l.size() > 24) {
+						l.insert(24, "\n");
+					}
+
+					if (rea.size() > 24) {
+						rea.insert(24, "\n");
+					}
+
+					if (res.size() > 24) {
+						res.insert(24, "\n");
+					}
+
+					allInfo[rectangles] =
+						"      More Information\n\n"
+						"Participants: \n" + p + "\n\n"
+						+ "Era: \n" + e + "\n\n"
+						+ "Location: \n" + l + "\n\n"
+						+ "Reason: \n" + rea + "\n\n"
+						+ "Result: \n" + res + "\n";
+					if (p1 <= 0) {
+						if (rectangles < stopper) {
+							info[rectangles].setString(allInfo[rectangles]);
+							info[rectangles].setFont(f2);
+							info[rectangles].setCharacterSize(15);
+							info[rectangles].setFillColor(Color(188, 145, 118));
+							info[rectangles].setPosition(720, 405);
+							h[rectangles].setString(titleAndYear[rectangles]);
+							h[rectangles].setFont(f2);
+							h[rectangles].setCharacterSize(20);
+							h[rectangles].setFillColor(Color(254, 254, 254));
+							h[rectangles].setPosition(50, 70 + rectangles * 105);
+						}
+					}
+					else {
+						int oldRectangles = 0;
+						while (oldRectangles != stopper) {
+							info[oldRectangles].setString(allInfo[oldRectangles + p1]);
+							info[oldRectangles].setFont(f2);
+							info[oldRectangles].setCharacterSize(15);
+							info[oldRectangles].setFillColor(Color(188, 145, 118));
+							info[oldRectangles].setPosition(720, 405);
+							h[oldRectangles].setString(titleAndYear[oldRectangles + p1]);
+							h[oldRectangles].setFont(f2);
+							h[oldRectangles].setCharacterSize(20);
+							h[oldRectangles].setFillColor(Color(254, 254, 254));
+							h[oldRectangles].setPosition(50, 70 + oldRectangles * 105);
+							++oldRectangles;
+						}
+					}
+					++rectangles;
+					temp = temp->next;
+				}
+
+				if (autoSave == "") {
+					fstream data;
+					data.open("AutoSaveNodes.txt", ios::in);
+					if (data.is_open()) {
+						string tp;
+						while (getline(data, tp)) {
+							autoSave = tp;
+						}
+					}
+
+					data.close();
+				}
+				autoSaveNodes(&myEvents, autoSave);
+
 				switch (locCreate)
 				{
 				case 1: // add front
@@ -1282,6 +1584,7 @@ void setUpMenu() {
 
 							break;
 						}
+
 					}
 
 					else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
@@ -2815,7 +3118,8 @@ void setUpMenu() {
 									choiceYesNo = -1;
 									choicePos = -1;
 									pos = -1;
-									--p1;
+									if(p1 > 0)
+										--p1;
 									break;
 								case 1:
 									choiceYesNo = -1;
@@ -2924,7 +3228,7 @@ void setUpMenu() {
 			}
 		}
 		//cout << "rectangles = " << rectangles << endl;
-		//cout << Mouse::getPosition(window).x << " " << Mouse::getPosition(window).y << endl;
+		cout << Mouse::getPosition(window).x << " " << Mouse::getPosition(window).y << endl;
 		window.display();
 	}
 }
