@@ -208,7 +208,7 @@ private:
 	int btnHeight;
 };
 
-RenderWindow window(VideoMode(1000, 800), "Helpopedia");
+RenderWindow window(VideoMode(1000, 800), "Helpopedia", Style::Close);
 
 void backToMenu(int* ptr1, Event event, Text* textOne)
 {
@@ -231,9 +231,9 @@ void backToMenu(int* ptr1, Event event, Text* textOne)
 
 void backToMenuFromCreate(int* ptr1, Event event, Text* textOne, Text* textTwo)
 {
-	if ((Mouse::getPosition(window).x > 30 && 
-		Mouse::getPosition(window).x < 100 && 
-		Mouse::getPosition(window).y>window.getSize().y - 50 && 
+	if ((Mouse::getPosition(window).x > 30 &&
+		Mouse::getPosition(window).x < 100 &&
+		Mouse::getPosition(window).y>window.getSize().y - 50 &&
 		Mouse::getPosition(window).y < window.getSize().y - 20))
 	{
 		(*textOne).setFillColor(Color::White);
@@ -255,9 +255,9 @@ void backToMenuFromCreate(int* ptr1, Event event, Text* textOne, Text* textTwo)
 void finishToMenuFromCreate(int* ptr1, Event event, Text* textTwo)
 {
 	if ((Mouse::getPosition(window).x > 875 &&
-			Mouse::getPosition(window).x < 965 &&
-			Mouse::getPosition(window).y>window.getSize().y - 50 &&
-			Mouse::getPosition(window).y < window.getSize().y - 20))
+		Mouse::getPosition(window).x < 965 &&
+		Mouse::getPosition(window).y>window.getSize().y - 50 &&
+		Mouse::getPosition(window).y < window.getSize().y - 20))
 	{
 		if (event.type == Event::MouseButtonPressed)
 		{
@@ -355,7 +355,7 @@ void setRectangleCreateMainOne(RectangleShape* rectangle, int plusLeft, int mulR
 }
 
 void addFromOrBack(RectangleShape* rectangle, int posY) // ogradka
-{  
+{
 	//(*rectangle).setFillColor(Color::Color(186, 166, 127));
 	(*rectangle).setPosition(50, posY);
 }
@@ -499,25 +499,76 @@ void setUpMenu() {
 	textBox89.setPosition({ 600, 70 + 64 * 9 });
 	textBox89.setLimit(true, 30);
 	textBox89.setFont(f2);
-	
-	Textbox textBoxSearch(20, sf::Color::Black, true);
-	textBoxSearch.setPosition({ 735, 68 });
-	textBoxSearch.setLimit(true, 14);
-	textBoxSearch.setFont(f2);
 
 	int moreText = 0;
 	int infoChoice = 1;
 	string allText;
-	
+
 	Textbox textBox9(20, sf::Color::Black, true);
 	textBox9.setPosition({ 530, 375 });
 	textBox9.setLimit(true, 3);
 	textBox9.setFont(f2);
-	
+
 	Textbox textBox10(20, sf::Color::Black, true);
 	textBox10.setPosition({ 300, 170 });
 	textBox10.setLimit(true, 3);
 	textBox10.setFont(f2);
+
+
+
+	Textbox textBoxGame1(20, sf::Color::Black, true);
+	textBoxGame1.setPosition({ 715,175 });
+	textBoxGame1.setLimit(true, 4);
+	textBoxGame1.setFont(f2);
+	bool canWriteGame1 = false;
+
+	Textbox textBoxGame2(20, sf::Color::Black, true);
+	textBoxGame2.setPosition({ 715, 280 });
+	textBoxGame2.setLimit(true, 4);
+	textBoxGame2.setFont(f2);
+	bool canWriteGame2 = false;
+
+	Textbox textBoxGame3(20, sf::Color::Black, true);
+	textBoxGame3.setPosition({ 715, 385 });
+	textBoxGame3.setLimit(true, 4);
+	textBoxGame3.setFont(f2);
+	bool canWriteGame3 = false;
+
+	Textbox textBoxGame4(20, sf::Color::Black, true);
+	textBoxGame4.setPosition({ 715,490 });
+	textBoxGame4.setLimit(true, 4);
+	textBoxGame4.setFont(f2);
+	bool canWriteGame4 = false;
+
+	Textbox textBoxGame5(20, sf::Color::Black, true);
+	textBoxGame5.setPosition({ 715, 595 });
+	textBoxGame5.setLimit(true, 4);
+	textBoxGame5.setFont(f2);
+	bool canWriteGame5 = false;
+
+	Textbox textBoxGame6(20, sf::Color::Black, true);
+	textBoxGame6.setPosition({ 715, 700 });
+	textBoxGame6.setLimit(true, 4);
+	textBoxGame6.setFont(f2);
+	bool canWriteGame6 = false;
+
+	/*rectanglePlayBox4.setFillColor(Color::Black);
+rectanglePlayBox4.setPosition(210 + window.getSize().x / 2, 170);
+
+rectanglePlayBox41.setFillColor(Color::White);
+rectanglePlayBox41.setPosition(215 + window.getSize().x / 2, 175);
+
+rectanglePlayBox5.setFillColor(Color::Black);
+rectanglePlayBox5.setPosition(210 + window.getSize().x / 2, 275);
+
+rectanglePlayBox51.setFillColor(Color::White);
+rectanglePlayBox51.setPosition(215 + window.getSize().x / 2, 280);
+
+rectanglePlayBox6.setFillColor(Color::Black);
+rectanglePlayBox6.setPosition(210 + window.getSize().x / 2, 380);
+
+rectanglePlayBox61.setFillColor(Color::White);
+rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 
 	int whoIsChoiced = 0;
 	int howManyEventsHave = 0;
@@ -535,21 +586,68 @@ void setUpMenu() {
 	string autoSave;
 	int pos = 0;
 	int counterP = 0;
-	bool canSearch = false;
 
 	Button btn1("Finish", { 80, 40 }, 30, sf::Color::Transparent, sf::Color::Black);
 	btn1.setFont(f1);
 	btn1.setPosition({ 880, 740 });
 
-	Button search("", { 40, 50 }, 30, sf::Color::Transparent, sf::Color::Black);
-	search.setFont(f1);
-	search.setPosition({ 905, 55 });
+	Button btn2("Check", { 80, 40 }, 30, sf::Color::Transparent, sf::Color::Black);
+	btn2.setFont(f1);
+	btn2.setPosition({ 820, 710 });
 
 	int location = 0, locCreate = 0;
 
-	Texture tex1, tex2, tex3, tex4, tex5, tex6, tex7, tex8, tex9, texH, texS, texG, texM;
-	Text textFE, textBE, textST, textQA, textH, textS, textG, textM;
-	Sprite s1(tex1), s2(tex2), s3(tex3), s4(tex4), s5(tex5), s6(tex6), s7(tex7), s8(tex8), s9(tex9), sH(texH), sS(texS), sG(texG), sM(texM);
+	Texture tex1, tex2, tex3, tex4, tex5, tex6, tex7, tex8, tex9, texH, texS, texG, texM, tex10, tex11;
+	Text textFE, textBE, textST, textQA, textH, textS, textG, textM, textGame1, textGame2, textCodeOfGray, textHowToPlay, textCheck, textRandom, textHint, textPlay;
+	Sprite s1(tex1), s2(tex2), s3(tex3), s4(tex4), s5(tex5), s6(tex6), s7(tex7), s8(tex8), s9(tex9), sH(texH), sS(texS), sG(texG), sM(texM), s10(tex10), s11(tex11);
+
+	textPlay.setString("Play");
+	textPlay.setFont(f1);
+	textPlay.setCharacterSize(30);
+	textPlay.setPosition(window.getSize().x - 70, 760);
+	textPlay.setFillColor(Color::Black);
+
+	textGame1.setString("How to play a game");
+	textGame1.setFont(f1);
+	textGame1.setCharacterSize(30);
+	textGame1.setPosition(window.getSize().x / 2 - 120, 80);
+	textGame1.setFillColor(Color::Color(210, 210, 210, 255));
+
+	textGame2.setString("Code of gray");
+	textGame2.setFont(f1);
+	textGame2.setCharacterSize(30);
+	textGame2.setPosition(window.getSize().x / 2 - 90, window.getSize().y / 2 + 30);
+	textGame2.setFillColor(Color::Color(210, 210, 210, 255));
+
+	textHowToPlay.setString("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq\nqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq\nqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq\nqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq\nqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq\nqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
+	textHowToPlay.setFont(f1);
+	textHowToPlay.setCharacterSize(20);
+	textHowToPlay.setPosition(245, 160);
+	textHowToPlay.setFillColor(Color::Black);
+
+	textCodeOfGray.setString("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq\nqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq\nqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq\nqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq\nqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq\nqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
+	textCodeOfGray.setFont(f1);
+	textCodeOfGray.setCharacterSize(20);
+	textCodeOfGray.setPosition(245, 510);
+	textCodeOfGray.setFillColor(Color::Black);
+
+	textCheck.setString("Check");
+	textCheck.setFont(f1);
+	textCheck.setCharacterSize(30);
+	textCheck.setPosition(window.getSize().x - 180, window.getSize().y - 90);
+	textCheck.setFillColor(Color::Black);
+
+	textRandom.setString("Random");
+	textRandom.setFont(f1);
+	textRandom.setCharacterSize(30);
+	textRandom.setPosition(100, window.getSize().y - 90);
+	textRandom.setFillColor(Color::Black);
+
+	textHint.setString("Hint:");
+	textHint.setFont(f1);
+	textHint.setCharacterSize(30);
+	textHint.setPosition(window.getSize().x / 2 + 180, 50);
+	textHint.setFillColor(Color::Black);
 
 	textFE.setString("Front-end");
 	textFE.setFont(f1);
@@ -740,8 +838,11 @@ void setUpMenu() {
 	tex8.loadFromFile("../images/upArrow.png");
 	tex9.loadFromFile("../images/downArrow.png");
 
-	int fu1 = 65;
 
+	tex10.loadFromFile("../images/upArrow2.png");//impo
+	tex11.loadFromFile("../images/downArrow2.png");//impo
+
+	int fu1 = 65, n1 = 0, locGame = 0;
 	RectangleShape rectangle(Vector2f(900, 450)), /*rectangle1(Vector2f((window.getSize().x / 2 - 80) / 2, (window.getSize().y / 2 - 40) / 3 - 5))*/
 		rectangle2(Vector2f(200, 250)), rectangle3(Vector2f(200, 250)),
 		rectangle4(Vector2f(140, 250)), rectangle5(Vector2f(window.getSize().x - 350, window.getSize().y - 50)),
@@ -776,23 +877,23 @@ void setUpMenu() {
 		//Gray rectangles Events
 		rectangle44(Vector2f(window.getSize().x / 2 + 150, window.getSize().y / 2 + 50)),
 		rectangle45(Vector2f((window.getSize().x - 210) / 2, window.getSize().y / 2 - 160)),
-		rectangle46(Vector2f((window.getSize().x - 40) / 2, window.getSize().y / 2 - 160)),
+		rectangle46(Vector2f(window.getSize().x / 2, window.getSize().y / 2 - 160)),
 		rectangle47(Vector2f(window.getSize().x / 2 - 270, window.getSize().y / 2 - 30)),
 		rectangle53(Vector2f(window.getSize().x / 2 + 130, window.getSize().y / 14)),
 
 		//White rectangles Events 
 		rectangle48(Vector2f(window.getSize().x / 2 + 140, window.getSize().y / 2 - 30)),
 		rectangle49(Vector2f((window.getSize().x - 230) / 2, window.getSize().y / 2 - 170)),
-		rectangle50(Vector2f(window.getSize().x / 2 - 30, window.getSize().y / 2 - 170)),
+		rectangle50(Vector2f(window.getSize().x / 2 - 30, window.getSize().y / 2 - 170)),//Yes
 		rectangle51(Vector2f((window.getSize().x / 2 - 60) / 2, window.getSize().y / 2 - 40)),
-		rectangle52(Vector2f(window.getSize().x / 2 + 140, window.getSize().y / 12)),
+		rectangle52(Vector2f(window.getSize().x / 2 + 140, window.getSize().y / 12)),//Ne
 
 
 		recrtangleSearch1(Vector2f(window.getSize().x / 2 - 270, window.getSize().y / 13.5)),
 		recrtangleSearch2(Vector2f((window.getSize().x / 2 - 60) / 2, window.getSize().y / 16.5)),
 		rectangle54(Vector2f(window.getSize().x / 2 - 465, window.getSize().y / 2 - 170)),
 		rectangle55(Vector2f(window.getSize().x / 2 - 470, window.getSize().y / 2 - 170)),
-		rectangleScroll,
+		rectangleScroll, rectangleScroll1,
 
 		// choice yes or no
 		rectangleDDASSA(Vector2f(window.getSize().x / 3 + 100, window.getSize().y / 4)),
@@ -819,7 +920,123 @@ void setUpMenu() {
 		rectangleEvent1(Vector2f(450, 45)),
 		rectangleEvent2(Vector2f(450, 45)),
 		rectangleEvent3(Vector2f(450, 45)),
-		rectangleEvent4(Vector2f(450, 45));////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		rectangleEvent4(Vector2f(450, 45)),
+		recrtangleGame1(Vector2f(window.getSize().x - 400, window.getSize().y - 100)),
+		recrtangleGame2(Vector2f(window.getSize().x - 410, (window.getSize().y - 120) / 2)),
+		recrtangleGame3(Vector2f(window.getSize().x - 410, (window.getSize().y - 120) / 2)),
+		recrtangleGame4(Vector2f(window.getSize().x - 420, (window.getSize().y - 130) / 2 - 85)),
+		recrtangleGame5(Vector2f(window.getSize().x - 420, (window.getSize().y - 130) / 2 - 85)),
+		rectanglePlay1(Vector2f(window.getSize().x - 200, window.getSize().y - 200)), rectanglePlay2(Vector2f(window.getSize().x - 210, window.getSize().y - 210)),
+		rectangleCheck1(Vector2f(400, 200)), rectangleCheck2(Vector2f(390, 190)),
+		rectangleHint1(Vector2f(120, 50)), rectangleHint2(Vector2f(110, 40)),
+
+		rectanglePlayBox1(Vector2f(window.getSize().x / 2 - 10, 50)), rectanglePlayBox11(Vector2f(window.getSize().x / 2 - 20, 40)),
+		rectanglePlayBox2(Vector2f(window.getSize().x / 2 - 10, 50)), rectanglePlayBox21(Vector2f(window.getSize().x / 2 - 20, 40)),
+		rectanglePlayBox3(Vector2f(window.getSize().x / 2 - 10, 50)), rectanglePlayBox31(Vector2f(window.getSize().x / 2 - 20, 40)),
+
+		rectanglePlayBox9(Vector2f(window.getSize().x / 2 - 10, 50)), rectanglePlayBox91(Vector2f(window.getSize().x / 2 - 20, 40)),
+		rectanglePlayBox10(Vector2f(window.getSize().x / 2 - 10, 50)), rectanglePlayBox101(Vector2f(window.getSize().x / 2 - 20, 40)),
+
+		rectanglePlayBox4(Vector2f(120, 50)), rectanglePlayBox41(Vector2f(110, 40)),
+		rectanglePlayBox5(Vector2f(120, 50)), rectanglePlayBox51(Vector2f(110, 40)),
+		rectanglePlayBox6(Vector2f(120, 50)), rectanglePlayBox61(Vector2f(110, 40)),
+		rectanglePlayBox7(Vector2f(120, 50)), rectanglePlayBox71(Vector2f(110, 40)),
+		rectanglePlayBox8(Vector2f(120, 50)), rectanglePlayBox81(Vector2f(110, 40));
+	rectangleScroll1.setFillColor(Color(207, 159, 119));
+	rectanglePlayBox1.setFillColor(Color::Black);
+	rectanglePlayBox1.setPosition(120, 170);
+
+	rectanglePlayBox11.setFillColor(Color::White);
+	rectanglePlayBox11.setPosition(125, 175);
+
+	rectanglePlayBox2.setFillColor(Color::Black);
+	rectanglePlayBox2.setPosition(120, 275);
+
+	rectanglePlayBox21.setFillColor(Color::White);
+	rectanglePlayBox21.setPosition(125, 280);
+
+	rectanglePlayBox3.setFillColor(Color::Black);
+	rectanglePlayBox3.setPosition(120, 380);
+
+	rectanglePlayBox31.setFillColor(Color::White);
+	rectanglePlayBox31.setPosition(125, 385);
+
+
+
+	rectanglePlayBox9.setFillColor(Color::Black);
+	rectanglePlayBox9.setPosition(120, 485);
+
+	rectanglePlayBox91.setFillColor(Color::White);
+	rectanglePlayBox91.setPosition(125, 490);
+
+	rectanglePlayBox10.setFillColor(Color::Black);
+	rectanglePlayBox10.setPosition(120, 590);
+
+	rectanglePlayBox101.setFillColor(Color::White);
+	rectanglePlayBox101.setPosition(125, 595);
+
+	rectanglePlayBox4.setFillColor(Color::Black);
+	rectanglePlayBox4.setPosition(210 + window.getSize().x / 2, 170);
+
+	rectanglePlayBox41.setFillColor(Color::White);
+	rectanglePlayBox41.setPosition(215 + window.getSize().x / 2, 175);
+
+	rectanglePlayBox5.setFillColor(Color::Black);
+	rectanglePlayBox5.setPosition(210 + window.getSize().x / 2, 275);
+
+	rectanglePlayBox51.setFillColor(Color::White);
+	rectanglePlayBox51.setPosition(215 + window.getSize().x / 2, 280);
+
+	rectanglePlayBox6.setFillColor(Color::Black);
+	rectanglePlayBox6.setPosition(210 + window.getSize().x / 2, 380);
+
+	rectanglePlayBox61.setFillColor(Color::White);
+	rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);
+
+	rectanglePlayBox7.setFillColor(Color::Black);
+	rectanglePlayBox7.setPosition(210 + window.getSize().x / 2, 490);
+
+	rectanglePlayBox71.setFillColor(Color::White);
+	rectanglePlayBox71.setPosition(215 + window.getSize().x / 2, 495);
+
+	rectanglePlayBox8.setFillColor(Color::Black);
+	rectanglePlayBox8.setPosition(210 + window.getSize().x / 2, 595);
+
+	rectanglePlayBox81.setFillColor(Color::White);
+	rectanglePlayBox81.setPosition(215 + window.getSize().x / 2, 600);
+
+	rectangleHint1.setFillColor(Color::Black);
+	rectangleHint1.setPosition(window.getSize().x - 220, 40);
+
+	rectangleHint2.setFillColor(Color::White);
+	rectangleHint2.setPosition(window.getSize().x - 215, 45);
+
+	rectangleCheck1.setFillColor(Color::Black);
+	rectangleCheck1.setPosition(window.getSize().x / 2 - 200, window.getSize().y / 2 - 100);
+
+	rectangleCheck2.setFillColor(Color::White);
+	rectangleCheck2.setPosition(window.getSize().x / 2 - 195, window.getSize().y / 2 - 95);
+
+	rectanglePlay1.setFillColor(Color::Red);
+	rectanglePlay1.setPosition(100, 100);
+
+	rectanglePlay2.setFillColor(Color::Blue);
+	rectanglePlay2.setPosition(105, 105);
+
+	recrtangleGame1.setFillColor(Color::Red);
+	recrtangleGame1.setPosition(200, 50);
+
+	recrtangleGame2.setFillColor(Color::Blue);
+	recrtangleGame2.setPosition(205, 55);
+
+	recrtangleGame3.setFillColor(Color::Blue);
+	recrtangleGame3.setPosition(205, (window.getSize().y - 120) / 2 + 65);
+
+	recrtangleGame4.setFillColor(Color::White);
+	recrtangleGame4.setPosition(210, 140);
+
+	recrtangleGame5.setFillColor(Color::White);
+	recrtangleGame5.setPosition(210, 490);
 
 
 	recrtangleAboutUs1.setFillColor(Color(225, 172, 119));
@@ -835,7 +1052,7 @@ void setUpMenu() {
 	recrtangleAboutUs4.setPosition(135, window.getSize().y - window.getSize().y / 4 - 15);
 
 	recrtangleAboutUs5.setFillColor(Color(225, 172, 119));
-	recrtangleAboutUs5.setPosition(70,70);
+	recrtangleAboutUs5.setPosition(70, 70);
 
 	recrtangleAboutUs6.setFillColor(Color(225, 172, 119));
 	recrtangleAboutUs6.setPosition(288, 70);
@@ -878,19 +1095,19 @@ void setUpMenu() {
 	rectangleMiddle2.setPosition(window.getSize().x / 2 - 120, window.getSize().y / 2 + 125);
 
 
-		rectangleDDASSA1.setFillColor(Color::Color(234, 222, 215));
-		rectangleDDASSA1.setPosition(window.getSize().x / 2 - window.getSize().x / 6 + 5, window.getSize().y / 2 - window.getSize().y / 8 + 5);
-		rectangleDDASSA.setFillColor(Color::Color(216, 183, 171));
-		rectangleDDASSA.setPosition(window.getSize().x / 2 - window.getSize().x / 6, window.getSize().y / 2 - window.getSize().y / 8);
+	rectangleDDASSA1.setFillColor(Color::Color(234, 222, 215));
+	rectangleDDASSA1.setPosition(window.getSize().x / 2 - window.getSize().x / 6 + 5, window.getSize().y / 2 - window.getSize().y / 8 + 5);
+	rectangleDDASSA.setFillColor(Color::Color(216, 183, 171));
+	rectangleDDASSA.setPosition(window.getSize().x / 2 - window.getSize().x / 6, window.getSize().y / 2 - window.getSize().y / 8);
 
-		rectangleScroll.setPosition(window.getSize().x - 350, 35);
-		rectangleScroll.setFillColor(Color(207, 159, 119));
+	rectangleScroll.setPosition(window.getSize().x - 350, 35);
+	rectangleScroll.setFillColor(Color(207, 159, 119));
 
-		//rectangleMoreInfo.setFillColor(Color::Red);
-		rectangleMoreInfo.setPosition(window.getSize().x - 310, window.getSize().y - 410);
+	//rectangleMoreInfo.setFillColor(Color::Red);
+	rectangleMoreInfo.setPosition(window.getSize().x - 310, window.getSize().y - 410);
 
-		rectangleMoreInf.setFillColor(Color(249, 239, 239));
-		rectangleMoreInf.setPosition(window.getSize().x - 305, window.getSize().y - 405);
+	rectangleMoreInf.setFillColor(Color(249, 239, 239));
+	rectangleMoreInf.setPosition(window.getSize().x - 305, window.getSize().y - 405);
 
 	rectangleDDASSAMini1.setFillColor(Color::Color(188, 145, 118));
 	rectangleDDASSAMini1.setPosition(window.getSize().x / 2 - 90, window.getSize().y / 2 + 30);
@@ -957,7 +1174,7 @@ void setUpMenu() {
 	addFromOrBack(&rectangle44, 50);
 	addFromOrBack(&rectangle45, window.getSize().y / 2 + 120);
 	//rectangle46.setFillColor(Color::Color(249, 239, 239));
-	rectangle46.setPosition((window.getSize().x - 120) / 2 + 30, window.getSize().y / 2 + 120);
+	rectangle46.setPosition((window.getSize().x - 160) / 2 + 30, window.getSize().y / 2 + 120);
 
 	//rectangle47.setFillColor(Color::Color(249, 239, 239));
 	rectangle47.setPosition(window.getSize().x / 2 + 220, window.getSize().y / 12 + 65);
@@ -975,7 +1192,7 @@ void setUpMenu() {
 	addFromOrBackTwo(&rectangle48, 125);
 	addFromOrBackTwo(&rectangle49, window.getSize().y / 2 + 125);
 	rectangle50.setFillColor(Color::Color(249, 239, 239));
-	rectangle50.setPosition((window.getSize().x - 120) / 2 + 35, window.getSize().y / 2 + 125);
+	rectangle50.setPosition((window.getSize().x - 160) / 2 + 35, window.getSize().y / 2 + 125);
 
 	rectangle51.setFillColor(Color::Color(249, 239, 239));
 	rectangle51.setPosition(window.getSize().x / 2 + 225, window.getSize().y / 12 + 70);
@@ -1016,6 +1233,8 @@ void setUpMenu() {
 	s7.setTextureRect(IntRect(0, 0, 50, 50));
 	s8.setTextureRect(IntRect(0, 0, 30, 50));
 	s9.setTextureRect(IntRect(0, 0, 30, 50));
+	s10.setTextureRect(IntRect(0, 0, 15, 15));
+	s11.setTextureRect(IntRect(0, 0, 15, 15));
 
 	s1.setPosition(window.getSize().x / 2 - tex1.getSize().x / 2, 0);
 	s3.setPosition(window.getSize().x - 100, 55);
@@ -1025,6 +1244,8 @@ void setUpMenu() {
 	s7.setPosition(window.getSize().x / 2 - 60, window.getSize().y - 90);
 	s8.setPosition(window.getSize().x - 358, 35);
 	s9.setPosition(window.getSize().x - 358, window.getSize().y - 60);
+	s10.setPosition(window.getSize().x - 70, window.getSize().y - 270);
+	s11.setPosition(window.getSize().x - 70, window.getSize().y - 55);
 	int sort = 0;
 	int p1 = 0;
 
@@ -1032,10 +1253,10 @@ void setUpMenu() {
 		rectangle12, rectangle13, rectangle14,
 		rectangle15, rectangle16, rectangle17 };
 
-	rectangleEvent1.setPosition((window.getSize().x - 120) / 2 + 45, 535);
-	rectangleEvent2.setPosition((window.getSize().x - 120) / 2 + 45, 590);
-	rectangleEvent3.setPosition((window.getSize().x - 120) / 2 + 45, 645);
-	rectangleEvent4.setPosition((window.getSize().x - 120) / 2 + 45, 700);
+	rectangleEvent1.setPosition((window.getSize().x - 160) / 2 + 45, 535);
+	rectangleEvent2.setPosition((window.getSize().x - 160) / 2 + 45, 590);
+	rectangleEvent3.setPosition((window.getSize().x - 160) / 2 + 45, 645);
+	rectangleEvent4.setPosition((window.getSize().x - 160) / 2 + 45, 700);
 
 	rectangleEvent1.setFillColor(Color(225, 172, 119));
 	rectangleEvent2.setFillColor(Color(225, 172, 119));
@@ -1043,11 +1264,13 @@ void setUpMenu() {
 	rectangleEvent4.setFillColor(Color(225, 172, 119));
 
 	RectangleShape Events[4] = { rectangleEvent1,
-		rectangleEvent2, rectangleEvent3, rectangleEvent4};
+		rectangleEvent2, rectangleEvent3, rectangleEvent4 };
 
 	Text hText1, hText2, hText3, hText4, hText5, hText6, hText7;
+	Text textRandom1, textRandom2, textRandom3, textRandom4, textRandom5;
 	Text infoText1, infoText2, infoText3, infoText4, infoText5, infoText6, infoText7;
 	Text h[7] = { hText1, hText2, hText3, hText4, hText5, hText6, hText7 };
+	Text random[5] = { textRandom1, textRandom2, textRandom3, textRandom4, textRandom5 };
 	Text info[7] = { infoText1, infoText2, infoText3, infoText4, infoText5, infoText6, infoText7 };
 	Text info2[7] = { infoText1, infoText2, infoText3, infoText4, infoText5, infoText6, infoText7 };
 	Text info3[7] = { infoText1, infoText2, infoText3, infoText4, infoText5, infoText6, infoText7 };
@@ -1112,9 +1335,9 @@ void setUpMenu() {
 	Node* temp;
 	savedNodes(&myEvents);
 	int stopper = 7;
-
+	int p2 = 0;
 	while (window.isOpen())
-	{	
+	{
 		Event event;
 
 		int mouseX = sf::Mouse::getPosition(window).x;
@@ -1146,81 +1369,14 @@ void setUpMenu() {
 
 		}
 		else
-		{	
+		{
 			window.clear(Color(235, 222, 214));
 			switch (location)
 			{
 			case 1:
 
-				backToMenu(&location, event, &text6);
-
-				window.draw(rectangle44);
-				window.draw(rectangle45);
-				window.draw(rectangle46);
-				window.draw(rectangle47);
-				window.draw(recrtangleSearch1);
-				window.draw(recrtangleSearch2);
-
-				window.draw(rectangle48);
-				window.draw(rectangle49);
-				window.draw(rectangle50);
-				window.draw(rectangle51);
-				window.draw(rectangle52);
-				window.draw(rectangle53);
-
-				window.draw(text6);
-				window.draw(s3);
-
 				temp = myEvents;
 				rectangles = 0;
-
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
-					textBoxSearch.setSelected(true);
-
-				if (Mouse::getPosition(window).x > 725 && Mouse::getPosition(window).x < 900 &&
-					Mouse::getPosition(window).y > 55 && Mouse::getPosition(window).y < 100) {
-					if (event.type == Event::MouseButtonPressed)
-					{
-						if (event.mouseButton.button == Mouse::Left)
-						{
-							canSearch = true;
-						}
-					}
-				}
-
-				if (Mouse::getPosition(window).x > 905 && Mouse::getPosition(window).x < 945 &&
-					Mouse::getPosition(window).y > 55 && Mouse::getPosition(window).y < 100) {
-
-					if (event.type == Event::MouseButtonPressed)
-					{
-						if (event.mouseButton.button == Mouse::Left)
-						{
-							canSearch = false;
-							if (search.isMouseOver(window)) {
-								*temp = searchFuct(temp, textBoxSearch.getText());
-								textBoxSearch.deleteAll();
-							}
-						}
-					}
-				}
-
-				if (canSearch) {
-					while (window.pollEvent(event)) {
-						if (event.type == sf::Event::TextEntered) {
-							if ((event.text.unicode >= 65 &&
-								event.text.unicode <= 127) ||
-								(event.text.unicode >= 48 && event.text.unicode <= 57) ||
-								event.text.unicode == DELETE_KEY ||
-								event.text.unicode == 32) {
-								textBoxSearch.typedOn(event);
-							}
-						}
-					}
-				}
-
-				textBoxSearch.drawTo(window);
-				search.drawTo(window);
-
 				while (temp)
 				{
 					titleAndYear[rectangles] = to_string(rectangles + 1) + "." + temp->title + " - " + to_string(temp->year);
@@ -1272,10 +1428,10 @@ void setUpMenu() {
 						+ "Result: \n" + res + "\n";
 
 					allInfo3[rectangles] = t;
-					
+
 					allInfo4[rectangles] = d;
 
-					if (p1 <= 0) {
+					if (p2 <= 0) {
 						if (rectangles < 4) {
 							info[rectangles].setString(allInfo[rectangles]);
 							info[rectangles].setFont(f2);
@@ -1307,27 +1463,27 @@ void setUpMenu() {
 					else {
 						int oldRectangles = 0;
 						while (oldRectangles != 4) {
-							info[oldRectangles].setString(allInfo[oldRectangles + p1]);
+							info[oldRectangles].setString(allInfo[oldRectangles + p2]);
 							info[oldRectangles].setFont(f2);
-							info[oldRectangles].setCharacterSize(12);
+							info[oldRectangles].setCharacterSize(13);
 							info[oldRectangles].setFillColor(Color(188, 145, 118));
 							info[oldRectangles].setPosition(65, 530);
-							info2[oldRectangles].setString(allInfo2[oldRectangles + p1]);
+							info2[oldRectangles].setString(allInfo2[oldRectangles + p2]);
 							info2[oldRectangles].setFont(f2);
 							info2[oldRectangles].setCharacterSize(13);
 							info2[oldRectangles].setFillColor(Color(188, 145, 118));
 							info2[oldRectangles].setPosition(260, 530);
-							info3[oldRectangles].setString(allInfo3[oldRectangles + p1]);
+							info3[oldRectangles].setString(allInfo3[oldRectangles + p2]);
 							info3[oldRectangles].setFont(f2);
 							info3[oldRectangles].setCharacterSize(25);
 							info3[oldRectangles].setFillColor(Color(188, 145, 118));
 							info3[oldRectangles].setPosition(75, 75);
-							info4[oldRectangles].setString(allInfo4[oldRectangles + p1]);
+							info4[oldRectangles].setString(allInfo4[oldRectangles + p2]);
 							info4[oldRectangles].setFont(f2);
 							info4[oldRectangles].setCharacterSize(20);
 							info4[oldRectangles].setFillColor(Color(188, 145, 118));
 							info4[oldRectangles].setPosition(100, 155);
-							h[oldRectangles].setString(titleAndYear[oldRectangles + p1]);
+							h[oldRectangles].setString(titleAndYear[oldRectangles + p2]);
 							h[oldRectangles].setFont(f2);
 							h[oldRectangles].setCharacterSize(15);
 							h[oldRectangles].setFillColor(Color(254, 254, 254));
@@ -1352,6 +1508,81 @@ void setUpMenu() {
 					data.close();
 				}
 				autoSaveNodes(&myEvents, autoSave);
+
+				backToMenu(&location, event, &text6);
+
+				window.draw(rectangle44);
+				window.draw(rectangle45);
+				window.draw(rectangle46);
+				window.draw(rectangle47);
+				window.draw(recrtangleSearch1);
+				window.draw(recrtangleSearch2);
+
+
+				window.draw(rectangle48);
+				window.draw(rectangle49);
+				window.draw(rectangle50);
+				window.draw(rectangle51);
+				window.draw(rectangle52);
+				window.draw(rectangle53);
+
+				//window.draw(rectangle54);
+				//window.draw(rectangle55);
+
+				window.draw(text6);
+				window.draw(s3);
+				//window.draw(s4);
+				//window.draw(s6);
+
+				//window.draw(s5);
+				//window.draw(s7);
+				cout << "p2 = " << p2 << endl;
+				if (rectangles > 4)
+				{
+					if (p2 > 0 && p2 <= rectangles - 4)
+					{
+						if (Mouse::getPosition(window).x > window.getSize().x - 70 && Mouse::getPosition(window).x < window.getSize().x - 55 &&
+							Mouse::getPosition(window).y> window.getSize().y - 270 && Mouse::getPosition(window).y < window.getSize().y - 255)
+						{
+							switch (event.type)
+							{
+							case Event::MouseButtonPressed:
+								if (event.mouseButton.button == Mouse::Left)
+								{
+									p2--;
+
+									Mouse::setPosition(Vector2i(Mouse::getPosition(window).x + 6, Mouse::getPosition(window).y + 6), window);
+								}
+							}
+						}
+					}
+					if (p2 >= 0 && p2 < rectangles - 4)
+					{
+						if (Mouse::getPosition(window).x > window.getSize().x - 70 && Mouse::getPosition(window).x < window.getSize().x - 55 &&
+							Mouse::getPosition(window).y>window.getSize().y - 55 && Mouse::getPosition(window).y < window.getSize().y - 40)
+						{
+							if (event.type == Event::MouseButtonPressed)
+							{
+								if (event.mouseButton.button == Mouse::Left)
+								{
+									p2++;
+									Mouse::setPosition(Vector2i(Mouse::getPosition(window).x - 4, Mouse::getPosition(window).y - 4), window);
+								}
+							}
+						}
+					}
+					rectangleScroll1.setSize(Vector2f(window.getSize().x / 66, 4 * (window.getSize().y / 2 - 210) / rectangles));
+					rectangleScroll1.setPosition(window.getSize().x - 70, window.getSize().y - 255 + p2 * (window.getSize().y / 2 - 210) / rectangles);
+					window.draw(s10);
+					window.draw(s11);
+					window.draw(rectangleScroll1);
+				}
+				else
+				{
+					rectangleScroll1.setSize(Vector2f(window.getSize().x / 66, window.getSize().y / 2 - 210));
+					rectangleScroll1.setPosition(window.getSize().x - 70, window.getSize().y - 255);
+					window.draw(rectangleScroll1);
+				}
 
 				if (rectangles <= 4) {
 					for (int i = 0; i < rectangles; i++)
@@ -1608,116 +1839,172 @@ void setUpMenu() {
 						case 5: textBox5.setSelected(true); break;
 						case 6: textBox6.setSelected(true); break;
 						case 7: textBox7.setSelected(true); break;
-						case 8: 
+						case 8:
 							if (moreText <= 30) {
 								textBox8.setSelected(true);
-							} else if (moreText <= 60) {
-								textBox81.setSelected(true); 
-							} else if (moreText <= 90) {
-								textBox82.setSelected(true); 
-							} else if (moreText <= 120) {
+							}
+							else if (moreText <= 60) {
+								textBox81.setSelected(true);
+							}
+							else if (moreText <= 90) {
+								textBox82.setSelected(true);
+							}
+							else if (moreText <= 120) {
 								textBox83.setSelected(true);
-							} else if (moreText <= 150) {
+							}
+							else if (moreText <= 150) {
 								textBox84.setSelected(true);
-							} else if (moreText <= 180) {
+							}
+							else if (moreText <= 180) {
 								textBox85.setSelected(true);
-							} else if (moreText <= 210) {
+							}
+							else if (moreText <= 210) {
 								textBox86.setSelected(true);
-							} else if (moreText <= 240) {
+							}
+							else if (moreText <= 240) {
 								textBox87.setSelected(true);
-							} else if (moreText <= 270) {
+							}
+							else if (moreText <= 270) {
 								textBox88.setSelected(true);
-							} else if (moreText <= 300) {
+							}
+							else if (moreText <= 300) {
 								textBox89.setSelected(true);
-							} 
+							}
 
 							break;
 						}
 
 					}
 
-						if (event.type == Event::MouseButtonPressed)
-						{
-							if (event.mouseButton.button == Mouse::Left)
-							{
-									if (mouseX > 55 && mouseX < 545)
-									{
-										if (mouseY > 65 && mouseY < 95)
-											whoIsChoiced = 1;
-										if (mouseY > 165 && mouseY < 195)
-											whoIsChoiced = 2;
-										if (mouseY > 265 && mouseY < 295)
-											whoIsChoiced = 3;
-										if (mouseY > 365 && mouseY < 395)
-											whoIsChoiced = 4;
-										if (mouseY > 465 && mouseY < 495)
-											whoIsChoiced = 5;
-										if (mouseY > 565 && mouseY < 595)
-											whoIsChoiced = 6;
-										if (mouseY > 665 && mouseY < 695)
-											whoIsChoiced = 7;
-									}
+					else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+						switch (whoIsChoiced) {
+						case 1: textBox1.setSelected(false); break;
+						case 2: textBox2.setSelected(false); break;
+						case 3: textBox3.setSelected(false); break;
+						case 4: textBox4.setSelected(false); break;
+						case 5: textBox5.setSelected(false); break;
+						case 6: textBox6.setSelected(false); break;
+						case 7: textBox7.setSelected(false); break;
+						case 8:
+							if (moreText <= 30) {
+								textBox8.setSelected(false);
+							}
+							else if (moreText <= 60) {
+								textBox81.setSelected(false);
+							}
+							else if (moreText <= 90) {
+								textBox82.setSelected(false);
+							}
+							else if (moreText <= 120) {
+								textBox83.setSelected(false);
+							}
+							else if (moreText <= 150) {
+								textBox84.setSelected(false);
+							}
+							else if (moreText <= 180) {
+								textBox85.setSelected(false);
+							}
+							else if (moreText <= 210) {
+								textBox86.setSelected(false);
+							}
+							else if (moreText <= 240) {
+								textBox87.setSelected(false);
+							}
+							else if (moreText <= 270) {
+								textBox88.setSelected(false);
+							}
+							else if (moreText <= 300) {
+								textBox89.setSelected(false);
+							}
 
-									if (mouseX > 590 && mouseX < 970)
-										if (mouseY > 65 && mouseY < 695)
-											whoIsChoiced = 8;
-									if (btn1.isMouseOver(window)) {	
-										allText = textBox8.getText() + textBox81.getText() + textBox82.getText() + textBox83.getText() + textBox84.getText() + textBox85.getText() + textBox86.getText() + textBox87.getText() + textBox88.getText() + textBox89.getText();
-										if (allText.size() > 0 && 
-											(textBox1.getText()).size() > 0 && 
-											(textBox2.getText()).size() > 0 && 
-											(textBox3.getText()).size() > 0 && 
-											(textBox4.getText()).size() > 0 && 
-											(textBox5.getText()).size() > 0 && 
-											(textBox6.getText()).size() > 0 && 
-											(textBox7.getText()).size() > 0 && 
-											(textBox8.getText()).size() > 0 &&
-											textBox1.getText() != "_" &&
-											textBox2.getText() != "_"&&
-											textBox3.getText() != "_"&&
-											textBox4.getText() != "_"&&
-											textBox5.getText() != "_"&&
-											textBox6.getText() != "_"&&
-											textBox7.getText() != "_"&&
-											allText != "_") {
-											errorHere = false;
-											setUpLink(myEvents, textBox9.getText(), textBox1.getText(), textBox2.getText(), textBox3.getText(), textBox4.getText(), textBox5.getText(), textBox6.getText(), textBox7.getText(), allText, 1);
-											++EventsHave;
-											textBox1.deleteAll();
-											textBox2.deleteAll();
-											textBox3.deleteAll();
-											textBox4.deleteAll();
-											textBox5.deleteAll();
-											textBox6.deleteAll();
-											textBox7.deleteAll();
-											textBox8.deleteAll();
-											textBox81.deleteAll();
-											textBox82.deleteAll();
-											textBox83.deleteAll();
-											textBox84.deleteAll();
-											textBox85.deleteAll();
-											textBox86.deleteAll();
-											textBox87.deleteAll();
-											textBox88.deleteAll();
-											textBox89.deleteAll();
-											textBox9.deleteAll();
-											finishToMenuFromCreate(&locCreate, event, &text10);
-										}
-										else {
-											errorHere = true;
-										}
+							break;
+						}
+					}
+
+
+
+					if (event.type == Event::MouseButtonPressed)
+					{
+						if (event.mouseButton.button == Mouse::Left)
+						{
+							if (mouseX > 55 && mouseX < 545)
+							{
+								if (mouseY > 65 && mouseY < 95)
+									whoIsChoiced = 1;
+								if (mouseY > 165 && mouseY < 195)
+									whoIsChoiced = 2;
+								if (mouseY > 265 && mouseY < 295)
+									whoIsChoiced = 3;
+								if (mouseY > 365 && mouseY < 395)
+									whoIsChoiced = 4;
+								if (mouseY > 465 && mouseY < 495)
+									whoIsChoiced = 5;
+								if (mouseY > 565 && mouseY < 595)
+									whoIsChoiced = 6;
+								if (mouseY > 665 && mouseY < 695)
+									whoIsChoiced = 7;
+							}
+
+							if (mouseX > 590 && mouseX < 970)
+								if (mouseY > 65 && mouseY < 695)
+									whoIsChoiced = 8;
+							if (btn1.isMouseOver(window)) {
+								allText = textBox8.getText() + textBox81.getText() + textBox82.getText() + textBox83.getText() + textBox84.getText() + textBox85.getText() + textBox86.getText() + textBox87.getText() + textBox88.getText() + textBox89.getText();
+								if (allText.size() > 0 &&
+									(textBox1.getText()).size() > 0 &&
+									(textBox2.getText()).size() > 0 &&
+									(textBox3.getText()).size() > 0 &&
+									(textBox4.getText()).size() > 0 &&
+									(textBox5.getText()).size() > 0 &&
+									(textBox6.getText()).size() > 0 &&
+									(textBox7.getText()).size() > 0 &&
+									(textBox8.getText()).size() > 0 &&
+									textBox1.getText() != "_" &&
+									textBox2.getText() != "_" &&
+									textBox3.getText() != "_" &&
+									textBox4.getText() != "_" &&
+									textBox5.getText() != "_" &&
+									textBox6.getText() != "_" &&
+									textBox7.getText() != "_" &&
+									allText != "_") {
+									errorHere = false;
+									setUpLink(myEvents, textBox9.getText(), textBox1.getText(), textBox2.getText(), textBox3.getText(), textBox4.getText(), textBox5.getText(), textBox6.getText(), textBox7.getText(), allText, 1);
+									++EventsHave;
+									textBox1.deleteAll();
+									textBox2.deleteAll();
+									textBox3.deleteAll();
+									textBox4.deleteAll();
+									textBox5.deleteAll();
+									textBox6.deleteAll();
+									textBox7.deleteAll();
+									textBox8.deleteAll();
+									textBox81.deleteAll();
+									textBox82.deleteAll();
+									textBox83.deleteAll();
+									textBox84.deleteAll();
+									textBox85.deleteAll();
+									textBox86.deleteAll();
+									textBox87.deleteAll();
+									textBox88.deleteAll();
+									textBox89.deleteAll();
+									textBox9.deleteAll();
+									finishToMenuFromCreate(&locCreate, event, &text10);
+								}
+								else {
+									errorHere = true;
 								}
 							}
 						}
+					}
 					while (window.pollEvent(event)) {
 
 						if (event.type == sf::Event::TextEntered) {
 							if ((event.text.unicode >= 65 && event.text.unicode <= 127) || (event.text.unicode >= 48 && event.text.unicode <= 57) || event.text.unicode == DELETE_KEY || event.text.unicode == 32) {
 								switch (whoIsChoiced) {
 								case 1: textBox1.typedOn(event); break;
-								case 2: 
-									if((event.text.unicode >= 48 && event.text.unicode <= 57) || event.text.unicode == DELETE_KEY)
-									textBox2.typedOn(event); break;
+								case 2:
+									if ((event.text.unicode >= 48 && event.text.unicode <= 57) || event.text.unicode == DELETE_KEY)
+										textBox2.typedOn(event); break;
 								case 3: textBox3.typedOn(event); break;
 								case 4: textBox4.typedOn(event); break;
 								case 5: textBox5.typedOn(event); break;
@@ -1853,6 +2140,51 @@ void setUpMenu() {
 						}
 					}
 
+					else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+						switch (whoIsChoiced) {
+						case 1: textBox1.setSelected(false); break;
+						case 2: textBox2.setSelected(false); break;
+						case 3: textBox3.setSelected(false); break;
+						case 4: textBox4.setSelected(false); break;
+						case 5: textBox5.setSelected(false); break;
+						case 6: textBox6.setSelected(false); break;
+						case 7: textBox7.setSelected(false); break;
+						case 8:
+							if (moreText <= 30) {
+								textBox8.setSelected(false);
+							}
+							else if (moreText <= 60) {
+								textBox81.setSelected(false);
+							}
+							else if (moreText <= 90) {
+								textBox82.setSelected(false);
+							}
+							else if (moreText <= 120) {
+								textBox83.setSelected(false);
+							}
+							else if (moreText <= 150) {
+								textBox84.setSelected(false);
+							}
+							else if (moreText <= 180) {
+								textBox85.setSelected(false);
+							}
+							else if (moreText <= 210) {
+								textBox86.setSelected(false);
+							}
+							else if (moreText <= 240) {
+								textBox87.setSelected(false);
+							}
+							else if (moreText <= 270) {
+								textBox88.setSelected(false);
+							}
+							else if (moreText <= 300) {
+								textBox89.setSelected(false);
+							}
+
+							break;
+						}
+					}
+
 					if (event.type == Event::MouseButtonPressed)
 					{
 						if (event.mouseButton.button == Mouse::Left)
@@ -1880,14 +2212,14 @@ void setUpMenu() {
 									whoIsChoiced = 8;
 							if (btn1.isMouseOver(window)) {
 								allText = textBox8.getText() + textBox81.getText() + textBox82.getText() + textBox83.getText() + textBox84.getText() + textBox85.getText() + textBox86.getText() + textBox87.getText() + textBox88.getText() + textBox89.getText();
-								if (allText.size() > 0 && 
-									(textBox1.getText()).size() > 0 && 
-									(textBox2.getText()).size() > 0 && 
-									(textBox3.getText()).size() > 0 && 
-									(textBox4.getText()).size() > 0 && 
-									(textBox5.getText()).size() > 0 && 
-									(textBox6.getText()).size() > 0 && 
-									(textBox7.getText()).size() > 0 && 
+								if (allText.size() > 0 &&
+									(textBox1.getText()).size() > 0 &&
+									(textBox2.getText()).size() > 0 &&
+									(textBox3.getText()).size() > 0 &&
+									(textBox4.getText()).size() > 0 &&
+									(textBox5.getText()).size() > 0 &&
+									(textBox6.getText()).size() > 0 &&
+									(textBox7.getText()).size() > 0 &&
 									(textBox8.getText()).size() > 0 &&
 									textBox1.getText() != "_" &&
 									textBox2.getText() != "_" &&
@@ -2073,6 +2405,54 @@ void setUpMenu() {
 						}
 					}
 
+					else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+						switch (whoIsChoiced) {
+						case 1: textBox1.setSelected(false); break;
+						case 2: textBox2.setSelected(false); break;
+						case 3: textBox3.setSelected(false); break;
+						case 4: textBox4.setSelected(false); break;
+						case 5: textBox5.setSelected(false); break;
+						case 6: textBox6.setSelected(false); break;
+						case 7: textBox7.setSelected(false); break;
+						case 8:
+							if (moreText <= 30) {
+								textBox8.setSelected(false);
+							}
+							else if (moreText <= 60) {
+								textBox81.setSelected(false);
+							}
+							else if (moreText <= 90) {
+								textBox82.setSelected(false);
+							}
+							else if (moreText <= 120) {
+								textBox83.setSelected(false);
+							}
+							else if (moreText <= 150) {
+								textBox84.setSelected(false);
+							}
+							else if (moreText <= 180) {
+								textBox85.setSelected(false);
+							}
+							else if (moreText <= 210) {
+								textBox86.setSelected(false);
+							}
+							else if (moreText <= 240) {
+								textBox87.setSelected(false);
+							}
+							else if (moreText <= 270) {
+								textBox88.setSelected(false);
+							}
+							else if (moreText <= 300) {
+								textBox89.setSelected(false);
+							}
+
+							break;
+						case 9:	textBox10.setSelected(false); break;
+						}
+					}
+
+
+
 					if (event.type == Event::MouseButtonPressed)
 					{
 						if (event.mouseButton.button == Mouse::Left)
@@ -2108,17 +2488,17 @@ void setUpMenu() {
 
 							if (btn1.isMouseOver(window)) {
 								allText = textBox8.getText() + textBox81.getText() + textBox82.getText() + textBox83.getText() + textBox84.getText() + textBox85.getText() + textBox86.getText() + textBox87.getText() + textBox88.getText() + textBox89.getText();
-								if (allText.size() > 0 && 
-									(textBox1.getText()).size() > 0 && 
-									(textBox2.getText()).size() > 0 && 
-									(textBox3.getText()).size() > 0 && 
-									(textBox4.getText()).size() > 0 && 
-									(textBox5.getText()).size() > 0 && 
-									(textBox6.getText()).size() > 0 && 
-									(textBox7.getText()).size() > 0 && 
-									(textBox8.getText()).size() > 0 && 
-									(textBox10.getText()).size() > 0 && 
-									textBox1.getText() != "_" && 
+								if (allText.size() > 0 &&
+									(textBox1.getText()).size() > 0 &&
+									(textBox2.getText()).size() > 0 &&
+									(textBox3.getText()).size() > 0 &&
+									(textBox4.getText()).size() > 0 &&
+									(textBox5.getText()).size() > 0 &&
+									(textBox6.getText()).size() > 0 &&
+									(textBox7.getText()).size() > 0 &&
+									(textBox8.getText()).size() > 0 &&
+									(textBox10.getText()).size() > 0 &&
+									textBox1.getText() != "_" &&
 									textBox2.getText() != "_" &&
 									textBox3.getText() != "_" &&
 									textBox4.getText() != "_" &&
@@ -2215,7 +2595,7 @@ void setUpMenu() {
 									else
 										--moreText;
 									break;
-								case 9: 
+								case 9:
 									if ((event.text.unicode >= 48 && event.text.unicode <= 57) || event.text.unicode == DELETE_KEY)
 										textBox10.typedOn(event); break;
 								}
@@ -2321,6 +2701,54 @@ void setUpMenu() {
 						}
 					}
 
+					else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+						switch (whoIsChoiced) {
+						case 1: textBox1.setSelected(false); break;
+						case 2: textBox2.setSelected(false); break;
+						case 3: textBox3.setSelected(false); break;
+						case 4: textBox4.setSelected(false); break;
+						case 5: textBox5.setSelected(false); break;
+						case 6: textBox6.setSelected(false); break;
+						case 7: textBox7.setSelected(false); break;
+						case 8:
+							if (moreText <= 30) {
+								textBox8.setSelected(false);
+							}
+							else if (moreText <= 60) {
+								textBox81.setSelected(false);
+							}
+							else if (moreText <= 90) {
+								textBox82.setSelected(false);
+							}
+							else if (moreText <= 120) {
+								textBox83.setSelected(false);
+							}
+							else if (moreText <= 150) {
+								textBox84.setSelected(false);
+							}
+							else if (moreText <= 180) {
+								textBox85.setSelected(false);
+							}
+							else if (moreText <= 210) {
+								textBox86.setSelected(false);
+							}
+							else if (moreText <= 240) {
+								textBox87.setSelected(false);
+							}
+							else if (moreText <= 270) {
+								textBox88.setSelected(false);
+							}
+							else if (moreText <= 300) {
+								textBox89.setSelected(false);
+							}
+
+							break;
+						case 9:	textBox10.setSelected(false); break;
+						}
+					}
+
+
+
 					if (event.type == Event::MouseButtonPressed)
 					{
 						if (event.mouseButton.button == Mouse::Left)
@@ -2356,7 +2784,7 @@ void setUpMenu() {
 
 							if (btn1.isMouseOver(window)) {
 								allText = textBox8.getText() + textBox81.getText() + textBox82.getText() + textBox83.getText() + textBox84.getText() + textBox85.getText() + textBox86.getText() + textBox87.getText() + textBox88.getText() + textBox89.getText();
-								if ( allText.size() > 0 &&
+								if (allText.size() > 0 &&
 									(textBox1.getText()).size() > 0 &&
 									(textBox2.getText()).size() > 0 &&
 									(textBox3.getText()).size() > 0 &&
@@ -2508,12 +2936,12 @@ void setUpMenu() {
 					btn1.drawTo(window);
 
 					break;
-				/*
-				case 5: // delete one
-				case 6: // delete all
-				case 7: // save
-				case 8: // auto save
-				*/
+					/*
+					case 5: // delete one
+					case 6: // delete all
+					case 7: // save
+					case 8: // auto save
+					*/
 
 				default:
 					text6.setPosition(0, 770);
@@ -2584,7 +3012,7 @@ void setUpMenu() {
 							string l = temp->location;
 							string rea = temp->reason;
 							string res = temp->result;
-							
+
 							if (p.size() > 24) {
 								p.insert(24, "\n");
 							}
@@ -2670,103 +3098,103 @@ void setUpMenu() {
 							window.draw(h[i]);
 						}
 					}
-						if (Mouse::getPosition(window).x > 35 && Mouse::getPosition(window).x < 645 &&
-							Mouse::getPosition(window).y>35 && Mouse::getPosition(window).y < 135) {
-							if (event.type == Event::MouseButtonPressed)
+					if (Mouse::getPosition(window).x > 35 && Mouse::getPosition(window).x < 645 &&
+						Mouse::getPosition(window).y>35 && Mouse::getPosition(window).y < 135) {
+						if (event.type == Event::MouseButtonPressed)
+						{
+							if (event.mouseButton.button == Mouse::Left)
 							{
-								if (event.mouseButton.button == Mouse::Left)
-								{
-									infoChoice = 1;
-								}
+								infoChoice = 1;
 							}
 						}
-						if (Mouse::getPosition(window).x > 35 && Mouse::getPosition(window).x < 645 &&
-							Mouse::getPosition(window).y>35 + 105 * 1 && Mouse::getPosition(window).y < 135 + 105 * 1) {
-							if (event.type == Event::MouseButtonPressed)
+					}
+					if (Mouse::getPosition(window).x > 35 && Mouse::getPosition(window).x < 645 &&
+						Mouse::getPosition(window).y>35 + 105 * 1 && Mouse::getPosition(window).y < 135 + 105 * 1) {
+						if (event.type == Event::MouseButtonPressed)
+						{
+							if (event.mouseButton.button == Mouse::Left)
 							{
-								if (event.mouseButton.button == Mouse::Left)
-								{
-									infoChoice = 2;
-								}
+								infoChoice = 2;
 							}
 						}
-						if (Mouse::getPosition(window).x > 35 && Mouse::getPosition(window).x < 645 &&
-							Mouse::getPosition(window).y>35 + 105 * 2 && Mouse::getPosition(window).y < 135 + 105 * 2) {
-							if (event.type == Event::MouseButtonPressed)
+					}
+					if (Mouse::getPosition(window).x > 35 && Mouse::getPosition(window).x < 645 &&
+						Mouse::getPosition(window).y>35 + 105 * 2 && Mouse::getPosition(window).y < 135 + 105 * 2) {
+						if (event.type == Event::MouseButtonPressed)
+						{
+							if (event.mouseButton.button == Mouse::Left)
 							{
-								if (event.mouseButton.button == Mouse::Left)
-								{
-									infoChoice = 3;
-								}
+								infoChoice = 3;
 							}
 						}
-						if (Mouse::getPosition(window).x > 35 && Mouse::getPosition(window).x < 645 &&
-							Mouse::getPosition(window).y>35 + 105 * 3 && Mouse::getPosition(window).y < 135 + 105 * 3) {
-							if (event.type == Event::MouseButtonPressed)
+					}
+					if (Mouse::getPosition(window).x > 35 && Mouse::getPosition(window).x < 645 &&
+						Mouse::getPosition(window).y>35 + 105 * 3 && Mouse::getPosition(window).y < 135 + 105 * 3) {
+						if (event.type == Event::MouseButtonPressed)
+						{
+							if (event.mouseButton.button == Mouse::Left)
 							{
-								if (event.mouseButton.button == Mouse::Left)
-								{
-									infoChoice = 4;
-								}
+								infoChoice = 4;
 							}
 						}
-						if (Mouse::getPosition(window).x > 35 && Mouse::getPosition(window).x < 645 &&
-							Mouse::getPosition(window).y>35 + 105 * 4 && Mouse::getPosition(window).y < 135 + 105 * 4) {
-							if (event.type == Event::MouseButtonPressed)
+					}
+					if (Mouse::getPosition(window).x > 35 && Mouse::getPosition(window).x < 645 &&
+						Mouse::getPosition(window).y>35 + 105 * 4 && Mouse::getPosition(window).y < 135 + 105 * 4) {
+						if (event.type == Event::MouseButtonPressed)
+						{
+							if (event.mouseButton.button == Mouse::Left)
 							{
-								if (event.mouseButton.button == Mouse::Left)
-								{
-									infoChoice = 5;
-								}
+								infoChoice = 5;
 							}
 						}
-						if (Mouse::getPosition(window).x > 35 && Mouse::getPosition(window).x < 645 &&
-							Mouse::getPosition(window).y>35 + 105 * 5 && Mouse::getPosition(window).y < 135 + 105 * 5) {
-							if (event.type == Event::MouseButtonPressed)
+					}
+					if (Mouse::getPosition(window).x > 35 && Mouse::getPosition(window).x < 645 &&
+						Mouse::getPosition(window).y>35 + 105 * 5 && Mouse::getPosition(window).y < 135 + 105 * 5) {
+						if (event.type == Event::MouseButtonPressed)
+						{
+							if (event.mouseButton.button == Mouse::Left)
 							{
-								if (event.mouseButton.button == Mouse::Left)
-								{
-									infoChoice = 6;
-								}
+								infoChoice = 6;
 							}
 						}
-						if (Mouse::getPosition(window).x > 35 && Mouse::getPosition(window).x < 645 &&
-							Mouse::getPosition(window).y>35 + 105 * 6 && Mouse::getPosition(window).y < 135 + 105 * 6) {
-							if (event.type == Event::MouseButtonPressed)
+					}
+					if (Mouse::getPosition(window).x > 35 && Mouse::getPosition(window).x < 645 &&
+						Mouse::getPosition(window).y>35 + 105 * 6 && Mouse::getPosition(window).y < 135 + 105 * 6) {
+						if (event.type == Event::MouseButtonPressed)
+						{
+							if (event.mouseButton.button == Mouse::Left)
 							{
-								if (event.mouseButton.button == Mouse::Left)
-								{
-									infoChoice = 7;
-								}
+								infoChoice = 7;
 							}
 						}
-						if (rectangles != 0) {
-							switch (infoChoice) {
-							case 1:
-								window.draw(info[0]);
-								break;
-							case 2:
-								window.draw(info[1]);
-								break;
-							case 3:
-								window.draw(info[2]);
-								break;
-							case 4:
-								window.draw(info[3]);
-								break;
-							case 5:
-								window.draw(info[4]);
-								break;
-							case 6:
-								window.draw(info[5]);
-								break;
-							case 7:
-								window.draw(info[6]);
-								break;
-							default:
-								break;
-							}
+					}
+					if (rectangles != 0) {
+						switch (infoChoice) {
+						case 1:
+							window.draw(info[0]);
+							break;
+						case 2:
+							window.draw(info[1]);
+							break;
+						case 3:
+							window.draw(info[2]);
+							break;
+						case 4:
+							window.draw(info[3]);
+							break;
+						case 5:
+							window.draw(info[4]);
+							break;
+						case 6:
+							window.draw(info[5]);
+							break;
+						case 7:
+							window.draw(info[6]);
+							break;
+						default:
+							break;
 						}
+					}
 					window.draw(text10);
 					if (Mouse::getPosition(window).x > window.getSize().x - 310 && Mouse::getPosition(window).x < window.getSize().x - 10 &&
 						Mouse::getPosition(window).y>25 && Mouse::getPosition(window).y < fu1)
@@ -2812,7 +3240,7 @@ void setUpMenu() {
 
 						if (Mouse::getPosition(window).x > 50 && Mouse::getPosition(window).x < window.getSize().x - 50 &&
 							Mouse::getPosition(window).y>145 && Mouse::getPosition(window).y < 185)
-						{ 
+						{
 							currentLocationDropDown(&locCreate, 3, event);
 						}
 
@@ -2876,7 +3304,8 @@ void setUpMenu() {
 										choiceYesNo = 1;
 									}
 								}
-							} else {
+							}
+							else {
 								if (event.type == Event::MouseButtonPressed)
 								{
 									if (event.mouseButton.button == Mouse::Left)
@@ -2919,7 +3348,7 @@ void setUpMenu() {
 						backToMenu(&location, event, &text6);
 					}
 					else
-					{	
+					{
 						fu1 = 65;
 						window.draw(text6);
 						backToMenu(&location, event, &text6);
@@ -2974,12 +3403,12 @@ void setUpMenu() {
 									textBox9.deleteAll();
 									if (pos > 0) {
 										choiceYesNo = -1;
-										deleteNode(&myEvents, --pos);							
+										deleteNode(&myEvents, --pos);
 									}
 									choiceYesNo = -1;
 									choicePos = -1;
 									pos = -1;
-									if(p1 > 0)
+									if (p1 > 0)
 										--p1;
 									break;
 								case 1:
@@ -3040,7 +3469,366 @@ void setUpMenu() {
 				break;
 			case 3:
 				window.draw(text6);
-				backToMenu(&location, event, &text6);
+				switch (locGame)
+				{
+				case 1:
+
+					if (Mouse::getPosition(window).x > 30 && Mouse::getPosition(window).x < 100 &&
+						Mouse::getPosition(window).y>window.getSize().y - 50 && Mouse::getPosition(window).y < window.getSize().y - 20)
+					{
+						text6.setFillColor(Color::White);
+						if (event.type == Event::MouseButtonPressed)
+						{
+							if (event.mouseButton.button == Mouse::Left)
+							{
+								locGame = 0;
+							}
+						}
+					}
+					else
+					{
+						text6.setFillColor(Color::Black);
+					}
+					window.draw(rectanglePlay1);
+					window.draw(rectanglePlay2);
+					if (Mouse::getPosition(window).x > window.getSize().x - 180 && Mouse::getPosition(window).x < window.getSize().x - 100 &&
+						Mouse::getPosition(window).y> window.getSize().y - 90 && Mouse::getPosition(window).y < window.getSize().y - 50)
+					{
+						textCheck.setFillColor(Color::White);
+						if (event.type == Event::MouseButtonPressed)
+						{
+							if (event.mouseButton.button == Mouse::Left)
+							{
+								n1 = 1;
+							}
+						}
+					}
+					else
+					{
+						textCheck.setFillColor(Color::Black);
+					}
+					window.draw(textCheck);
+
+					window.draw(rectangleHint1);
+					window.draw(rectangleHint2);
+
+					if (Mouse::getPosition(window).x > 100 && Mouse::getPosition(window).x < 220 &&
+						Mouse::getPosition(window).y> window.getSize().y - 90 && Mouse::getPosition(window).y < window.getSize().y - 60)
+					{
+						textRandom.setFillColor(Color::White);
+						if (event.type == Event::MouseButtonPressed)
+						{
+							if (event.mouseButton.button == Mouse::Left)
+							{
+
+							}
+						}
+					}
+					else
+					{
+						textRandom.setFillColor(Color::Black);
+					}
+					window.draw(textRandom);
+
+					if (Mouse::getPosition(window).x > window.getSize().x / 2 + 180 && Mouse::getPosition(window).x < window.getSize().x / 2 + 250 &&
+						Mouse::getPosition(window).y> 50 && Mouse::getPosition(window).y < 90)
+					{
+						textHint.setFillColor(Color::White);
+						if (event.type == Event::MouseButtonPressed)
+						{
+							if (event.mouseButton.button == Mouse::Left)
+							{
+								n1 = 2;
+							}
+						}
+					}
+					else
+					{
+						textHint.setFillColor(Color::Black);
+					}
+					window.draw(textHint);
+					window.draw(rectanglePlayBox1);
+					window.draw(rectanglePlayBox11);
+					window.draw(rectanglePlayBox2);
+					window.draw(rectanglePlayBox21);
+					window.draw(rectanglePlayBox3);
+					window.draw(rectanglePlayBox31);
+					window.draw(rectanglePlayBox9);
+					window.draw(rectanglePlayBox91);
+					window.draw(rectanglePlayBox10);
+					window.draw(rectanglePlayBox101);
+
+					window.draw(rectanglePlayBox4);
+					window.draw(rectanglePlayBox41);
+					window.draw(rectanglePlayBox5);
+					window.draw(rectanglePlayBox51);
+					window.draw(rectanglePlayBox6);
+					window.draw(rectanglePlayBox61);
+					window.draw(rectanglePlayBox7);
+					window.draw(rectanglePlayBox71);
+					window.draw(rectanglePlayBox8);
+					window.draw(rectanglePlayBox81);
+					window.draw(text6);
+					if (n1 == 1)
+					{
+						window.draw(rectangleCheck1);
+						window.draw(rectangleCheck2);
+					}
+
+					text6.setPosition(30, window.getSize().y - 50);
+
+					// 1111111111111111111111111111111111111
+					if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+						textBoxGame1.setSelected(true);
+
+					if (Mouse::getPosition(window).x > 715 && Mouse::getPosition(window).x < 825 &&
+						Mouse::getPosition(window).y > 175 && Mouse::getPosition(window).y < 215) {
+						if (event.type == Event::MouseButtonPressed)
+						{
+							if (event.mouseButton.button == Mouse::Left)
+							{
+								canWriteGame1 = true;
+							}
+						}
+					}
+
+					if (Mouse::getPosition(window).x > 840 && Mouse::getPosition(window).x < 880 &&
+						Mouse::getPosition(window).y > 175 && Mouse::getPosition(window).y < 215) {
+
+						if (event.type == Event::MouseButtonPressed)
+						{
+							if (event.mouseButton.button == Mouse::Left)
+							{
+								canWriteGame1 = false;
+								if (btn2.isMouseOver(window)) {
+									textBoxGame1.deleteAll();
+								}
+							}
+						}
+					}
+
+					if (canWriteGame1) {
+						while (window.pollEvent(event)) {
+							if (event.type == sf::Event::TextEntered) {
+								if ((event.text.unicode >= 48 && event.text.unicode <= 57) ||
+									event.text.unicode == DELETE_KEY) {
+									textBoxGame1.typedOn(event);
+								}
+							}
+						}
+					}
+
+					textBoxGame1.drawTo(window);
+
+					//222222222222222222222
+					if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+						textBoxGame2.setSelected(true);
+
+					if (Mouse::getPosition(window).x > 715 && Mouse::getPosition(window).x < 825 &&
+						Mouse::getPosition(window).y > 280 && Mouse::getPosition(window).y < 320) {
+						if (event.type == Event::MouseButtonPressed)
+						{
+							if (event.mouseButton.button == Mouse::Left)
+							{
+								canWriteGame2 = true;
+							}
+						}
+					}
+
+					if (Mouse::getPosition(window).x > 840 && Mouse::getPosition(window).x < 880 &&
+						Mouse::getPosition(window).y > 285 && Mouse::getPosition(window).y < 325) {
+
+						if (event.type == Event::MouseButtonPressed)
+						{
+							if (event.mouseButton.button == Mouse::Left)
+							{
+								canWriteGame2 = false;
+								if (btn2.isMouseOver(window)) {
+									textBoxGame2.deleteAll();
+								}
+							}
+						}
+					}
+
+					if (canWriteGame2) {
+						while (window.pollEvent(event)) {
+							if (event.type == sf::Event::TextEntered) {
+								if ((event.text.unicode >= 48 && event.text.unicode <= 57) ||
+									event.text.unicode == DELETE_KEY) {
+									textBoxGame2.typedOn(event);
+								}
+							}
+						}
+					}
+
+					textBoxGame2.drawTo(window);
+
+
+
+					// 3333333333333333333333333333
+					if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+						textBoxGame3.setSelected(true);
+
+					if (Mouse::getPosition(window).x > 715 && Mouse::getPosition(window).x < 825 &&
+						Mouse::getPosition(window).y > 380 && Mouse::getPosition(window).y < 425) {
+						if (event.type == Event::MouseButtonPressed)
+						{
+							if (event.mouseButton.button == Mouse::Left)
+							{
+								canWriteGame3 = true;
+							}
+						}
+					}
+
+					if (Mouse::getPosition(window).x > 840 && Mouse::getPosition(window).x < 880 &&
+						Mouse::getPosition(window).y > 390 && Mouse::getPosition(window).y < 430) {
+
+						if (event.type == Event::MouseButtonPressed)
+						{
+							if (event.mouseButton.button == Mouse::Left)
+							{
+								canWriteGame2 = false;
+								if (btn2.isMouseOver(window)) {
+									textBoxGame2.deleteAll();
+								}
+							}
+						}
+					}
+
+					if (canWriteGame3) {
+						while (window.pollEvent(event)) {
+							if (event.type == sf::Event::TextEntered) {
+								if ((event.text.unicode >= 48 && event.text.unicode <= 57) ||
+									event.text.unicode == DELETE_KEY) {
+									textBoxGame3.typedOn(event);
+								}
+							}
+						}
+					}
+
+					textBoxGame3.drawTo(window);
+
+
+					// 44444444444444444444444
+					if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+						textBoxGame4.setSelected(true);
+
+					if (Mouse::getPosition(window).x > 715 && Mouse::getPosition(window).x < 825 &&
+						Mouse::getPosition(window).y > 490 && Mouse::getPosition(window).y < 530) {
+						if (event.type == Event::MouseButtonPressed)
+						{
+							if (event.mouseButton.button == Mouse::Left)
+							{
+								canWriteGame4 = true;
+							}
+						}
+					}
+
+					if (Mouse::getPosition(window).x > 840 && Mouse::getPosition(window).x < 880 &&
+						Mouse::getPosition(window).y > 490 && Mouse::getPosition(window).y < 530) {
+
+						if (event.type == Event::MouseButtonPressed)
+						{
+							if (event.mouseButton.button == Mouse::Left)
+							{
+								canWriteGame2 = false;
+								if (btn2.isMouseOver(window)) {
+									textBoxGame2.deleteAll();
+								}
+							}
+						}
+					}
+
+					if (canWriteGame4) {
+						while (window.pollEvent(event)) {
+							if (event.type == sf::Event::TextEntered) {
+								if ((event.text.unicode >= 48 && event.text.unicode <= 57) ||
+									event.text.unicode == DELETE_KEY) {
+									textBoxGame4.typedOn(event);
+								}
+							}
+						}
+					}
+
+					textBoxGame4.drawTo(window);
+
+
+					//5555555555555555555555555
+					if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+						textBoxGame5.setSelected(true);
+
+					if (Mouse::getPosition(window).x > 715 && Mouse::getPosition(window).x < 825 &&
+						Mouse::getPosition(window).y > 595 && Mouse::getPosition(window).y < 635) {
+						if (event.type == Event::MouseButtonPressed)
+						{
+							if (event.mouseButton.button == Mouse::Left)
+							{
+								canWriteGame5 = true;
+							}
+						}
+					}
+
+					if (Mouse::getPosition(window).x > 840 && Mouse::getPosition(window).x < 880 &&
+						Mouse::getPosition(window).y > 600 && Mouse::getPosition(window).y < 640) {
+
+						if (event.type == Event::MouseButtonPressed)
+						{
+							if (event.mouseButton.button == Mouse::Left)
+							{
+								canWriteGame2 = false;
+								if (btn2.isMouseOver(window)) {
+									textBoxGame2.deleteAll();
+								}
+							}
+						}
+					}
+
+					if (canWriteGame5) {
+						while (window.pollEvent(event)) {
+							if (event.type == sf::Event::TextEntered) {
+								if ((event.text.unicode >= 48 && event.text.unicode <= 57) ||
+									event.text.unicode == DELETE_KEY) {
+									textBoxGame5.typedOn(event);
+								}
+							}
+						}
+					}
+
+					textBoxGame5.drawTo(window);
+					break;
+				default:
+					n1 = 0;
+					text6.setPosition(0, 770);
+					window.draw(recrtangleGame1);
+					window.draw(recrtangleGame2);
+					window.draw(recrtangleGame3);
+					window.draw(recrtangleGame4);
+					window.draw(recrtangleGame5);
+					window.draw(textGame1);
+					window.draw(textGame2);
+					window.draw(textPlay);
+					if (Mouse::getPosition(window).x > window.getSize().x - 70 && Mouse::getPosition(window).x < window.getSize().x &&
+						Mouse::getPosition(window).y>760 && Mouse::getPosition(window).y < window.getSize().y)
+					{
+						textPlay.setFillColor(Color::White);
+						if (event.type == Event::MouseButtonPressed)
+						{
+							if (event.mouseButton.button == Mouse::Left)
+							{
+								locGame = 1;
+							}
+						}
+					}
+					else
+					{
+						textPlay.setFillColor(Color::Black);
+					}
+
+					window.draw(textHowToPlay);
+					window.draw(textCodeOfGray);
+					backToMenu(&location, event, &text6);
+					break;
+				}
 				break;
 			case 4:
 				window.draw(text6);
