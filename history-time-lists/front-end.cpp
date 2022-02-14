@@ -4,6 +4,8 @@
 
 #include"SFML/Graphics.hpp"
 #include<iostream>
+#include <conio.h>
+#include <ctime>
 using namespace std;
 using namespace sf;
 
@@ -264,7 +266,6 @@ void finishToMenuFromCreate(int* ptr1, Event event, Text* textTwo)
 			if (event.mouseButton.button == Mouse::Left)
 			{
 				*ptr1 = 0;
-				(*textTwo).setString("Choose one:");
 			}
 		}
 	}
@@ -394,20 +395,10 @@ void textFrontBackOrEditTab(Text* text, int posY)
 	(*text).setFillColor(Color::Black);
 }
 
-void deleteAllButton(Event event, int* ptr)
-{
-	if (event.type == Event::MouseButtonPressed)
-	{
-		if (event.mouseButton.button == Mouse::Left)
-		{
-			*ptr = 0;
-		}
-	}
-}
-
 void setUpMenu() {
-
+	srand(time(NULL));
 	Font f1;
+	int counter = 0;
 	if (!f1.loadFromFile("Pacifico-Regular.ttf"))
 		std::cout << "Font not found!\n";
 
@@ -502,6 +493,7 @@ void setUpMenu() {
 
 	int moreText = 0;
 	int infoChoice = 1;
+	int whoIsChoicedGame = 0;
 	string allText;
 
 	Textbox textBox9(20, sf::Color::Black, true);
@@ -517,40 +509,34 @@ void setUpMenu() {
 
 
 	Textbox textBoxGame1(20, sf::Color::Black, true);
-	textBoxGame1.setPosition({ 715,175 });
+	textBoxGame1.setPosition({ 745,185 });
 	textBoxGame1.setLimit(true, 4);
 	textBoxGame1.setFont(f2);
 	bool canWriteGame1 = false;
 
 	Textbox textBoxGame2(20, sf::Color::Black, true);
-	textBoxGame2.setPosition({ 715, 280 });
+	textBoxGame2.setPosition({ 745, 290 });
 	textBoxGame2.setLimit(true, 4);
 	textBoxGame2.setFont(f2);
 	bool canWriteGame2 = false;
 
 	Textbox textBoxGame3(20, sf::Color::Black, true);
-	textBoxGame3.setPosition({ 715, 385 });
+	textBoxGame3.setPosition({ 745, 395 });
 	textBoxGame3.setLimit(true, 4);
 	textBoxGame3.setFont(f2);
 	bool canWriteGame3 = false;
 
 	Textbox textBoxGame4(20, sf::Color::Black, true);
-	textBoxGame4.setPosition({ 715,490 });
+	textBoxGame4.setPosition({ 745,500 });
 	textBoxGame4.setLimit(true, 4);
 	textBoxGame4.setFont(f2);
 	bool canWriteGame4 = false;
 
 	Textbox textBoxGame5(20, sf::Color::Black, true);
-	textBoxGame5.setPosition({ 715, 595 });
+	textBoxGame5.setPosition({ 745, 605 });
 	textBoxGame5.setLimit(true, 4);
 	textBoxGame5.setFont(f2);
 	bool canWriteGame5 = false;
-
-	Textbox textBoxGame6(20, sf::Color::Black, true);
-	textBoxGame6.setPosition({ 715, 700 });
-	textBoxGame6.setLimit(true, 4);
-	textBoxGame6.setFont(f2);
-	bool canWriteGame6 = false;
 
 	/*rectanglePlayBox4.setFillColor(Color::Black);
 rectanglePlayBox4.setPosition(210 + window.getSize().x / 2, 170);
@@ -598,7 +584,7 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 	int location = 0, locCreate = 0;
 
 	Texture tex1, tex2, tex3, tex4, tex5, tex6, tex7, tex8, tex9, texH, texS, texG, texM, tex10, tex11;
-	Text textFE, textBE, textST, textQA, textH, textS, textG, textM, textGame1, textGame2, textCodeOfGray, textHowToPlay, textCheck, textRandom, textHint, textPlay;
+	Text textFE, textBE, textST, textQA, textH, textS, textG, textM, textGame1, textGame2, textCodeOfGray, textHowToPlay, textCheck, textRandom, textHint, textPlay, textBackGameNo, textBackGame;
 	Sprite s1(tex1), s2(tex2), s3(tex3), s4(tex4), s5(tex5), s6(tex6), s7(tex7), s8(tex8), s9(tex9), sH(texH), sS(texS), sG(texG), sM(texM), s10(tex10), s11(tex11);
 
 	textPlay.setString("Play");
@@ -697,6 +683,18 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 	textM.setPosition(730, window.getSize().y / 2 - 100);
 	textM.setFillColor(Color::Black);
 
+	textBackGameNo.setString("Sorry! Too few events");
+	textBackGameNo.setFont(f1);
+	textBackGameNo.setCharacterSize(30);
+	textBackGameNo.setPosition(365, 350);
+	textBackGameNo.setFillColor(Color::Black);
+
+	textBackGame.setString("Back");
+	textBackGame.setFont(f1);
+	textBackGame.setCharacterSize(20);
+	textBackGame.setPosition(475, 440);
+	textBackGame.setFillColor(Color::Black);
+
 	texH.loadFromFile("../images/Hristiyan.jpg");
 	texS.loadFromFile("../images/Stas.jpg");
 	texG.loadFromFile("../images/George.jpg");
@@ -715,7 +713,7 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 	sM.setPosition(729, 75);
 
 	Text text1, text2, text3, text4, text5, text, text6, text7, text8, text9, text10, text11, text12, text13, text14, text15, text16,
-		text17, text18, text19, text20, text21, text22, text23, text24, text100;
+		text17, text18, text19, text20, text21, text22, text23, text24, text100, textResult, hintText;
 
 	text1.setFont(f1);
 	setMenuText("Events", &text1, 50, 500);
@@ -731,6 +729,11 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 
 	text5.setFont(f1);
 	setMenuText("Quit", &text5, 50, 710);
+
+	hintText.setFont(f1);
+	hintText.setCharacterSize(30);
+	hintText.setPosition(795, 50);
+	hintText.setFillColor(Color::Black);
 
 	text6.setString("Back");
 	text6.setFont(f1);
@@ -824,6 +827,11 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 	text24.setPosition(window.getSize().x / 2 + 80, 25);
 	text24.setFillColor(Color::Black);
 
+	textResult.setFont(f1);
+	textResult.setCharacterSize(30);
+	textResult.setPosition(350, 380);
+	textResult.setFillColor(Color::Color(210, 210, 210, 255));
+
 	tex1.loadFromFile("../images/Logo.png");
 	tex2.loadFromFile("../images/Menu.png");
 
@@ -900,7 +908,9 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 		rectangleDDASSAMini1(Vector2f(window.getSize().x / 10, window.getSize().y / 20)),
 		rectangleDDASSAMini2(Vector2f(window.getSize().x / 10, window.getSize().y / 20)),
 		rectangleDDASSA1(Vector2f(window.getSize().x / 3 + 90, window.getSize().y / 4 - 10)),
-
+		rectangleGameNoMini1(Vector2f(window.getSize().x / 10, window.getSize().y / 20)),
+		rectangleGameNo1(Vector2f(window.getSize().x / 3 + 100, window.getSize().y / 4)),
+		rectangleGameNo2(Vector2f(window.getSize().x / 3 + 90, window.getSize().y / 4 - 10)),
 		recrtangleAboutUsH1(Vector2f(window.getSize().x / 10, window.getSize().y / 40)),
 		recrtangleAboutUsH2(Vector2f(200, window.getSize().y / 40)),
 		recrtangleAboutUsS1(Vector2f(window.getSize().x / 10, window.getSize().y / 40)),
@@ -1017,19 +1027,19 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 	rectangleCheck2.setFillColor(Color::White);
 	rectangleCheck2.setPosition(window.getSize().x / 2 - 195, window.getSize().y / 2 - 95);
 
-	rectanglePlay1.setFillColor(Color::Red);
+	rectanglePlay1.setFillColor(Color::White);
 	rectanglePlay1.setPosition(100, 100);
 
-	rectanglePlay2.setFillColor(Color::Blue);
+	rectanglePlay2.setFillColor(Color::Color(225, 172, 119));
 	rectanglePlay2.setPosition(105, 105);
 
-	recrtangleGame1.setFillColor(Color::Red);
+	recrtangleGame1.setFillColor(Color::White);
 	recrtangleGame1.setPosition(200, 50);
 
-	recrtangleGame2.setFillColor(Color::Blue);
+	recrtangleGame2.setFillColor(Color::Color(225, 172, 119));
 	recrtangleGame2.setPosition(205, 55);
 
-	recrtangleGame3.setFillColor(Color::Blue);
+	recrtangleGame3.setFillColor(Color::Color(225, 172, 119));
 	recrtangleGame3.setPosition(205, (window.getSize().y - 120) / 2 + 65);
 
 	recrtangleGame4.setFillColor(Color::White);
@@ -1100,6 +1110,11 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 	rectangleDDASSA.setFillColor(Color::Color(216, 183, 171));
 	rectangleDDASSA.setPosition(window.getSize().x / 2 - window.getSize().x / 6, window.getSize().y / 2 - window.getSize().y / 8);
 
+	rectangleGameNo1.setFillColor(Color::Color(234, 222, 215));
+	rectangleGameNo1.setPosition(window.getSize().x / 2 - rectangleGameNo1.getSize().x / 2, window.getSize().y / 2 - rectangleGameNo1.getSize().y / 2);
+	rectangleGameNo2.setFillColor(Color::Color(216, 183, 171));
+	rectangleGameNo2.setPosition(window.getSize().x / 2 - rectangleGameNo2.getSize().x / 2, window.getSize().y / 2 - rectangleGameNo2.getSize().y / 2);
+
 	rectangleScroll.setPosition(window.getSize().x - 350, 35);
 	rectangleScroll.setFillColor(Color(207, 159, 119));
 
@@ -1114,6 +1129,9 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 
 	rectangleDDASSAMini2.setFillColor(Color::Color(150, 103, 74));
 	rectangleDDASSAMini2.setPosition(window.getSize().x / 2 + 90, window.getSize().y / 2 + 30);
+
+	rectangleGameNoMini1.setFillColor(Color::Color(188, 145, 118));
+	rectangleGameNoMini1.setPosition(window.getSize().x / 2 - rectangleGameNoMini1.getSize().x / 2, window.getSize().y / 2 + 30);
 
 
 	setRectangleEventsTab(&rectangle, 50, 50);
@@ -1267,16 +1285,27 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 		rectangleEvent2, rectangleEvent3, rectangleEvent4 };
 
 	Text hText1, hText2, hText3, hText4, hText5, hText6, hText7;
-	Text textRandom1, textRandom2, textRandom3, textRandom4, textRandom5;
 	Text infoText1, infoText2, infoText3, infoText4, infoText5, infoText6, infoText7;
 	Text h[7] = { hText1, hText2, hText3, hText4, hText5, hText6, hText7 };
-	Text random[5] = { textRandom1, textRandom2, textRandom3, textRandom4, textRandom5 };
+	Text random[5];
 	Text info[7] = { infoText1, infoText2, infoText3, infoText4, infoText5, infoText6, infoText7 };
 	Text info2[7] = { infoText1, infoText2, infoText3, infoText4, infoText5, infoText6, infoText7 };
 	Text info3[7] = { infoText1, infoText2, infoText3, infoText4, infoText5, infoText6, infoText7 };
 	Text info4[7] = { infoText1, infoText2, infoText3, infoText4, infoText5, infoText6, infoText7 };
 	Text error, areYouSure, choicePositionOfEvent, yes, no, position, errorPos, edit, deleteOne;
 	bool errorHere = false, errPos = false;
+
+	random[0].setPosition(130, 180);
+	random[1].setPosition(130, 285);
+	random[2].setPosition(130, 390);
+	random[3].setPosition(130, 495);
+	random[4].setPosition(130, 600);
+	for (int i = 0; i < 5; i++)
+	{
+		random[i].setFillColor(Color::Black);
+		random[i].setFont(f2);
+		random[i].setCharacterSize(25);
+	}
 	error.setString("You cannot complete the event while the fields are empty");
 	error.setPosition(180, 740);
 	error.setFillColor(Color(255, 102, 105));
@@ -1333,9 +1362,14 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 
 	Node* myEvents = NULL;
 	Node* temp;
+	int answer[5];
+	bool answerBool[5] = { false,false,false,false,false };
 	savedNodes(&myEvents);
 	int stopper = 7;
 	int p2 = 0;
+	int n5 = 0;
+	int n6 = 0;
+	int n3 = 0;
 	while (window.isOpen())
 	{
 		Event event;
@@ -1525,17 +1559,8 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 				window.draw(rectangle51);
 				window.draw(rectangle52);
 				window.draw(rectangle53);
-
-				//window.draw(rectangle54);
-				//window.draw(rectangle55);
-
 				window.draw(text6);
 				window.draw(s3);
-				//window.draw(s4);
-				//window.draw(s6);
-
-				//window.draw(s5);
-				//window.draw(s7);
 				cout << "p2 = " << p2 << endl;
 				if (rectangles > 4)
 				{
@@ -1675,55 +1700,6 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 					}
 				}
 				break;
-
-				/*
-				if (rectangles > 4)
-				{
-					if (p1 > 0 && p1 <= rectangles - 4)
-					{
-						if (Mouse::getPosition(window).x > window.getSize().x - 358 && Mouse::getPosition(window).x < window.getSize().x - 338 &&
-							Mouse::getPosition(window).y>45 && Mouse::getPosition(window).y < 55)
-						{
-							switch (event.type)
-							{
-							case Event::MouseButtonPressed:
-								if (event.mouseButton.button == Mouse::Left)
-								{
-									p1--;
-
-									Mouse::setPosition(Vector2i(Mouse::getPosition(window).x + 6, Mouse::getPosition(window).y + 6), window);
-								}
-							}
-						}
-					}
-					if (p1 >= 0 && p1 < rectangles - 4)
-					{
-						if (Mouse::getPosition(window).x > window.getSize().x - 358 && Mouse::getPosition(window).x < window.getSize().x - 338 &&
-							Mouse::getPosition(window).y>window.getSize().y - 50 && Mouse::getPosition(window).y < window.getSize().y - 35)
-						{
-							if (event.type == Event::MouseButtonPressed)
-							{
-								if (event.mouseButton.button == Mouse::Left)
-								{
-									p1++;
-									Mouse::setPosition(Vector2i(Mouse::getPosition(window).x - 4, Mouse::getPosition(window).y - 4), window);
-								}
-							}
-						}
-					}
-					rectangleScroll.setSize(Vector2f(window.getSize().x / 66, 7 * (window.getSize().y - 130) / rectangles));
-					rectangleScroll.setPosition(window.getSize().x - 350, 65 + p1 * (window.getSize().y - 130) / rectangles);
-					window.draw(s8);
-					window.draw(s9);
-					window.draw(rectangleScroll);
-				}
-				else
-				{
-					rectangleScroll.setSize(Vector2f(window.getSize().x / 66, window.getSize().y - 130));
-					rectangleScroll.setPosition(window.getSize().x - 350, 65);
-					window.draw(rectangleScroll);
-				}
-				*/
 			case 2:
 
 				temp = myEvents;
@@ -1875,53 +1851,6 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 						}
 
 					}
-
-					else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
-						switch (whoIsChoiced) {
-						case 1: textBox1.setSelected(false); break;
-						case 2: textBox2.setSelected(false); break;
-						case 3: textBox3.setSelected(false); break;
-						case 4: textBox4.setSelected(false); break;
-						case 5: textBox5.setSelected(false); break;
-						case 6: textBox6.setSelected(false); break;
-						case 7: textBox7.setSelected(false); break;
-						case 8:
-							if (moreText <= 30) {
-								textBox8.setSelected(false);
-							}
-							else if (moreText <= 60) {
-								textBox81.setSelected(false);
-							}
-							else if (moreText <= 90) {
-								textBox82.setSelected(false);
-							}
-							else if (moreText <= 120) {
-								textBox83.setSelected(false);
-							}
-							else if (moreText <= 150) {
-								textBox84.setSelected(false);
-							}
-							else if (moreText <= 180) {
-								textBox85.setSelected(false);
-							}
-							else if (moreText <= 210) {
-								textBox86.setSelected(false);
-							}
-							else if (moreText <= 240) {
-								textBox87.setSelected(false);
-							}
-							else if (moreText <= 270) {
-								textBox88.setSelected(false);
-							}
-							else if (moreText <= 300) {
-								textBox89.setSelected(false);
-							}
-
-							break;
-						}
-					}
-
-
 
 					if (event.type == Event::MouseButtonPressed)
 					{
@@ -3472,7 +3401,6 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 				switch (locGame)
 				{
 				case 1:
-
 					if (Mouse::getPosition(window).x > 30 && Mouse::getPosition(window).x < 100 &&
 						Mouse::getPosition(window).y>window.getSize().y - 50 && Mouse::getPosition(window).y < window.getSize().y - 20)
 					{
@@ -3499,7 +3427,42 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 						{
 							if (event.mouseButton.button == Mouse::Left)
 							{
+								/*string str1 = textBoxGame1.getText();
+								if (stoi(str1) == answer[0])
+								{
+									counter++;
+								}
+
+								str1 = textBoxGame2.getText();
+								if (stoi(str1) == answer[1])
+								{
+									counter++;
+								}
+
+								str1 = textBoxGame3.getText();
+								if (stoi(str1) == answer[2])
+								{
+									counter++;
+								}
+
+								str1 = textBoxGame4.getText();
+								if (stoi(str1) == answer[3])
+								{
+									counter++;
+								}
+								str1 = textBoxGame5.getText();
+								if (stoi(str1) == answer[4])
+								{
+									counter++;
+								}*/
+								//E tuk polchavam informachiata
+								textBoxGame1.deleteAll();
+								textBoxGame2.deleteAll();
+								textBoxGame3.deleteAll();
+								textBoxGame4.deleteAll();
+								textBoxGame5.deleteAll();
 								n1 = 1;
+								n5 = 0;
 							}
 						}
 					}
@@ -3520,7 +3483,27 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 						{
 							if (event.mouseButton.button == Mouse::Left)
 							{
-
+								if (n5 == 0)
+								{
+									for (int i = 0; i < 5; i++)
+									{
+										n3 = rand() % rectangles;
+										int n4 = 0;
+										Node* temp = myEvents;
+										while (temp)
+										{
+											if (n4 == n3)
+											{
+												random[i].setString(temp->title);
+												answer[i] = temp->year;
+											}
+											temp = temp->next;
+											n4++;
+										}
+									}
+									n1 = 2;
+									n5 = 1;
+								}
 							}
 						}
 					}
@@ -3538,7 +3521,9 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 						{
 							if (event.mouseButton.button == Mouse::Left)
 							{
-								n1 = 2;
+								n1 = 3;
+								int ran = rand() % 5;
+								hintText.setString(to_string(answer[ran]));
 							}
 						}
 					}
@@ -3573,228 +3558,69 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 					{
 						window.draw(rectangleCheck1);
 						window.draw(rectangleCheck2);
+						textResult.setString("Your result is  " + to_string(counter) + "  of  5");
+						window.draw(textResult);
 					}
-
+					if (n1 == 2)
+					{
+						for (int i = 0; i < 5; i++)
+						{
+							window.draw(random[i]);
+						}
+					}
 					text6.setPosition(30, window.getSize().y - 50);
 
-					// 1111111111111111111111111111111111111
-					if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
-						textBoxGame1.setSelected(true);
-
-					if (Mouse::getPosition(window).x > 715 && Mouse::getPosition(window).x < 825 &&
-						Mouse::getPosition(window).y > 175 && Mouse::getPosition(window).y < 215) {
-						if (event.type == Event::MouseButtonPressed)
-						{
-							if (event.mouseButton.button == Mouse::Left)
-							{
-								canWriteGame1 = true;
-							}
+					if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)) {
+						switch (whoIsChoicedGame) {
+						case 1: textBoxGame1.setSelected(true); break;
+						case 2: textBoxGame2.setSelected(true); break;
+						case 3: textBoxGame3.setSelected(true); break;
+						case 4: textBoxGame4.setSelected(true); break;
+						case 5: textBoxGame5.setSelected(true); break;
 						}
 					}
 
-					if (Mouse::getPosition(window).x > 840 && Mouse::getPosition(window).x < 880 &&
-						Mouse::getPosition(window).y > 175 && Mouse::getPosition(window).y < 215) {
 
-						if (event.type == Event::MouseButtonPressed)
+					if (event.type == Event::MouseButtonPressed)
+					{
+						if (event.mouseButton.button == Mouse::Left)
 						{
-							if (event.mouseButton.button == Mouse::Left)
+							if (Mouse::getPosition(window).x > 715 && Mouse::getPosition(window).x < 835)
 							{
-								canWriteGame1 = false;
-								if (btn2.isMouseOver(window)) {
-									textBoxGame1.deleteAll();
+								if (Mouse::getPosition(window).y > 175 && Mouse::getPosition(window).y < 215)
+									whoIsChoicedGame = 1;
+								if (Mouse::getPosition(window).y > 280 && Mouse::getPosition(window).y < 320)
+									whoIsChoicedGame = 2;
+								if (Mouse::getPosition(window).y > 385 && Mouse::getPosition(window).y < 425)
+									whoIsChoicedGame = 3;
+								if (Mouse::getPosition(window).y > 495 && Mouse::getPosition(window).y < 535)
+									whoIsChoicedGame = 4;
+								if (Mouse::getPosition(window).y > 600 && Mouse::getPosition(window).y < 640)
+									whoIsChoicedGame = 5;
+							}
+						}
+					}
+					while (window.pollEvent(event)) {
+
+						if (event.type == sf::Event::TextEntered) {
+							if ((event.text.unicode >= 48 && event.text.unicode <= 57) || event.text.unicode == DELETE_KEY)
+							{
+								switch (whoIsChoicedGame) {
+								case 1: textBoxGame1.typedOn(event); break;
+								case 2: textBoxGame2.typedOn(event); break;
+								case 3: textBoxGame3.typedOn(event); break;
+								case 4: textBoxGame4.typedOn(event); break;
+								case 5: textBoxGame5.typedOn(event); break;
 								}
 							}
 						}
 					}
-
-					if (canWriteGame1) {
-						while (window.pollEvent(event)) {
-							if (event.type == sf::Event::TextEntered) {
-								if ((event.text.unicode >= 48 && event.text.unicode <= 57) ||
-									event.text.unicode == DELETE_KEY) {
-									textBoxGame1.typedOn(event);
-								}
-							}
-						}
-					}
-
 					textBoxGame1.drawTo(window);
-
-					//222222222222222222222
-					if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
-						textBoxGame2.setSelected(true);
-
-					if (Mouse::getPosition(window).x > 715 && Mouse::getPosition(window).x < 825 &&
-						Mouse::getPosition(window).y > 280 && Mouse::getPosition(window).y < 320) {
-						if (event.type == Event::MouseButtonPressed)
-						{
-							if (event.mouseButton.button == Mouse::Left)
-							{
-								canWriteGame2 = true;
-							}
-						}
-					}
-
-					if (Mouse::getPosition(window).x > 840 && Mouse::getPosition(window).x < 880 &&
-						Mouse::getPosition(window).y > 285 && Mouse::getPosition(window).y < 325) {
-
-						if (event.type == Event::MouseButtonPressed)
-						{
-							if (event.mouseButton.button == Mouse::Left)
-							{
-								canWriteGame2 = false;
-								if (btn2.isMouseOver(window)) {
-									textBoxGame2.deleteAll();
-								}
-							}
-						}
-					}
-
-					if (canWriteGame2) {
-						while (window.pollEvent(event)) {
-							if (event.type == sf::Event::TextEntered) {
-								if ((event.text.unicode >= 48 && event.text.unicode <= 57) ||
-									event.text.unicode == DELETE_KEY) {
-									textBoxGame2.typedOn(event);
-								}
-							}
-						}
-					}
-
 					textBoxGame2.drawTo(window);
-
-
-
-					// 3333333333333333333333333333
-					if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
-						textBoxGame3.setSelected(true);
-
-					if (Mouse::getPosition(window).x > 715 && Mouse::getPosition(window).x < 825 &&
-						Mouse::getPosition(window).y > 380 && Mouse::getPosition(window).y < 425) {
-						if (event.type == Event::MouseButtonPressed)
-						{
-							if (event.mouseButton.button == Mouse::Left)
-							{
-								canWriteGame3 = true;
-							}
-						}
-					}
-
-					if (Mouse::getPosition(window).x > 840 && Mouse::getPosition(window).x < 880 &&
-						Mouse::getPosition(window).y > 390 && Mouse::getPosition(window).y < 430) {
-
-						if (event.type == Event::MouseButtonPressed)
-						{
-							if (event.mouseButton.button == Mouse::Left)
-							{
-								canWriteGame2 = false;
-								if (btn2.isMouseOver(window)) {
-									textBoxGame2.deleteAll();
-								}
-							}
-						}
-					}
-
-					if (canWriteGame3) {
-						while (window.pollEvent(event)) {
-							if (event.type == sf::Event::TextEntered) {
-								if ((event.text.unicode >= 48 && event.text.unicode <= 57) ||
-									event.text.unicode == DELETE_KEY) {
-									textBoxGame3.typedOn(event);
-								}
-							}
-						}
-					}
-
 					textBoxGame3.drawTo(window);
-
-
-					// 44444444444444444444444
-					if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
-						textBoxGame4.setSelected(true);
-
-					if (Mouse::getPosition(window).x > 715 && Mouse::getPosition(window).x < 825 &&
-						Mouse::getPosition(window).y > 490 && Mouse::getPosition(window).y < 530) {
-						if (event.type == Event::MouseButtonPressed)
-						{
-							if (event.mouseButton.button == Mouse::Left)
-							{
-								canWriteGame4 = true;
-							}
-						}
-					}
-
-					if (Mouse::getPosition(window).x > 840 && Mouse::getPosition(window).x < 880 &&
-						Mouse::getPosition(window).y > 490 && Mouse::getPosition(window).y < 530) {
-
-						if (event.type == Event::MouseButtonPressed)
-						{
-							if (event.mouseButton.button == Mouse::Left)
-							{
-								canWriteGame2 = false;
-								if (btn2.isMouseOver(window)) {
-									textBoxGame2.deleteAll();
-								}
-							}
-						}
-					}
-
-					if (canWriteGame4) {
-						while (window.pollEvent(event)) {
-							if (event.type == sf::Event::TextEntered) {
-								if ((event.text.unicode >= 48 && event.text.unicode <= 57) ||
-									event.text.unicode == DELETE_KEY) {
-									textBoxGame4.typedOn(event);
-								}
-							}
-						}
-					}
-
 					textBoxGame4.drawTo(window);
-
-
-					//5555555555555555555555555
-					if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
-						textBoxGame5.setSelected(true);
-
-					if (Mouse::getPosition(window).x > 715 && Mouse::getPosition(window).x < 825 &&
-						Mouse::getPosition(window).y > 595 && Mouse::getPosition(window).y < 635) {
-						if (event.type == Event::MouseButtonPressed)
-						{
-							if (event.mouseButton.button == Mouse::Left)
-							{
-								canWriteGame5 = true;
-							}
-						}
-					}
-
-					if (Mouse::getPosition(window).x > 840 && Mouse::getPosition(window).x < 880 &&
-						Mouse::getPosition(window).y > 600 && Mouse::getPosition(window).y < 640) {
-
-						if (event.type == Event::MouseButtonPressed)
-						{
-							if (event.mouseButton.button == Mouse::Left)
-							{
-								canWriteGame2 = false;
-								if (btn2.isMouseOver(window)) {
-									textBoxGame2.deleteAll();
-								}
-							}
-						}
-					}
-
-					if (canWriteGame5) {
-						while (window.pollEvent(event)) {
-							if (event.type == sf::Event::TextEntered) {
-								if ((event.text.unicode >= 48 && event.text.unicode <= 57) ||
-									event.text.unicode == DELETE_KEY) {
-									textBoxGame5.typedOn(event);
-								}
-							}
-						}
-					}
-
 					textBoxGame5.drawTo(window);
+					window.draw(hintText);
 					break;
 				default:
 					n1 = 0;
@@ -3807,6 +3633,10 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 					window.draw(textGame1);
 					window.draw(textGame2);
 					window.draw(textPlay);
+
+
+					window.draw(textHowToPlay);
+					window.draw(textCodeOfGray);
 					if (Mouse::getPosition(window).x > window.getSize().x - 70 && Mouse::getPosition(window).x < window.getSize().x &&
 						Mouse::getPosition(window).y>760 && Mouse::getPosition(window).y < window.getSize().y)
 					{
@@ -3815,7 +3645,15 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 						{
 							if (event.mouseButton.button == Mouse::Left)
 							{
-								locGame = 1;
+								if (rectangles > 10)
+								{
+									locGame = 1;
+									n6 = 0;
+								}
+								else
+								{
+									n6 = 1;
+								}
 							}
 						}
 					}
@@ -3823,9 +3661,31 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 					{
 						textPlay.setFillColor(Color::Black);
 					}
-
-					window.draw(textHowToPlay);
-					window.draw(textCodeOfGray);
+					if (n6 == 1)
+					{
+						window.draw(rectangleGameNo1);
+						window.draw(rectangleGameNo2);
+						window.draw(rectangleGameNoMini1);
+						window.draw(textBackGameNo);
+						window.draw(textBackGame);
+						if (Mouse::getPosition(window).x > 450 && Mouse::getPosition(window).x < 550 &&
+							Mouse::getPosition(window).y> 430 && Mouse::getPosition(window).y < 470)
+						{
+							textHint.setFillColor(Color::White);
+							if (event.type == Event::MouseButtonPressed)
+							{
+								if (event.mouseButton.button == Mouse::Left)
+								{
+									location = 0;
+									n6 = 0;
+								}
+							}
+						}
+						else
+						{
+							textHint.setFillColor(Color::Black);
+						}
+					}
 					backToMenu(&location, event, &text6);
 					break;
 				}
