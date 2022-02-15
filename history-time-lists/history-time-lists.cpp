@@ -4,8 +4,7 @@
 
 int main()
 {
-    setUpMenu();
-    return 0;
+	setUpMenu();
+	return 0;
 }
 
- 

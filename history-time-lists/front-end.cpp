@@ -6,6 +6,7 @@
 #include<iostream>
 #include <conio.h>
 #include <ctime>
+
 using namespace std;
 using namespace sf;
 
@@ -266,6 +267,7 @@ void finishToMenuFromCreate(int* ptr1, Event event, Text* textTwo)
 			if (event.mouseButton.button == Mouse::Left)
 			{
 				*ptr1 = 0;
+				(*textTwo).setString("Choose one:");
 			}
 		}
 	}
@@ -355,13 +357,12 @@ void setRectangleCreateMainOne(RectangleShape* rectangle, int plusLeft, int mulR
 	(*rectangle).setPosition(35, plusLeft + (window.getSize().y / 8) * mulRight);
 }
 
-void addFromOrBack(RectangleShape* rectangle, int posY) // ogradka
+void addFromOrBack(RectangleShape* rectangle, int posY)
 {
-	//(*rectangle).setFillColor(Color::Color(186, 166, 127));
 	(*rectangle).setPosition(50, posY);
 }
 
-void addFromOrBackTwo(RectangleShape* rectangle, int posY) // vutre
+void addFromOrBackTwo(RectangleShape* rectangle, int posY)
 {
 	(*rectangle).setFillColor(Color::Color(249, 239, 239));
 	(*rectangle).setPosition(55, posY);
@@ -395,10 +396,20 @@ void textFrontBackOrEditTab(Text* text, int posY)
 	(*text).setFillColor(Color::Black);
 }
 
+void deleteAllButton(Event event, int* ptr)
+{
+	if (event.type == Event::MouseButtonPressed)
+	{
+		if (event.mouseButton.button == Mouse::Left)
+		{
+			*ptr = 0;
+		}
+	}
+}
+
 void setUpMenu() {
-	srand(time(NULL));
+
 	Font f1;
-	int counter = 0;
 	if (!f1.loadFromFile("Pacifico-Regular.ttf"))
 		std::cout << "Font not found!\n";
 
@@ -491,10 +502,10 @@ void setUpMenu() {
 	textBox89.setLimit(true, 30);
 	textBox89.setFont(f2);
 
-	int moreText = 0;
-	int infoChoice = 1;
-	int whoIsChoicedGame = 0;
-	string allText;
+	Textbox textBoxSearch(20, sf::Color::Black, true);
+	textBoxSearch.setPosition({ 735, 68 });
+	textBoxSearch.setLimit(true, 14);
+	textBoxSearch.setFont(f2);
 
 	Textbox textBox9(20, sf::Color::Black, true);
 	textBox9.setPosition({ 530, 375 });
@@ -506,6 +517,14 @@ void setUpMenu() {
 	textBox10.setLimit(true, 3);
 	textBox10.setFont(f2);
 
+
+	int moreText = 0;
+	int infoChoice = 0;
+	string allText;
+
+
+
+	int whoIsChoicedGame = 0;
 
 
 	Textbox textBoxGame1(20, sf::Color::Black, true);
@@ -538,24 +557,6 @@ void setUpMenu() {
 	textBoxGame5.setFont(f2);
 	bool canWriteGame5 = false;
 
-	/*rectanglePlayBox4.setFillColor(Color::Black);
-rectanglePlayBox4.setPosition(210 + window.getSize().x / 2, 170);
-
-rectanglePlayBox41.setFillColor(Color::White);
-rectanglePlayBox41.setPosition(215 + window.getSize().x / 2, 175);
-
-rectanglePlayBox5.setFillColor(Color::Black);
-rectanglePlayBox5.setPosition(210 + window.getSize().x / 2, 275);
-
-rectanglePlayBox51.setFillColor(Color::White);
-rectanglePlayBox51.setPosition(215 + window.getSize().x / 2, 280);
-
-rectanglePlayBox6.setFillColor(Color::Black);
-rectanglePlayBox6.setPosition(210 + window.getSize().x / 2, 380);
-
-rectanglePlayBox61.setFillColor(Color::White);
-rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
-
 	int whoIsChoiced = 0;
 	int howManyEventsHave = 0;
 	int EventsHave = -1;
@@ -572,14 +573,50 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 	string autoSave;
 	int pos = 0;
 	int counterP = 0;
+	bool canSearch = false;
+	int whoCanSee[100];
+	bool CanSee[4] = { true, true, true, true };
+	int whoCanSeeSize = -1;
+	int orderCan = 0;
+
+	int counterN = 0;
+
+	bool lastWasPressed = false;
 
 	Button btn1("Finish", { 80, 40 }, 30, sf::Color::Transparent, sf::Color::Black);
 	btn1.setFont(f1);
 	btn1.setPosition({ 880, 740 });
 
-	Button btn2("Check", { 80, 40 }, 30, sf::Color::Transparent, sf::Color::Black);
-	btn2.setFont(f1);
-	btn2.setPosition({ 820, 710 });
+	Button search("", { 40, 50 }, 30, sf::Color::Transparent, sf::Color::Black);
+	search.setFont(f1);
+	search.setPosition({ 905, 55 });
+
+	Button orderTitle("Title", { 160, 45 }, 20, sf::Color(207, 159, 119), sf::Color::White);
+	orderTitle.setFont(f1);
+	orderTitle.setPosition({ 755, 200 });
+
+	Button orderYear("Year", { 160, 45 }, 20, sf::Color(207, 159, 119), sf::Color::White);
+	orderYear.setFont(f1);
+	orderYear.setPosition({ 755, 260 });
+
+	Button orderParticipants("Participants", { 160, 45 }, 20, sf::Color(207, 159, 119), sf::Color::White);
+	orderParticipants.setFont(f1);
+	orderParticipants.setPosition({ 755, 320 });
+
+	Button orderEra("Era", { 160, 45 }, 20, sf::Color(207, 159, 119), sf::Color::White);
+	orderEra.setFont(f1);
+	orderEra.setPosition({ 755, 380 });
+
+	Button orderLocation("Location", { 160, 45 }, 20, sf::Color(207, 159, 119), sf::Color::White);
+	orderLocation.setFont(f1);
+	orderLocation.setPosition({ 755, 440 });
+
+	Text order;
+	order.setString("Order by:");
+	order.setFont(f1);
+	order.setCharacterSize(25);
+	order.setPosition(780, 150);
+	order.setFillColor(Color(225, 172, 119));
 
 	int location = 0, locCreate = 0;
 
@@ -597,25 +634,39 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 	textGame1.setFont(f1);
 	textGame1.setCharacterSize(30);
 	textGame1.setPosition(window.getSize().x / 2 - 120, 80);
-	textGame1.setFillColor(Color::Color(210, 210, 210, 255));
+	//textGame1.setFillColor(Color::Color(210, 210, 210, 255));
 
 	textGame2.setString("Code of gray");
 	textGame2.setFont(f1);
 	textGame2.setCharacterSize(30);
 	textGame2.setPosition(window.getSize().x / 2 - 90, window.getSize().y / 2 + 30);
-	textGame2.setFillColor(Color::Color(210, 210, 210, 255));
+	//textGame2.setFillColor(Color::Color(210, 210, 210, 255));
 
-	textHowToPlay.setString("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq\nqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq\nqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq\nqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq\nqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq\nqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
-	textHowToPlay.setFont(f1);
+	textHowToPlay.setString("After pressing the Play button you will see \nfive empty fields. When you press the Random\n button, you will see 5 events. Your task is \nto write the year of the event in the fields\n on the right. If you do not know the date,\n press the Hint button and you will see the\n date of an unfilled event in Gray code.");
+	textHowToPlay.setFont(f2);
 	textHowToPlay.setCharacterSize(20);
 	textHowToPlay.setPosition(245, 160);
-	textHowToPlay.setFillColor(Color::Black);
-
-	textCodeOfGray.setString("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq\nqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq\nqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq\nqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq\nqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq\nqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
-	textCodeOfGray.setFont(f1);
+	textHowToPlay.setFillColor(Color(100, 100, 100));
+							 
+	textCodeOfGray.setString("Gray code is an ordering of the binary \nnumeral system such that two successive \nvalues differ in only one bit. A gray code \nsequence must begin with 0. So if the input \nis 2, then the result will be [0,1,3,2], \nthis is because gray of 0 is 00, gray of 1 \nis 01, gray of 2 is 11, and gray of 3 is 10.");
+	textCodeOfGray.setFont(f2);
 	textCodeOfGray.setCharacterSize(20);
 	textCodeOfGray.setPosition(245, 510);
-	textCodeOfGray.setFillColor(Color::Black);
+	textCodeOfGray.setFillColor(Color(100, 100, 100));
+
+	Text textAboutUs1, textAboutUs2;
+
+	textAboutUs1.setString("About us and project");
+	textAboutUs1.setFont(f1);
+	textAboutUs1.setCharacterSize(20);
+	textAboutUs1.setPosition(window.getSize().x / 2 - 95, window.getSize().y / 2 + 130);
+	textAboutUs1.setFillColor(Color::Black);
+
+	textAboutUs2.setString("Hello, we are students from VSCPI and we are part of the \nOld Friends team.Our project is an application with which \nyou can enter eventsand additional information about them.\nAnother feature of our app is that you can play a game to \ntest your knowledge after entering more events.");
+	textAboutUs2.setFont(f2);
+	textAboutUs2.setCharacterSize(20);
+	textAboutUs2.setPosition(148, 590);
+	textAboutUs2.setFillColor(Color::Black);
 
 	textCheck.setString("Check");
 	textCheck.setFont(f1);
@@ -830,28 +881,22 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 	textResult.setFont(f1);
 	textResult.setCharacterSize(30);
 	textResult.setPosition(350, 380);
-	textResult.setFillColor(Color::Color(210, 210, 210, 255));
+	textResult.setFillColor(Color::Black);
 
 	tex1.loadFromFile("../images/Logo.png");
 	tex2.loadFromFile("../images/Menu.png");
 
 	tex3.loadFromFile("../images/Lupa.png");
 
-	//tex4.loadFromFile("../images/arrowRight.png");
-	//tex5.loadFromFile("../images/arrowRight.png");
-
-	//tex6.loadFromFile("../images/arrowLeft.png");
-	//tex7.loadFromFile("../images/arrowLeft.png");
-
 	tex8.loadFromFile("../images/upArrow.png");
 	tex9.loadFromFile("../images/downArrow.png");
 
+	tex10.loadFromFile("../images/upArrow2.png");
+	tex11.loadFromFile("../images/downArrow2.png");
 
-	tex10.loadFromFile("../images/upArrow2.png");//impo
-	tex11.loadFromFile("../images/downArrow2.png");//impo
+	int fu1 = 65, n1 = 0, locGame = 0;;
 
-	int fu1 = 65, n1 = 0, locGame = 0;
-	RectangleShape rectangle(Vector2f(900, 450)), /*rectangle1(Vector2f((window.getSize().x / 2 - 80) / 2, (window.getSize().y / 2 - 40) / 3 - 5))*/
+	RectangleShape rectangle(Vector2f(900, 450)),
 		rectangle2(Vector2f(200, 250)), rectangle3(Vector2f(200, 250)),
 		rectangle4(Vector2f(140, 250)), rectangle5(Vector2f(window.getSize().x - 350, window.getSize().y - 50)),
 		rectangle7(Vector2f(window.getSize().x - 700, 40)), rectangle8(Vector2f(window.getSize().x - 700, 40)), rectangle9(Vector2f(window.getSize().x - 700, 40)),
@@ -892,9 +937,9 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 		//White rectangles Events 
 		rectangle48(Vector2f(window.getSize().x / 2 + 140, window.getSize().y / 2 - 30)),
 		rectangle49(Vector2f((window.getSize().x - 230) / 2, window.getSize().y / 2 - 170)),
-		rectangle50(Vector2f(window.getSize().x / 2 - 30, window.getSize().y / 2 - 170)),//Yes
+		rectangle50(Vector2f(window.getSize().x / 2 - 30, window.getSize().y / 2 - 170)),
 		rectangle51(Vector2f((window.getSize().x / 2 - 60) / 2, window.getSize().y / 2 - 40)),
-		rectangle52(Vector2f(window.getSize().x / 2 + 140, window.getSize().y / 12)),//Ne
+		rectangle52(Vector2f(window.getSize().x / 2 + 140, window.getSize().y / 12)),
 
 
 		recrtangleSearch1(Vector2f(window.getSize().x / 2 - 270, window.getSize().y / 13.5)),
@@ -911,6 +956,7 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 		rectangleGameNoMini1(Vector2f(window.getSize().x / 10, window.getSize().y / 20)),
 		rectangleGameNo1(Vector2f(window.getSize().x / 3 + 100, window.getSize().y / 4)),
 		rectangleGameNo2(Vector2f(window.getSize().x / 3 + 90, window.getSize().y / 4 - 10)),
+
 		recrtangleAboutUsH1(Vector2f(window.getSize().x / 10, window.getSize().y / 40)),
 		recrtangleAboutUsH2(Vector2f(200, window.getSize().y / 40)),
 		recrtangleAboutUsS1(Vector2f(window.getSize().x / 10, window.getSize().y / 40)),
@@ -931,6 +977,7 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 		rectangleEvent2(Vector2f(450, 45)),
 		rectangleEvent3(Vector2f(450, 45)),
 		rectangleEvent4(Vector2f(450, 45)),
+
 		recrtangleGame1(Vector2f(window.getSize().x - 400, window.getSize().y - 100)),
 		recrtangleGame2(Vector2f(window.getSize().x - 410, (window.getSize().y - 120) / 2)),
 		recrtangleGame3(Vector2f(window.getSize().x - 410, (window.getSize().y - 120) / 2)),
@@ -952,79 +999,87 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 		rectanglePlayBox6(Vector2f(120, 50)), rectanglePlayBox61(Vector2f(110, 40)),
 		rectanglePlayBox7(Vector2f(120, 50)), rectanglePlayBox71(Vector2f(110, 40)),
 		rectanglePlayBox8(Vector2f(120, 50)), rectanglePlayBox81(Vector2f(110, 40));
+
+
 	rectangleScroll1.setFillColor(Color(207, 159, 119));
-	rectanglePlayBox1.setFillColor(Color::Black);
+	rectanglePlayBox1.setFillColor(Color::White);
 	rectanglePlayBox1.setPosition(120, 170);
 
-	rectanglePlayBox11.setFillColor(Color::White);
+	rectanglePlayBox11.setFillColor(Color(249, 239, 239));
 	rectanglePlayBox11.setPosition(125, 175);
 
-	rectanglePlayBox2.setFillColor(Color::Black);
+	rectanglePlayBox2.setFillColor(Color::White);
 	rectanglePlayBox2.setPosition(120, 275);
 
-	rectanglePlayBox21.setFillColor(Color::White);
+	rectanglePlayBox21.setFillColor(Color(249, 239, 239));
 	rectanglePlayBox21.setPosition(125, 280);
 
-	rectanglePlayBox3.setFillColor(Color::Black);
+	rectanglePlayBox3.setFillColor(Color::White);
 	rectanglePlayBox3.setPosition(120, 380);
 
-	rectanglePlayBox31.setFillColor(Color::White);
+	rectanglePlayBox31.setFillColor(Color(249, 239, 239));
 	rectanglePlayBox31.setPosition(125, 385);
 
+	rectangleGameNo1.setFillColor(Color::Color(234, 222, 215));
+	rectangleGameNo1.setPosition(window.getSize().x / 2 - rectangleGameNo1.getSize().x / 2, window.getSize().y / 2 - rectangleGameNo1.getSize().y / 2);
+	rectangleGameNo2.setFillColor(Color::Color(216, 183, 171));
+	rectangleGameNo2.setPosition(window.getSize().x / 2 - rectangleGameNo2.getSize().x / 2, window.getSize().y / 2 - rectangleGameNo2.getSize().y / 2);
 
+	rectangleGameNoMini1.setFillColor(Color::Color(188, 145, 118));
+	rectangleGameNoMini1.setPosition(window.getSize().x / 2 - rectangleGameNoMini1.getSize().x / 2, window.getSize().y / 2 + 30);
 
-	rectanglePlayBox9.setFillColor(Color::Black);
+	rectanglePlayBox9.setFillColor(Color::White);
 	rectanglePlayBox9.setPosition(120, 485);
 
-	rectanglePlayBox91.setFillColor(Color::White);
+	rectanglePlayBox91.setFillColor(Color(249, 239, 239));
 	rectanglePlayBox91.setPosition(125, 490);
 
-	rectanglePlayBox10.setFillColor(Color::Black);
+	rectanglePlayBox10.setFillColor(Color::White);
 	rectanglePlayBox10.setPosition(120, 590);
 
-	rectanglePlayBox101.setFillColor(Color::White);
+	rectanglePlayBox101.setFillColor(Color(249, 239, 239));
 	rectanglePlayBox101.setPosition(125, 595);
 
-	rectanglePlayBox4.setFillColor(Color::Black);
+	rectanglePlayBox4.setFillColor(Color::White);
 	rectanglePlayBox4.setPosition(210 + window.getSize().x / 2, 170);
 
-	rectanglePlayBox41.setFillColor(Color::White);
+	rectanglePlayBox41.setFillColor(Color(249, 239, 239));
 	rectanglePlayBox41.setPosition(215 + window.getSize().x / 2, 175);
 
-	rectanglePlayBox5.setFillColor(Color::Black);
+	rectanglePlayBox5.setFillColor(Color::White);
 	rectanglePlayBox5.setPosition(210 + window.getSize().x / 2, 275);
 
-	rectanglePlayBox51.setFillColor(Color::White);
+	rectanglePlayBox51.setFillColor(Color(249, 239, 239));
 	rectanglePlayBox51.setPosition(215 + window.getSize().x / 2, 280);
 
-	rectanglePlayBox6.setFillColor(Color::Black);
+	rectanglePlayBox6.setFillColor(Color::White);
 	rectanglePlayBox6.setPosition(210 + window.getSize().x / 2, 380);
 
-	rectanglePlayBox61.setFillColor(Color::White);
+	rectanglePlayBox61.setFillColor(Color(249, 239, 239));
 	rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);
 
-	rectanglePlayBox7.setFillColor(Color::Black);
+	rectanglePlayBox7.setFillColor(Color::White);
 	rectanglePlayBox7.setPosition(210 + window.getSize().x / 2, 490);
 
-	rectanglePlayBox71.setFillColor(Color::White);
+	rectanglePlayBox71.setFillColor(Color(249, 239, 239));
 	rectanglePlayBox71.setPosition(215 + window.getSize().x / 2, 495);
 
-	rectanglePlayBox8.setFillColor(Color::Black);
+	rectanglePlayBox8.setFillColor(Color::White);
 	rectanglePlayBox8.setPosition(210 + window.getSize().x / 2, 595);
 
-	rectanglePlayBox81.setFillColor(Color::White);
+	rectanglePlayBox81.setFillColor(Color(249, 239, 239));
 	rectanglePlayBox81.setPosition(215 + window.getSize().x / 2, 600);
 
-	rectangleHint1.setFillColor(Color::Black);
+	rectangleHint1.setFillColor(Color::White);
 	rectangleHint1.setPosition(window.getSize().x - 220, 40);
 
-	rectangleHint2.setFillColor(Color::White);
+	rectangleHint2.setFillColor(Color(249, 239, 239));
 	rectangleHint2.setPosition(window.getSize().x - 215, 45);
 
-	rectangleCheck1.setFillColor(Color::Black);
+	rectangleCheck1.setFillColor(Color(238, 186, 134));
 	rectangleCheck1.setPosition(window.getSize().x / 2 - 200, window.getSize().y / 2 - 100);
 
-	rectangleCheck2.setFillColor(Color::White);
+	rectangleCheck2.setFillColor(Color(249, 239, 239));
 	rectangleCheck2.setPosition(window.getSize().x / 2 - 195, window.getSize().y / 2 - 95);
 
 	rectanglePlay1.setFillColor(Color::White);
@@ -1042,10 +1097,10 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 	recrtangleGame3.setFillColor(Color::Color(225, 172, 119));
 	recrtangleGame3.setPosition(205, (window.getSize().y - 120) / 2 + 65);
 
-	recrtangleGame4.setFillColor(Color::White);
+	recrtangleGame4.setFillColor(Color(249, 239, 239));
 	recrtangleGame4.setPosition(210, 140);
 
-	recrtangleGame5.setFillColor(Color::White);
+	recrtangleGame5.setFillColor(Color(249, 239, 239));
 	recrtangleGame5.setPosition(210, 490);
 
 
@@ -1110,15 +1165,9 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 	rectangleDDASSA.setFillColor(Color::Color(216, 183, 171));
 	rectangleDDASSA.setPosition(window.getSize().x / 2 - window.getSize().x / 6, window.getSize().y / 2 - window.getSize().y / 8);
 
-	rectangleGameNo1.setFillColor(Color::Color(234, 222, 215));
-	rectangleGameNo1.setPosition(window.getSize().x / 2 - rectangleGameNo1.getSize().x / 2, window.getSize().y / 2 - rectangleGameNo1.getSize().y / 2);
-	rectangleGameNo2.setFillColor(Color::Color(216, 183, 171));
-	rectangleGameNo2.setPosition(window.getSize().x / 2 - rectangleGameNo2.getSize().x / 2, window.getSize().y / 2 - rectangleGameNo2.getSize().y / 2);
-
 	rectangleScroll.setPosition(window.getSize().x - 350, 35);
 	rectangleScroll.setFillColor(Color(207, 159, 119));
 
-	//rectangleMoreInfo.setFillColor(Color::Red);
 	rectangleMoreInfo.setPosition(window.getSize().x - 310, window.getSize().y - 410);
 
 	rectangleMoreInf.setFillColor(Color(249, 239, 239));
@@ -1130,22 +1179,18 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 	rectangleDDASSAMini2.setFillColor(Color::Color(150, 103, 74));
 	rectangleDDASSAMini2.setPosition(window.getSize().x / 2 + 90, window.getSize().y / 2 + 30);
 
-	rectangleGameNoMini1.setFillColor(Color::Color(188, 145, 118));
-	rectangleGameNoMini1.setPosition(window.getSize().x / 2 - rectangleGameNoMini1.getSize().x / 2, window.getSize().y / 2 + 30);
-
 
 	setRectangleEventsTab(&rectangle, 50, 50);
 	setRectangleEventsTab(&rectangle2, 370, 520);
 	setRectangleEventsTab(&rectangle3, 590, 520);
 	setRectangleEventsTab(&rectangle4, 810, 520);
 
-	//rectangle5.setFillColor(Color::Color(211, 141, 74)); // ogradata na v nego sa subitatqtq
 	rectangle5.setPosition(23, 23);
 
-	rectangle10.setFillColor(Color(249, 239, 239)); // v nego sa subitiqta ggggggggggggggggggggg
+	rectangle10.setFillColor(Color(249, 239, 239));
 	rectangle10.setPosition(28, 28);
 
-	rectangle11.setFillColor(Color::Color(225, 172, 119)); // tabovete sus subitiqtaaaa
+	rectangle11.setFillColor(Color::Color(225, 172, 119));
 	rectangle11.setPosition(35, 35);
 
 	setRectangleCreateMainOne(&rectangle12, 40, 1);
@@ -1154,15 +1199,15 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 	setRectangleCreateMainOne(&rectangle15, 55, 4);
 	setRectangleCreateMainOne(&rectangle16, 60, 5);
 	setRectangleCreateMainOne(&rectangle17, 65, 6);
-	rectangle12.setFillColor(Color::Color(225, 172, 119)); // tabovete sus subitiqtaaaa
-	rectangle13.setFillColor(Color::Color(225, 172, 119)); // tabovete sus subitiqtaaaa
-	rectangle14.setFillColor(Color::Color(225, 172, 119)); // tabovete sus subitiqtaaaa
-	rectangle15.setFillColor(Color::Color(225, 172, 119)); // tabovete sus subitiqtaaaa
-	rectangle16.setFillColor(Color::Color(225, 172, 119)); // tabovete sus subitiqtaaaa
-	rectangle17.setFillColor(Color::Color(225, 172, 119)); // tabovete sus subitiqtaaaa
+	rectangle12.setFillColor(Color::Color(225, 172, 119));
+	rectangle13.setFillColor(Color::Color(225, 172, 119));
+	rectangle14.setFillColor(Color::Color(225, 172, 119));
+	rectangle15.setFillColor(Color::Color(225, 172, 119));
+	rectangle16.setFillColor(Color::Color(225, 172, 119));
+	rectangle17.setFillColor(Color::Color(225, 172, 119));
 
 
-	rectangle7.setFillColor(Color::Color(207, 159, 119)); // choose one
+	rectangle7.setFillColor(Color::Color(207, 159, 119));
 	rectangle7.setPosition(window.getSize().x - 310, 25);
 	setRectangleDropDown(&rectangle8, 65);
 	setRectangleDropDown(&rectangle9, 105);
@@ -1180,7 +1225,7 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 
 
 	//Cray rectangles Create 
-	addFromOrBack(&rectangle28, 60); // ogradite vutre v add more taba
+	addFromOrBack(&rectangle28, 60);
 	addFromOrBack(&rectangle29, 160);
 	addFromOrBack(&rectangle30, 260);
 	addFromOrBack(&rectangle31, 360);
@@ -1191,20 +1236,10 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 
 	addFromOrBack(&rectangle44, 50);
 	addFromOrBack(&rectangle45, window.getSize().y / 2 + 120);
-	//rectangle46.setFillColor(Color::Color(249, 239, 239));
 	rectangle46.setPosition((window.getSize().x - 160) / 2 + 30, window.getSize().y / 2 + 120);
-
-	//rectangle47.setFillColor(Color::Color(249, 239, 239));
 	rectangle47.setPosition(window.getSize().x / 2 + 220, window.getSize().y / 12 + 65);
-
-	//rectangle53.setFillColor(Color::Color(249, 239, 239));
 	rectangle53.setPosition(60, 60);
-
-	//rectangle54.setFillColor(Color::Color(249, 239, 239));
 	rectangle54.setPosition(window.getSize().x / 2 - 55, window.getSize().y / 2 + 125);
-
-
-	//rectangle55.setFillColor(Color::Color(249, 239, 239));
 	rectangle55.setPosition(window.getSize().x - 90, window.getSize().y / 2 + 125);
 
 	addFromOrBackTwo(&rectangle48, 125);
@@ -1222,7 +1257,6 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 	recrtangleSearch2.setFillColor(Color(249, 239, 239));
 	recrtangleSearch2.setPosition(window.getSize().x / 2 + 225, 55);
 
-	//recrtangleSearch1.setFillColor(Color::Color(170, 170, 170, 255));
 	recrtangleSearch1.setPosition(window.getSize().x / 2 + 220, 50);
 
 	//White rectangles Create 
@@ -1239,7 +1273,6 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 	rectangle40.setFillColor(Color::Color(249, 239, 239));
 	rectangle40.setPosition(window.getSize().x / 2 + 90, 65);
 
-	//rectangle41.setFillColor(Color::Color(249, 239, 239));
 	rectangle41.setPosition(window.getSize().x / 2 + 85, 60);
 
 	s1.setTextureRect(IntRect(10, 10, 486, 500));
@@ -1264,6 +1297,7 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 	s9.setPosition(window.getSize().x - 358, window.getSize().y - 60);
 	s10.setPosition(window.getSize().x - 70, window.getSize().y - 270);
 	s11.setPosition(window.getSize().x - 70, window.getSize().y - 55);
+
 	int sort = 0;
 	int p1 = 0;
 
@@ -1286,8 +1320,8 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 
 	Text hText1, hText2, hText3, hText4, hText5, hText6, hText7;
 	Text infoText1, infoText2, infoText3, infoText4, infoText5, infoText6, infoText7;
-	Text h[7] = { hText1, hText2, hText3, hText4, hText5, hText6, hText7 };
 	Text random[5];
+	Text h[7] = { hText1, hText2, hText3, hText4, hText5, hText6, hText7 };
 	Text info[7] = { infoText1, infoText2, infoText3, infoText4, infoText5, infoText6, infoText7 };
 	Text info2[7] = { infoText1, infoText2, infoText3, infoText4, infoText5, infoText6, infoText7 };
 	Text info3[7] = { infoText1, infoText2, infoText3, infoText4, infoText5, infoText6, infoText7 };
@@ -1295,17 +1329,31 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 	Text error, areYouSure, choicePositionOfEvent, yes, no, position, errorPos, edit, deleteOne;
 	bool errorHere = false, errPos = false;
 
-	random[0].setPosition(130, 180);
-	random[1].setPosition(130, 285);
-	random[2].setPosition(130, 390);
-	random[3].setPosition(130, 495);
-	random[4].setPosition(130, 600);
+	int answer[5];
+	int answerGray[5];
+	int ran = 0;
+
+	int trueCounter = 0;
+	string strCheck1, strCheck2, strCheck3, strCheck4, strCheck5;
+
+	int p2 = 0;
+	int n5 = 0;
+	int n6 = 0;
+	int n3 = 0;
+
+	random[0].setPosition(130, 185);
+	random[1].setPosition(130, 290);
+	random[2].setPosition(130, 395);
+	random[3].setPosition(130, 500);
+	random[4].setPosition(130, 605);
+
 	for (int i = 0; i < 5; i++)
 	{
 		random[i].setFillColor(Color::Black);
 		random[i].setFont(f2);
-		random[i].setCharacterSize(25);
+		random[i].setCharacterSize(19);
 	}
+
 	error.setString("You cannot complete the event while the fields are empty");
 	error.setPosition(180, 740);
 	error.setFillColor(Color(255, 102, 105));
@@ -1326,13 +1374,13 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 
 	yes.setString("Continue");
 	yes.setPosition(424, 439);
-	//yes.setFillColor(Color(188, 145, 118));
+
 	yes.setFont(f2);
 	yes.setCharacterSize(15);
 
 	no.setString("Cancel");
 	no.setPosition(614, 439);
-	//no.setFillColor(Color(188, 145, 118));
+
 	no.setFont(f2);
 	no.setCharacterSize(15);
 
@@ -1362,14 +1410,8 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 
 	Node* myEvents = NULL;
 	Node* temp;
-	int answer[5];
-	bool answerBool[5] = { false,false,false,false,false };
 	savedNodes(&myEvents);
-	int stopper = 7;
-	int p2 = 0;
-	int n5 = 0;
-	int n6 = 0;
-	int n3 = 0;
+
 	while (window.isOpen())
 	{
 		Event event;
@@ -1409,12 +1451,123 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 			{
 			case 1:
 
-				temp = myEvents;
+				backToMenu(&location, event, &text6);
+
+				window.draw(rectangle44);
+				window.draw(rectangle45);
+				window.draw(rectangle46);
+				window.draw(rectangle47);
+				window.draw(recrtangleSearch1);
+				window.draw(recrtangleSearch2);
+
+				window.draw(rectangle48);
+				window.draw(rectangle49);
+				window.draw(rectangle50);
+				window.draw(rectangle51);
+				window.draw(rectangle52);
+				window.draw(rectangle53);
+
+				window.draw(text6);
+				window.draw(s3);
+				window.draw(order);
+
 				rectangles = 0;
+
+				for (int i = 0; i < 5; i++) {
+					if (Mouse::getPosition(window).x > 755 && Mouse::getPosition(window).x < 915 &&
+						Mouse::getPosition(window).y > 200 + i * 60 && Mouse::getPosition(window).y < 245 + i * 60) {
+						if (event.type == Event::MouseButtonPressed)
+						{
+							if (event.mouseButton.button == Mouse::Left)
+							{
+								orderCan = i + 1;
+							}
+						}
+					}
+				}
+
+				if (autoSave == "") {
+					fstream data;
+					data.open("AutoSaveNodes.txt", ios::in);
+					if (data.is_open()) {
+						string tp;
+						while (getline(data, tp)) {
+							autoSave = tp;
+						}
+					}
+
+					data.close();
+				}
+				autoSaveNodes(&myEvents, autoSave);
+
+				temp = myEvents;
+
+				switch (orderCan) {
+				case 1: mergeSort(&myEvents, orderCan); orderCan = 6; break;
+				case 2: mergeSort(&myEvents, orderCan); orderCan = 6; break;
+				case 3: mergeSort(&myEvents, orderCan); orderCan = 6; break;
+				case 4: mergeSort(&myEvents, orderCan); orderCan = 6; break;
+				case 5: mergeSort(&myEvents, orderCan); orderCan = 6; break;
+				}
+
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+					textBoxSearch.setSelected(true);
+
+				if (Mouse::getPosition(window).x > 725 && Mouse::getPosition(window).x < 900 &&
+					Mouse::getPosition(window).y > 55 && Mouse::getPosition(window).y < 100) {
+					if (event.type == Event::MouseButtonPressed)
+					{
+						if (event.mouseButton.button == Mouse::Left)
+						{
+							canSearch = true;
+						}
+					}
+				}
+
+				if (Mouse::getPosition(window).x > 905 && Mouse::getPosition(window).x < 945 &&
+					Mouse::getPosition(window).y > 55 && Mouse::getPosition(window).y < 100) {
+
+					if (event.type == Event::MouseButtonPressed)
+					{
+						if (event.mouseButton.button == Mouse::Left)
+						{
+							canSearch = false;
+							if (search.isMouseOver(window) && !lastWasPressed) {
+								whoCanSeeSize = -1;
+								if (textBoxSearch.getText() != " " && textBoxSearch.getText() != "_" && textBoxSearch.getText() != "")
+									searchFuct(temp, textBoxSearch.getText(), whoCanSee, &whoCanSeeSize);
+								textBoxSearch.deleteAll();
+
+								lastWasPressed = true;
+							}
+						}
+					}
+					else
+					{
+						lastWasPressed = false;
+					}
+				}
+
+				if (canSearch) {
+					while (window.pollEvent(event)) {
+						if (event.type == sf::Event::TextEntered) {
+							if ((event.text.unicode >= 65 &&
+								event.text.unicode <= 127) ||
+								(event.text.unicode >= 48 && event.text.unicode <= 57) ||
+								event.text.unicode == DELETE_KEY ||
+								event.text.unicode == 32) {
+								textBoxSearch.typedOn(event);
+							}
+						}
+					}
+				}
+
+				textBoxSearch.drawTo(window);
+				search.drawTo(window);
+
 				while (temp)
 				{
 					titleAndYear[rectangles] = to_string(rectangles + 1) + "." + temp->title + " - " + to_string(temp->year);
-
 					string t = temp->title;
 					string p = temp->participants;
 					string e = temp->era;
@@ -1443,22 +1596,23 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 						res.insert(20, "\n");
 					}
 
-
-					while (d.size() > 46 * dHelp) {
-						d.insert(46 * dHelp, "\n\n");
+					counterN = 0;
+					while (d.size() - counterN > 46 * dHelp) {
+						d.insert(46 * dHelp + counterN, "\n\n");
+						counterN += 2;
 						dHelp++;
 					}
 
 					dHelp = 1;
 
 					allInfo[rectangles] =
-						"               More Information\n\n"
+						"\n               More Information\n\n"
 						"Participants: \n" + p + "\n\n"
 						+ "Era: \n" + e + "\n\n"
 						+ "             Location: \n             " + l + "\n\n";
 
 					allInfo2[rectangles] =
-						"\n\nReason: \n" + rea + "\n\n"
+						"\n\n\nReason: \n" + rea + "\n\n"
 						+ "Result: \n" + res + "\n";
 
 					allInfo3[rectangles] = t;
@@ -1482,16 +1636,18 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 							info3[rectangles].setCharacterSize(25);
 							info3[rectangles].setFillColor(Color(188, 145, 118));
 							info3[rectangles].setPosition(75, 75);
+
 							info4[rectangles].setString(allInfo4[rectangles]);
 							info4[rectangles].setFont(f2);
 							info4[rectangles].setCharacterSize(20);
 							info4[rectangles].setFillColor(Color(188, 145, 118));
 							info4[rectangles].setPosition(100, 155);
+
 							h[rectangles].setString(titleAndYear[rectangles]);
 							h[rectangles].setFont(f2);
 							h[rectangles].setCharacterSize(15);
 							h[rectangles].setFillColor(Color(254, 254, 254));
-							h[rectangles].setPosition(490, 548 + rectangles * 55);
+							h[rectangles].setPosition(470, 548 + rectangles * 55);
 						}
 					}
 					else {
@@ -1499,7 +1655,7 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 						while (oldRectangles != 4) {
 							info[oldRectangles].setString(allInfo[oldRectangles + p2]);
 							info[oldRectangles].setFont(f2);
-							info[oldRectangles].setCharacterSize(13);
+							info[oldRectangles].setCharacterSize(12);
 							info[oldRectangles].setFillColor(Color(188, 145, 118));
 							info[oldRectangles].setPosition(65, 530);
 							info2[oldRectangles].setString(allInfo2[oldRectangles + p2]);
@@ -1521,7 +1677,7 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 							h[oldRectangles].setFont(f2);
 							h[oldRectangles].setCharacterSize(15);
 							h[oldRectangles].setFillColor(Color(254, 254, 254));
-							h[oldRectangles].setPosition(490, 548 + oldRectangles * 55);
+							h[oldRectangles].setPosition(470, 548 + oldRectangles * 55);
 							++oldRectangles;
 						}
 					}
@@ -1529,104 +1685,38 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 					temp = temp->next;
 				}
 
-				if (autoSave == "") {
-					fstream data;
-					data.open("AutoSaveNodes.txt", ios::in);
-					if (data.is_open()) {
-						string tp;
-						while (getline(data, tp)) {
-							autoSave = tp;
-						}
-					}
-
-					data.close();
-				}
-				autoSaveNodes(&myEvents, autoSave);
-
-				backToMenu(&location, event, &text6);
-
-				window.draw(rectangle44);
-				window.draw(rectangle45);
-				window.draw(rectangle46);
-				window.draw(rectangle47);
-				window.draw(recrtangleSearch1);
-				window.draw(recrtangleSearch2);
-
-
-				window.draw(rectangle48);
-				window.draw(rectangle49);
-				window.draw(rectangle50);
-				window.draw(rectangle51);
-				window.draw(rectangle52);
-				window.draw(rectangle53);
-				window.draw(text6);
-				window.draw(s3);
-				cout << "p2 = " << p2 << endl;
-				if (rectangles > 4)
-				{
-					if (p2 > 0 && p2 <= rectangles - 4)
-					{
-						if (Mouse::getPosition(window).x > window.getSize().x - 70 && Mouse::getPosition(window).x < window.getSize().x - 55 &&
-							Mouse::getPosition(window).y> window.getSize().y - 270 && Mouse::getPosition(window).y < window.getSize().y - 255)
-						{
-							switch (event.type)
-							{
-							case Event::MouseButtonPressed:
-								if (event.mouseButton.button == Mouse::Left)
-								{
-									p2--;
-
-									Mouse::setPosition(Vector2i(Mouse::getPosition(window).x + 6, Mouse::getPosition(window).y + 6), window);
-								}
-							}
-						}
-					}
-					if (p2 >= 0 && p2 < rectangles - 4)
-					{
-						if (Mouse::getPosition(window).x > window.getSize().x - 70 && Mouse::getPosition(window).x < window.getSize().x - 55 &&
-							Mouse::getPosition(window).y>window.getSize().y - 55 && Mouse::getPosition(window).y < window.getSize().y - 40)
-						{
-							if (event.type == Event::MouseButtonPressed)
-							{
-								if (event.mouseButton.button == Mouse::Left)
-								{
-									p2++;
-									Mouse::setPosition(Vector2i(Mouse::getPosition(window).x - 4, Mouse::getPosition(window).y - 4), window);
-								}
-							}
-						}
-					}
-					rectangleScroll1.setSize(Vector2f(window.getSize().x / 66, 4 * (window.getSize().y / 2 - 210) / rectangles));
-					rectangleScroll1.setPosition(window.getSize().x - 70, window.getSize().y - 255 + p2 * (window.getSize().y / 2 - 210) / rectangles);
-					window.draw(s10);
-					window.draw(s11);
-					window.draw(rectangleScroll1);
-				}
-				else
-				{
-					rectangleScroll1.setSize(Vector2f(window.getSize().x / 66, window.getSize().y / 2 - 210));
-					rectangleScroll1.setPosition(window.getSize().x - 70, window.getSize().y - 255);
-					window.draw(rectangleScroll1);
-				}
-
 				if (rectangles <= 4) {
 					for (int i = 0; i < rectangles; i++)
 					{
-						window.draw(Events[i]);
-					}
-					for (int i = 0; i < rectangles; i++)
-					{
-						window.draw(h[i]);
+						for (int j = 0; j < whoCanSeeSize; j++) {
+							if (whoCanSee[j] == i) {
+								CanSee[i] = false;
+							}
+						}
+
+						if (CanSee[i]) {
+							window.draw(Events[i]);
+							window.draw(h[i]);
+						}
+
+						CanSee[i] = true;
 					}
 				}
 				else {
 					for (int i = 0; i < 4; i++)
 					{
-						window.draw(Events[i]);
-					}
-					for (int i = 0; i < 4; i++)
-					{
-						window.draw(h[i]);
+						for (int j = 0; j < whoCanSeeSize; j++) {
+							if (whoCanSee[j] == i) {
+								CanSee[i] = false;
+							}
+						}
+
+						if (CanSee[i]) {
+							window.draw(Events[i]);
+							window.draw(h[i]);
+						}
+
+						CanSee[i] = true;
 					}
 				}
 
@@ -1699,6 +1789,61 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 						break;
 					}
 				}
+
+
+				orderTitle.drawTo(window);
+				orderYear.drawTo(window);
+				orderParticipants.drawTo(window);
+				orderEra.drawTo(window);
+				orderLocation.drawTo(window);
+
+				if (rectangles > 4)
+				{
+					if (p2 > 0 && p2 <= rectangles - 4)
+					{
+						if (Mouse::getPosition(window).x > window.getSize().x - 70 && Mouse::getPosition(window).x < window.getSize().x - 55 &&
+							Mouse::getPosition(window).y> window.getSize().y - 270 && Mouse::getPosition(window).y < window.getSize().y - 255)
+						{
+							switch (event.type)
+							{
+							case Event::MouseButtonPressed:
+								if (event.mouseButton.button == Mouse::Left)
+								{
+									p2--;
+
+									Mouse::setPosition(Vector2i(Mouse::getPosition(window).x + 6, Mouse::getPosition(window).y + 6), window);
+								}
+							}
+						}
+					}
+					if (p2 >= 0 && p2 < rectangles - 4)
+					{
+						if (Mouse::getPosition(window).x > window.getSize().x - 70 && Mouse::getPosition(window).x < window.getSize().x - 55 &&
+							Mouse::getPosition(window).y>window.getSize().y - 55 && Mouse::getPosition(window).y < window.getSize().y - 40)
+						{
+							if (event.type == Event::MouseButtonPressed)
+							{
+								if (event.mouseButton.button == Mouse::Left)
+								{
+									p2++;
+									Mouse::setPosition(Vector2i(Mouse::getPosition(window).x - 4, Mouse::getPosition(window).y - 4), window);
+								}
+							}
+						}
+					}
+					rectangleScroll1.setSize(Vector2f(window.getSize().x / 66, 4 * (window.getSize().y / 2 - 210) / rectangles));
+					rectangleScroll1.setPosition(window.getSize().x - 70, window.getSize().y - 255 + p2 * (window.getSize().y / 2 - 210) / rectangles);
+					window.draw(s10);
+					window.draw(s11);
+					window.draw(rectangleScroll1);
+				}
+				else
+				{
+					rectangleScroll1.setSize(Vector2f(window.getSize().x / 66, window.getSize().y / 2 - 210));
+					rectangleScroll1.setPosition(window.getSize().x - 70, window.getSize().y - 255);
+					window.draw(rectangleScroll1);
+				}
+
 				break;
 			case 2:
 
@@ -1707,7 +1852,6 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 				while (temp)
 				{
 					titleAndYear[rectangles] = to_string(rectangles + 1) + "." + temp->title + " - " + to_string(temp->year);
-					//cout << "more: " <<titleAndYear[rectangles] << endl;
 
 					string p = temp->participants;
 					string e = temp->era;
@@ -1743,7 +1887,7 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 						+ "Reason: \n" + rea + "\n\n"
 						+ "Result: \n" + res + "\n";
 					if (p1 <= 0) {
-						if (rectangles < stopper) {
+						if (rectangles < 7) {
 							info[rectangles].setString(allInfo[rectangles]);
 							info[rectangles].setFont(f2);
 							info[rectangles].setCharacterSize(15);
@@ -1758,7 +1902,7 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 					}
 					else {
 						int oldRectangles = 0;
-						while (oldRectangles != stopper) {
+						while (oldRectangles != 7) {
 							info[oldRectangles].setString(allInfo[oldRectangles + p1]);
 							info[oldRectangles].setFont(f2);
 							info[oldRectangles].setCharacterSize(15);
@@ -2069,51 +2213,6 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 						}
 					}
 
-					else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
-						switch (whoIsChoiced) {
-						case 1: textBox1.setSelected(false); break;
-						case 2: textBox2.setSelected(false); break;
-						case 3: textBox3.setSelected(false); break;
-						case 4: textBox4.setSelected(false); break;
-						case 5: textBox5.setSelected(false); break;
-						case 6: textBox6.setSelected(false); break;
-						case 7: textBox7.setSelected(false); break;
-						case 8:
-							if (moreText <= 30) {
-								textBox8.setSelected(false);
-							}
-							else if (moreText <= 60) {
-								textBox81.setSelected(false);
-							}
-							else if (moreText <= 90) {
-								textBox82.setSelected(false);
-							}
-							else if (moreText <= 120) {
-								textBox83.setSelected(false);
-							}
-							else if (moreText <= 150) {
-								textBox84.setSelected(false);
-							}
-							else if (moreText <= 180) {
-								textBox85.setSelected(false);
-							}
-							else if (moreText <= 210) {
-								textBox86.setSelected(false);
-							}
-							else if (moreText <= 240) {
-								textBox87.setSelected(false);
-							}
-							else if (moreText <= 270) {
-								textBox88.setSelected(false);
-							}
-							else if (moreText <= 300) {
-								textBox89.setSelected(false);
-							}
-
-							break;
-						}
-					}
-
 					if (event.type == Event::MouseButtonPressed)
 					{
 						if (event.mouseButton.button == Mouse::Left)
@@ -2333,54 +2432,6 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 						case 9:	textBox10.setSelected(true); break;
 						}
 					}
-
-					else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
-						switch (whoIsChoiced) {
-						case 1: textBox1.setSelected(false); break;
-						case 2: textBox2.setSelected(false); break;
-						case 3: textBox3.setSelected(false); break;
-						case 4: textBox4.setSelected(false); break;
-						case 5: textBox5.setSelected(false); break;
-						case 6: textBox6.setSelected(false); break;
-						case 7: textBox7.setSelected(false); break;
-						case 8:
-							if (moreText <= 30) {
-								textBox8.setSelected(false);
-							}
-							else if (moreText <= 60) {
-								textBox81.setSelected(false);
-							}
-							else if (moreText <= 90) {
-								textBox82.setSelected(false);
-							}
-							else if (moreText <= 120) {
-								textBox83.setSelected(false);
-							}
-							else if (moreText <= 150) {
-								textBox84.setSelected(false);
-							}
-							else if (moreText <= 180) {
-								textBox85.setSelected(false);
-							}
-							else if (moreText <= 210) {
-								textBox86.setSelected(false);
-							}
-							else if (moreText <= 240) {
-								textBox87.setSelected(false);
-							}
-							else if (moreText <= 270) {
-								textBox88.setSelected(false);
-							}
-							else if (moreText <= 300) {
-								textBox89.setSelected(false);
-							}
-
-							break;
-						case 9:	textBox10.setSelected(false); break;
-						}
-					}
-
-
 
 					if (event.type == Event::MouseButtonPressed)
 					{
@@ -2629,54 +2680,6 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 						case 9:	textBox10.setSelected(true); break;
 						}
 					}
-
-					else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
-						switch (whoIsChoiced) {
-						case 1: textBox1.setSelected(false); break;
-						case 2: textBox2.setSelected(false); break;
-						case 3: textBox3.setSelected(false); break;
-						case 4: textBox4.setSelected(false); break;
-						case 5: textBox5.setSelected(false); break;
-						case 6: textBox6.setSelected(false); break;
-						case 7: textBox7.setSelected(false); break;
-						case 8:
-							if (moreText <= 30) {
-								textBox8.setSelected(false);
-							}
-							else if (moreText <= 60) {
-								textBox81.setSelected(false);
-							}
-							else if (moreText <= 90) {
-								textBox82.setSelected(false);
-							}
-							else if (moreText <= 120) {
-								textBox83.setSelected(false);
-							}
-							else if (moreText <= 150) {
-								textBox84.setSelected(false);
-							}
-							else if (moreText <= 180) {
-								textBox85.setSelected(false);
-							}
-							else if (moreText <= 210) {
-								textBox86.setSelected(false);
-							}
-							else if (moreText <= 240) {
-								textBox87.setSelected(false);
-							}
-							else if (moreText <= 270) {
-								textBox88.setSelected(false);
-							}
-							else if (moreText <= 300) {
-								textBox89.setSelected(false);
-							}
-
-							break;
-						case 9:	textBox10.setSelected(false); break;
-						}
-					}
-
-
 
 					if (event.type == Event::MouseButtonPressed)
 					{
@@ -3002,7 +3005,6 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 							++rectangles;
 							temp = temp->next;
 						}
-						//--rectangles;
 					}
 
 					text6.setPosition(0, 770);
@@ -3425,37 +3427,48 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 						textCheck.setFillColor(Color::White);
 						if (event.type == Event::MouseButtonPressed)
 						{
-							if (event.mouseButton.button == Mouse::Left)
+							if (event.mouseButton.button == Mouse::Left && !lastWasPressed)
 							{
-								/*string str1 = textBoxGame1.getText();
-								if (stoi(str1) == answer[0])
-								{
-									counter++;
+								strCheck1 = textBoxGame1.getText();
+								if (strCheck1.size() != 0) {
+									if (stoi(strCheck1) == answer[0])
+									{
+										++trueCounter;
+									}
 								}
 
-								str1 = textBoxGame2.getText();
-								if (stoi(str1) == answer[1])
-								{
-									counter++;
+								strCheck2 = textBoxGame2.getText();
+								if (strCheck2.size() != 0) {
+									if (stoi(strCheck2) == answer[1])
+									{
+										++trueCounter;
+									}
 								}
 
-								str1 = textBoxGame3.getText();
-								if (stoi(str1) == answer[2])
-								{
-									counter++;
+								strCheck3 = textBoxGame3.getText();
+								if (strCheck3.size() != 0) {
+									if (stoi(strCheck3) == answer[2])
+									{
+										++trueCounter;
+									}
 								}
 
-								str1 = textBoxGame4.getText();
-								if (stoi(str1) == answer[3])
-								{
-									counter++;
+								strCheck4 = textBoxGame4.getText();
+								if (strCheck4.size() != 0) {
+									if (stoi(strCheck4) == answer[3])
+									{
+										++trueCounter;
+									}
 								}
-								str1 = textBoxGame5.getText();
-								if (stoi(str1) == answer[4])
-								{
-									counter++;
-								}*/
-								//E tuk polchavam informachiata
+
+								strCheck5 = textBoxGame5.getText();
+								if (strCheck5.size() != 0) {
+									if (stoi(strCheck5) == answer[4])
+									{
+										++trueCounter;
+									}
+								}
+
 								textBoxGame1.deleteAll();
 								textBoxGame2.deleteAll();
 								textBoxGame3.deleteAll();
@@ -3463,7 +3476,11 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 								textBoxGame5.deleteAll();
 								n1 = 1;
 								n5 = 0;
+								lastWasPressed = true;
 							}
+						}
+						else {
+							lastWasPressed = false;
 						}
 					}
 					else
@@ -3496,6 +3513,8 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 											{
 												random[i].setString(temp->title);
 												answer[i] = temp->year;
+												answerGray[i] = temp->grayYear;
+												ran = 0;
 											}
 											temp = temp->next;
 											n4++;
@@ -3519,12 +3538,18 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 						textHint.setFillColor(Color::White);
 						if (event.type == Event::MouseButtonPressed)
 						{
-							if (event.mouseButton.button == Mouse::Left)
+							if (event.mouseButton.button == Mouse::Left && !lastWasPressed)
 							{
-								n1 = 3;
-								int ran = rand() % 5;
-								hintText.setString(to_string(answer[ran]));
+								hintText.setString(to_string(answerGray[ran]));
+								++ran;
+								if (ran > 4) {
+									ran = 0;
+								}
+								lastWasPressed = true;
 							}
+						}
+						else {
+							lastWasPressed = false;
 						}
 					}
 					else
@@ -3558,7 +3583,7 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 					{
 						window.draw(rectangleCheck1);
 						window.draw(rectangleCheck2);
-						textResult.setString("Your result is  " + to_string(counter) + "  of  5");
+						textResult.setString("Your result is  " + to_string(trueCounter) + "  of  5");
 						window.draw(textResult);
 					}
 					if (n1 == 2)
@@ -3645,7 +3670,7 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 						{
 							if (event.mouseButton.button == Mouse::Left)
 							{
-								if (rectangles > 10)
+								if (rectangles >= 10)
 								{
 									locGame = 1;
 									n6 = 0;
@@ -3726,9 +3751,12 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 				window.draw(textG);
 				window.draw(textM);
 
-
 				window.draw(rectangleMiddle1);
 				window.draw(rectangleMiddle2);
+
+				window.draw(textAboutUs1);
+				window.draw(textAboutUs2);
+
 				backToMenu(&location, event, &text6);
 				break;
 			case 5:
@@ -3736,8 +3764,7 @@ rectanglePlayBox61.setPosition(215 + window.getSize().x / 2, 385);*/
 				break;
 			}
 		}
-		//cout << "rectangles = " << rectangles << endl;
-		cout << Mouse::getPosition(window).x << " " << Mouse::getPosition(window).y << endl;
+		//cout << Mouse::getPosition(window).x << " " << Mouse::getPosition(window).y << endl;
 		window.display();
 	}
 }
